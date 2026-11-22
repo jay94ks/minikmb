@@ -1,0 +1,24 @@
+[package]
+name = "frwr-ui"
+version = "0.3.0"
+edition = "2021"
+rust-version = "1.88"
+resolver = "3"
+description = "Portable egui frontend for the frwr RP2040 SPI NOR programmer"
+
+[dependencies]
+anyhow = "=1.0.100"
+eframe = { version = "=0.32.3", default-features = false, features = ["default_fonts", "glow", "x11", "wayland"] }
+rfd = "=0.15.4"
+serialport = { version = "=4.8.1", default-features = false }
+serde = { version = "=1.0.228", features = ["derive"] }
+serde_json = "=1.0.145"
+sha2 = "=0.10.9"
+tempfile = "=3.23.0"
+png = "=0.18.1"
+
+[profile.release]
+opt-level = 2
+lto = "thin"
+strip = true
+

@@ -1,0 +1,3 @@
+MS2130 test board: historical placement experiment, not fully routed. NOT FOR FABRICATION.
+Open MS2130_Test.kicad_pro in KiCad 10; local libraries must remain together.
+See ../../README.md for context and the actual fabricated board at ../../../stm32h7/.

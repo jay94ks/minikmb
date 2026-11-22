@@ -1,0 +1,84 @@
+--- a/src/device/dcd.h
++++ b/src/device/dcd.h
+@@ -174,6 +174,12 @@
+ // This API never calls with control endpoints, since it is auto cleared when receiving setup packet
+ void dcd_edpt_clear_stall     (uint8_t rhport, uint8_t ep_addr);
+ 
++#ifdef MINIKMB_TUSB_TARGET_INSTANCE
++// MiniKMB DWC2 hook: clear HALT and report whether a pending transfer was aborted.
++// The upstream void API remains unchanged; this symbol belongs to the target only.
++bool target_dcd_edpt_clear_stall_cancelled(uint8_t rhport, uint8_t ep_addr);
++#endif
++
+ #ifdef TUP_DCD_EDPT_CLOSE_API
+ // Close an endpoint.
+ void dcd_edpt_close(uint8_t rhport, uint8_t ep_addr);
+--- a/src/device/usbd.c
++++ b/src/device/usbd.c
+@@ -1701,8 +1701,17 @@
+ 
+   // only clear if currently stalled
+   TU_LOG_USBD("    Clear Stall EP %02X\r\n", ep_addr);
++  uint8_t clear_mask = TU_EDPT_STATE_STALLED | TU_EDPT_STATE_BUSY;
++#ifdef MINIKMB_TUSB_TARGET_INSTANCE
++  // Retire ownership only after the DCD actually stopped the transfer. HID and
++  // OUT transfers can remain armed and must keep their claim until completion.
++  if (target_dcd_edpt_clear_stall_cancelled(rhport, ep_addr)) {
++    clear_mask |= TU_EDPT_STATE_CLAIMED;
++  }
++#else
+   dcd_edpt_clear_stall(rhport, ep_addr);
+-  _usbd_dev.ep_status[epnum][dir] &= (uint8_t) ~(TU_EDPT_STATE_STALLED | TU_EDPT_STATE_BUSY);
++#endif
++  _usbd_dev.ep_status[epnum][dir] &= (uint8_t) ~clear_mask;
+ }
+ 
+ bool usbd_edpt_stalled(uint8_t rhport, uint8_t ep_addr) {
+--- a/src/portable/synopsys/dwc2/dcd_dwc2.c
++++ b/src/portable/synopsys/dwc2/dcd_dwc2.c
+@@ -768,14 +768,15 @@
+   }
+ }
+ 
+-void dcd_edpt_clear_stall(uint8_t rhport, uint8_t ep_addr) {
++static bool edpt_clear_stall(uint8_t rhport, uint8_t ep_addr) {
++  bool cancelled = false;
+   dwc2_regs_t* dwc2 = DWC2_REG(rhport);
+   uint8_t const epnum = tu_edpt_number(ep_addr);
+   uint8_t const dir = tu_edpt_dir(ep_addr);
+   dwc2_dep_t* dep = &dwc2->ep[dir == TUSB_DIR_IN ? 0 : 1][epnum];
+ 
+ #if defined(MINIKMB_TUSB_TARGET_INSTANCE) && defined(STM32H743xx)
+-  // The device stack drops its pending transfer when clearing a halt.
++  // Cancel an armed bulk IN before clearing its hardware state.
+   // Stop and flush an armed IN transaction before clearing the hardware state.
+   usbd_spin_lock(false);
+   if (epnum != 0 && dir == TUSB_DIR_IN &&
+@@ -784,6 +785,7 @@
+     edpt_disable(rhport, ep_addr, true);
+     dwc2->diepempmsk &= ~TU_BIT(epnum);
+     dep->diepint = DIEPINT_XFRC;
++    cancelled = true;
+   }
+ #endif
+ 
+@@ -793,7 +795,18 @@
+ #if defined(MINIKMB_TUSB_TARGET_INSTANCE) && defined(STM32H743xx)
+   usbd_spin_unlock(false);
+ #endif
+-}
++  return cancelled;
++}
++
++void dcd_edpt_clear_stall(uint8_t rhport, uint8_t ep_addr) {
++  (void) edpt_clear_stall(rhport, ep_addr);
++}
++
++#if defined(MINIKMB_TUSB_TARGET_INSTANCE) && defined(STM32H743xx)
++bool target_dcd_edpt_clear_stall_cancelled(uint8_t rhport, uint8_t ep_addr) {
++  return edpt_clear_stall(rhport, ep_addr);
++}
++#endif
+ 
+ //--------------------------------------------------------------------
+ // Interrupt Handler

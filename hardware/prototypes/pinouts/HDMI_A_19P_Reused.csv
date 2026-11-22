@@ -1,0 +1,21 @@
+﻿pin,name,electrical_type,description
+1,D2+,passive,TMDS Data2+
+2,D2_SHIELD,passive,TMDS Data2 shield
+3,D2-,passive,TMDS Data2-
+4,D1+,passive,TMDS Data1+
+5,D1_SHIELD,passive,TMDS Data1 shield
+6,D1-,passive,TMDS Data1-
+7,D0+,passive,TMDS Data0+
+8,D0_SHIELD,passive,TMDS Data0 shield
+9,D0-,passive,TMDS Data0-
+10,CLK+,passive,TMDS Clock+
+11,CLK_SHIELD,passive,TMDS Clock shield
+12,CLK-,passive,TMDS Clock-
+13,CEC,passive,Consumer Electronics Control
+14,UTILITY/HEAC+,passive,Reserved in HDMI 1.0-1.3a; Utility/HEAC+ in HDMI 1.4+
+15,DDC_SCL,passive,DDC I2C clock
+16,DDC_SDA,passive,DDC I2C data
+17,DDC_CEC_GND,passive,DDC/CEC signal ground
+18,+5V,passive,HDMI source-supplied +5 V; passive connector contact
+19,HPD/HEAC-,passive,Hot Plug Detect / HEAC-
+20,SHELL,passive,Local library convention: four mounting tabs share pad 20; NOT HDMI contact 20

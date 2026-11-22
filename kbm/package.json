@@ -1,0 +1,37 @@
+{
+  "name": "kbm-control",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dual capture-card viewer and KBM master controller",
+  "productName": "KBM Control",
+  "author": "KBM",
+  "type": "module",
+  "scripts": {
+    "predev": "node ../work/build-minikmb-native.cjs",
+    "prebuild": "node ../work/build-minikmb-native.cjs",
+    "dev": "quasar dev -m electron",
+    "build": "quasar build -m electron",
+    "typecheck": "vue-tsc --noEmit",
+    "prepare": "quasar prepare"
+  },
+  "dependencies": {
+    "@quasar/extras": "^2.1.0",
+    "quasar": "^2.35.2",
+    "vue": "^3.5.44",
+    "vue-router": "^5.4.0"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.3.0",
+    "@quasar/app-vite": "^3.10.3",
+    "@types/node": "^26.6.5",
+    "electron": "^45.0.0",
+    "sass-embedded": "^1.106.1",
+    "typescript": "~5.9.3",
+    "vue-tsc": "latest"
+  },
+  "engines": {
+    "node": ">=22.22.0",
+    "npm": ">=10.0.0"
+  }
+}
+

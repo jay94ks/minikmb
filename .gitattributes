@@ -1,0 +1,3 @@
+# Preserve original source, license and asset bytes used by checksum manifests.
+# In particular, do not convert font notices or vendored inputs on Windows checkout.
+* -text

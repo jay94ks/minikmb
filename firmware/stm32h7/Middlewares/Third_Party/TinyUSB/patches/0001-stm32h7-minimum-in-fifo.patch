@@ -1,0 +1,14 @@
+--- a/src/portable/synopsys/dwc2/dcd_dwc2.c
++++ b/src/portable/synopsys/dwc2/dcd_dwc2.c
+@@ -227,6 +227,11 @@
+       _dcd_data.allocated_epin_count++;
+     }
+ 
++    #if CFG_TUSB_MCU == OPT_MCU_STM32H7
++    // RM0433 specifies a minimum depth of 16 words for each IN FIFO.
++    fifo_size = tu_max16(fifo_size, 16);
++    #endif
++
+     // Enable double buffering if configured, only effective for non-periodic endpoints
+     // Since we queue only 1 control transfer at a time, it's only applicable for bulk IN endpoints
+     if (((_tud_cfg.bm_double_buffered & (1 << epnum)) != 0) && epnum > 0 && is_bulk) {

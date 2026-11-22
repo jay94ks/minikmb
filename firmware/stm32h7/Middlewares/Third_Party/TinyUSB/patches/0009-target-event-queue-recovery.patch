@@ -1,0 +1,62 @@
+--- a/src/device/usbd.c
++++ b/src/device/usbd.c
+@@ -418,6 +418,13 @@
+ // Event queue: usbd_int_set() is used as mutex in OS NONE config
+ OSAL_QUEUE_DEF(usbd_int_set, _usbd_qdef, CFG_TUD_TASK_QUEUE_SZ, dcd_event_t);
+ static osal_queue_t _usbd_q;
++#ifdef MINIKMB_TUSB_TARGET_INSTANCE
++static volatile bool _usbd_event_queue_overflow;
++
++bool target_usbd_event_queue_overflowed(void) {
++  return _usbd_event_queue_overflow;
++}
++#endif
+ 
+ // Mutex for claiming endpoint
+ #if OSAL_MUTEX_REQUIRED
+@@ -428,7 +435,23 @@
+ #endif
+ 
+ TU_ATTR_ALWAYS_INLINE static inline bool queue_event(dcd_event_t const * event, bool in_isr) {
++#ifdef MINIKMB_TUSB_TARGET_INSTANCE
++  if (_usbd_event_queue_overflow) {
++    return false;
++  }
++
++  // A lost transfer event makes endpoint state unreliable. Stop the producer;
++  // the target task retires this queue and reconnects the target controller.
++  bool const queued = in_isr ? osal_queue_send(_usbd_q, event, true) :
++                               xQueueSendToBack(_usbd_q, event, 0) != pdFALSE;
++  if (!queued) {
++    _usbd_event_queue_overflow = true;
++    dcd_int_disable(event->rhport);
++    return false;
++  }
++#else
+   TU_ASSERT(osal_queue_send(_usbd_q, event, in_isr));
++#endif
+   tud_event_hook_cb(event->rhport, event->event_id, in_isr);
+   return true;
+ }
+@@ -567,6 +590,9 @@
+ 
+   tu_varclr(&_usbd_dev);
+   _usbd_queued_setup = 0;
++#ifdef MINIKMB_TUSB_TARGET_INSTANCE
++  _usbd_event_queue_overflow = false;
++#endif
+ 
+   osal_spin_init(&_usbd_spin);
+ 
+@@ -705,6 +731,11 @@
+     if (!osal_queue_receive(_usbd_q, &event, timeout_ms)) {
+       return;
+     }
++#ifdef MINIKMB_TUSB_TARGET_INSTANCE
++    if (_usbd_event_queue_overflow) {
++      return;
++    }
++#endif
+ 
+ #if CFG_TUSB_DEBUG >= CFG_TUD_LOG_LEVEL
+     if (event.event_id == DCD_EVENT_SETUP_RECEIVED) {

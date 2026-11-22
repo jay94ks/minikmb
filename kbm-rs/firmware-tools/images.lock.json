@@ -1,0 +1,22 @@
+{
+  "images": [
+    {
+      "id": "minikmb-fs-hid-r63",
+      "label": "MiniKMB STM32 FS/HID r63",
+      "target": "stm32",
+      "file": "MiniKMB-FS-HID-r63.elf",
+      "bytes": 3444816,
+      "sha256": "960f8392fdc3fe692ecc32054bc1d95858c0a0011982bc1b099a42a37e727a45",
+      "profile": "STM32H743VIH6, protocol v1, target Full Speed, HID enabled, independent keyboard/mouse queues, features 0x77"
+    },
+    {
+      "id": "ms2130-sample-20221026",
+      "label": "MS2130 ROM 2022-10-26",
+      "target": "ms2130",
+      "file": "MS2130_sample_20221026.bin",
+      "bytes": 64468,
+      "sha256": "32c729ced368413fc16ff000bb2a044b6991aa5f3d04fa6cfd63056f40779538",
+      "profile": "User-supplied MS2130 ROM previously verified with the RP2040 frwr writer; offset 0"
+    }
+  ]
+}

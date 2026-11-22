@@ -1,0 +1,9 @@
+﻿pin,name,electrical_type,description
+1,AAM,input,AAM threshold programming resistor
+2,IN,power_in,
+3,SW,power_out,
+4,GND,power_in,
+5,BST,passive,
+6,EN/SYNC,input,
+7,VCC,power_out,Internal regulator output; decouple to GND
+8,FB,input,

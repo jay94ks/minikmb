@@ -1,0 +1,2464 @@
+{
+  "revision": "A0",
+  "status": "ENGINEERING_PROTOTYPE_NOT_RELEASED",
+  "board_mm": [
+    63.09,
+    55.0
+  ],
+  "layers": [
+    "F.Cu signals/power",
+    "In1.Cu GND",
+    "In2.Cu GND",
+    "B.Cu signals/power"
+  ],
+  "parts": [
+    {
+      "ref": "U1",
+      "symbol": "MS2130",
+      "value": "MS2130",
+      "nets": {
+        "1": "DVDD33",
+        "2": "AVDD33_USB",
+        "5": "AVDD33_USB",
+        "6": "AVDD11_USB",
+        "8": "AVDD33_USB",
+        "10": "AVDD11_USB",
+        "12": "AVDD11_USB",
+        "15": "GND",
+        "16": "DVDD33",
+        "17": "GND",
+        "18": "DVDD11",
+        "19": "GND",
+        "20": "AVDD25",
+        "23": "AVDD25",
+        "24": "AVDD11",
+        "25": "GND",
+        "30": "GND",
+        "31": "DVDD33",
+        "32": "GND",
+        "33": "DVDD33",
+        "34": "GND",
+        "39": "DVDD11",
+        "40": "GND",
+        "41": "DVDD33",
+        "47": "AVDD25",
+        "48": "AVDD33",
+        "50": "GND",
+        "51": "AVDD11",
+        "52": "AVDD33",
+        "55": "AVDD11",
+        "56": "AVDD33",
+        "59": "AVDD11",
+        "60": "AVDD33",
+        "64": "GND",
+        "65": "GND",
+        "3": "USB_D_N",
+        "4": "USB_D_P",
+        "7": "USB_REXT",
+        "9": "USB_TX_N",
+        "11": "USB_TX_P",
+        "13": "USB_RX_N",
+        "14": "USB_RX_P",
+        "21": "XTIN",
+        "22": "XTOUT",
+        "26": "HDMI_SCL",
+        "27": "HDMI_SDA",
+        "28": "HDMI_DET",
+        "29": "HDMI_HPD_IC",
+        "35": "SPI_MOSI",
+        "36": "SPI_CLK",
+        "37": "SPI_MISO",
+        "38": "SPI_CS",
+        "42": "VBUS_DET",
+        "43": null,
+        "44": null,
+        "45": "HDMI_REXT",
+        "46": "HDMI_C_N",
+        "49": "HDMI_C_P",
+        "53": "HDMI_D0_N",
+        "54": "HDMI_D0_P",
+        "57": "HDMI_D1_N",
+        "58": "HDMI_D1_P",
+        "61": "HDMI_D2_N",
+        "62": "HDMI_D2_P",
+        "63": null
+      },
+      "at": [
+        52,
+        46
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "MS2130",
+      "note": "",
+      "sch": [
+        158.75,
+        80.01
+      ],
+      "uuid": "13a2e8b2-e1b3-5b92-9afd-46972633d2c1"
+    },
+    {
+      "ref": "J1",
+      "symbol": "HDMI_A_19P_Reused",
+      "value": "REUSED HDMI-A",
+      "nets": {
+        "1": "HDMI_D2_P",
+        "2": "GND",
+        "3": "HDMI_D2_N",
+        "4": "HDMI_D1_P",
+        "5": "GND",
+        "6": "HDMI_D1_N",
+        "7": "HDMI_D0_P",
+        "8": "GND",
+        "9": "HDMI_D0_N",
+        "10": "HDMI_C_P",
+        "11": "GND",
+        "12": "HDMI_C_N",
+        "13": null,
+        "14": null,
+        "15": "HDMI_SCL",
+        "16": "HDMI_SDA",
+        "17": "GND",
+        "18": "HDMI_5V",
+        "19": "HDMI_HPD",
+        "20": "GND"
+      },
+      "at": [
+        36,
+        46
+      ],
+      "angle": 90,
+      "side": "F",
+      "mpn": "REUSED HDMI-A",
+      "note": "Provisional compatible land pattern; verify with 1:1 print before fabrication",
+      "sch": [
+        38.1,
+        80.01
+      ],
+      "uuid": "fe53b7bb-74ac-5e72-b874-e2b1c3f4fbc8"
+    },
+    {
+      "ref": "J2",
+      "symbol": "USB3_A_PLUG",
+      "value": "USB3 A PLUG",
+      "nets": {
+        "1": "USB_VBUS",
+        "2": "USB_D_N",
+        "3": "USB_D_P",
+        "4": "GND",
+        "5": "USB_CTX_N",
+        "6": "USB_CTX_P",
+        "7": "GND",
+        "8": "USB_RX_N",
+        "9": "USB_RX_P",
+        "SH": "GND"
+      },
+      "at": [
+        94.75,
+        60
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "692112030100",
+      "note": "",
+      "sch": [
+        302.26,
+        50.8
+      ],
+      "uuid": "b5f80efe-b608-579f-a711-2fcaf556b762"
+    },
+    {
+      "ref": "J3",
+      "symbol": "HEADER2",
+      "value": "EXT 5V INPUT",
+      "nets": {
+        "1": "EXT_5V",
+        "2": "GND"
+      },
+      "at": [
+        82,
+        27
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "EXT 5V INPUT",
+      "note": "Regulated 5V only; current-limited bench supply for first bring-up",
+      "sch": [
+        368.3,
+        40.64
+      ],
+      "uuid": "abc64910-cfdd-53b3-86c8-aac631cab7c5"
+    },
+    {
+      "ref": "JP1",
+      "symbol": "HEADER3",
+      "value": "PWR SELECT",
+      "nets": {
+        "1": "USB_VBUS",
+        "2": "SYS_5V",
+        "3": "EXT_5V"
+      },
+      "at": [
+        82,
+        35
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "PWR SELECT",
+      "note": "Default shunt 2-3 EXTERNAL. Never fit two shunts. 1-2 USB requires bus-power/inrush validation",
+      "sch": [
+        368.3,
+        78.74
+      ],
+      "uuid": "e40c15f7-6f98-551f-9304-680b56421f9b"
+    },
+    {
+      "ref": "U2",
+      "symbol": "XC6220",
+      "value": "XC6220B331MR-G",
+      "nets": {
+        "1": "SYS_5V",
+        "2": "GND",
+        "3": "SYS_5V",
+        "4": null,
+        "5": "P3V3"
+      },
+      "at": [
+        72,
+        30
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "XC6220B331MR-G",
+      "note": "",
+      "sch": [
+        447.04,
+        45.72
+      ],
+      "uuid": "20e8bc42-ea79-5acc-9d67-f0f534dfe9b1"
+    },
+    {
+      "ref": "U3",
+      "symbol": "XC6220",
+      "value": "XC6220B251MR-G",
+      "nets": {
+        "1": "SYS_5V",
+        "2": "GND",
+        "3": "SYS_5V",
+        "4": null,
+        "5": "P2V5"
+      },
+      "at": [
+        72,
+        40
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "XC6220B251MR-G",
+      "note": "",
+      "sch": [
+        447.04,
+        96.52
+      ],
+      "uuid": "d10fc659-c74d-5c3e-8ecf-527fc25c8a32"
+    },
+    {
+      "ref": "U4",
+      "symbol": "XC6220",
+      "value": "XC6220B111MR-G",
+      "nets": {
+        "1": "P2V5",
+        "2": "GND",
+        "3": "P2V5",
+        "4": null,
+        "5": "P1V1"
+      },
+      "at": [
+        72,
+        50
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "XC6220B111MR-G",
+      "note": "",
+      "sch": [
+        447.04,
+        147.32
+      ],
+      "uuid": "5dd58c4f-a2ae-507f-b46a-59190f927b03"
+    },
+    {
+      "ref": "U5",
+      "symbol": "SPI_64KB",
+      "value": "W25X05CLSNIG",
+      "nets": {
+        "1": "SPI_CS",
+        "2": "SPI_MISO",
+        "3": "DVDD33_FLASH",
+        "4": "GND",
+        "5": "SPI_MOSI",
+        "6": "SPI_CLK",
+        "7": "DVDD33_FLASH",
+        "8": "DVDD33_FLASH"
+      },
+      "at": [
+        56,
+        29
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "W25X05CLSNIG",
+      "note": "64KB firmware/configuration image must be supplied; blank flash is not programmed by this project",
+      "sch": [
+        302.26,
+        121.92
+      ],
+      "uuid": "cbe1b626-25af-551b-8152-07ac02e51b69"
+    },
+    {
+      "ref": "Y1",
+      "symbol": "XTAL",
+      "value": "24MHz CL=12pF",
+      "nets": {
+        "1": "XTIN",
+        "2": "GND",
+        "3": "XTOUT",
+        "4": "GND"
+      },
+      "at": [
+        62,
+        47.5
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "24MHz 3225 4-pad crystal, CL=12pF, verify ESR/drive",
+      "note": "",
+      "sch": [
+        266.7,
+        213.36
+      ],
+      "uuid": "ce658ee4-8d9e-5902-bba0-ddf55c976b09"
+    },
+    {
+      "ref": "J4",
+      "symbol": "HEADER6",
+      "value": "SPI PROG (UNPOWERED)",
+      "nets": {
+        "1": "GND",
+        "2": "DVDD33_FLASH",
+        "3": "SPI_CS",
+        "4": "SPI_CLK",
+        "5": "SPI_MOSI",
+        "6": "SPI_MISO"
+      },
+      "at": [
+        35,
+        24
+      ],
+      "angle": 90,
+      "side": "F",
+      "mpn": "SPI PROG (UNPOWERED)",
+      "note": "Power off board; do not drive MS2130 SPI bus unless isolated or held inactive. Header is not a power source",
+      "sch": [
+        337.82,
+        167.64000000000001
+      ],
+      "uuid": "62efb060-97ba-53b9-b51c-efbf5719a12a"
+    },
+    {
+      "ref": "R1",
+      "symbol": "R",
+      "value": "1.6k 1%",
+      "nets": {
+        "1": "HDMI_REXT",
+        "2": "GND"
+      },
+      "at": [
+        51,
+        35.5
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "1.6k 1%",
+      "note": "",
+      "sch": [
+        50.8,
+        160.02
+      ],
+      "uuid": "068150ab-e77c-5ed5-ab09-0e89e042fa1f"
+    },
+    {
+      "ref": "R2",
+      "symbol": "R",
+      "value": "200R 1%",
+      "nets": {
+        "1": "USB_REXT",
+        "2": "GND"
+      },
+      "at": [
+        47,
+        60.5
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "200R 1%",
+      "note": "",
+      "sch": [
+        106.68,
+        160.02
+      ],
+      "uuid": "b117cdeb-9378-5ef6-9763-e08b347a5bc1"
+    },
+    {
+      "ref": "R3",
+      "symbol": "R",
+      "value": "1M",
+      "nets": {
+        "1": "XTIN",
+        "2": "XTOUT"
+      },
+      "at": [
+        62,
+        44
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "1M",
+      "note": "",
+      "sch": [
+        162.56,
+        160.02
+      ],
+      "uuid": "6ad04c28-2448-5901-bceb-989e1007b798"
+    },
+    {
+      "ref": "R4",
+      "symbol": "R",
+      "value": "47k",
+      "nets": {
+        "1": "HDMI_5V",
+        "2": "HDMI_SCL"
+      },
+      "at": [
+        38,
+        36
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "47k",
+      "note": "",
+      "sch": [
+        218.44,
+        160.02
+      ],
+      "uuid": "9696e26e-22a0-5f61-9791-b50ee52e8efd"
+    },
+    {
+      "ref": "R5",
+      "symbol": "R",
+      "value": "47k",
+      "nets": {
+        "1": "HDMI_5V",
+        "2": "HDMI_SDA"
+      },
+      "at": [
+        38,
+        33.5
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "47k",
+      "note": "",
+      "sch": [
+        274.32,
+        160.02
+      ],
+      "uuid": "b623bddc-e8a0-55fd-baae-44de92afadf0"
+    },
+    {
+      "ref": "R6",
+      "symbol": "R",
+      "value": "1k",
+      "nets": {
+        "1": "HDMI_5V",
+        "2": "HDMI_DET"
+      },
+      "at": [
+        45,
+        33.5
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "1k",
+      "note": "",
+      "sch": [
+        50.8,
+        198.12
+      ],
+      "uuid": "906a7cb9-a9ef-5ecb-9c17-d5dd258f781b"
+    },
+    {
+      "ref": "R7",
+      "symbol": "R",
+      "value": "1k",
+      "nets": {
+        "1": "HDMI_HPD_IC",
+        "2": "HDMI_HPD"
+      },
+      "at": [
+        45,
+        31
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "1k",
+      "note": "",
+      "sch": [
+        106.68,
+        198.12
+      ],
+      "uuid": "a834a107-a35e-5663-9397-b7c431c9d580"
+    },
+    {
+      "ref": "R8",
+      "symbol": "R",
+      "value": "24k 1%",
+      "nets": {
+        "1": "USB_VBUS",
+        "2": "VBUS_DET"
+      },
+      "at": [
+        57,
+        35
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "24k 1%",
+      "note": "",
+      "sch": [
+        162.56,
+        198.12
+      ],
+      "uuid": "f0bd9896-0da0-52e8-9865-5672940b86e1"
+    },
+    {
+      "ref": "R9",
+      "symbol": "R",
+      "value": "47k 1%",
+      "nets": {
+        "1": "VBUS_DET",
+        "2": "GND"
+      },
+      "at": [
+        60,
+        35
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "47k 1%",
+      "note": "",
+      "sch": [
+        218.44,
+        198.12
+      ],
+      "uuid": "e758932b-1875-5542-99d0-e6be51caea09"
+    },
+    {
+      "ref": "FB1",
+      "symbol": "FB",
+      "value": "0R / bead option",
+      "nets": {
+        "1": "P3V3",
+        "2": "DVDD33"
+      },
+      "at": [
+        64,
+        59
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "0R / bead option",
+      "note": "Populate 0R first. Ferrite substitution requires transient/stability measurements",
+      "sch": [
+        368.3,
+        220.98
+      ],
+      "uuid": "a9a3fed6-585f-583c-924f-f7f57daadd60"
+    },
+    {
+      "ref": "FB2",
+      "symbol": "FB",
+      "value": "0R / bead option",
+      "nets": {
+        "1": "P3V3",
+        "2": "AVDD33_USB"
+      },
+      "at": [
+        68,
+        59
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "0R / bead option",
+      "note": "Populate 0R first. Ferrite substitution requires transient/stability measurements",
+      "sch": [
+        434.34000000000003,
+        220.98
+      ],
+      "uuid": "5e48be62-bc09-5013-b5bd-cd5b67c8b583"
+    },
+    {
+      "ref": "FB3",
+      "symbol": "FB",
+      "value": "0R / bead option",
+      "nets": {
+        "1": "P3V3",
+        "2": "AVDD33"
+      },
+      "at": [
+        72,
+        59
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "0R / bead option",
+      "note": "Populate 0R first. Ferrite substitution requires transient/stability measurements",
+      "sch": [
+        500.38,
+        220.98
+      ],
+      "uuid": "151da42f-ebb0-5368-975b-5af766f26dbf"
+    },
+    {
+      "ref": "FB4",
+      "symbol": "FB",
+      "value": "0R / bead option",
+      "nets": {
+        "1": "P2V5",
+        "2": "AVDD25"
+      },
+      "at": [
+        76,
+        59
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "0R / bead option",
+      "note": "Populate 0R first. Ferrite substitution requires transient/stability measurements",
+      "sch": [
+        368.3,
+        248.92000000000002
+      ],
+      "uuid": "960cae31-2434-5823-a168-bc5bf96f4618"
+    },
+    {
+      "ref": "FB5",
+      "symbol": "FB",
+      "value": "0R / bead option",
+      "nets": {
+        "1": "P1V1",
+        "2": "DVDD11"
+      },
+      "at": [
+        64,
+        64
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "0R / bead option",
+      "note": "Populate 0R first. Ferrite substitution requires transient/stability measurements",
+      "sch": [
+        434.34000000000003,
+        248.92000000000002
+      ],
+      "uuid": "6e37ac2c-8c15-5732-ae37-8418caab1238"
+    },
+    {
+      "ref": "FB6",
+      "symbol": "FB",
+      "value": "0R / bead option",
+      "nets": {
+        "1": "P1V1",
+        "2": "AVDD11_USB"
+      },
+      "at": [
+        68,
+        64
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "0R / bead option",
+      "note": "Populate 0R first. Ferrite substitution requires transient/stability measurements",
+      "sch": [
+        500.38,
+        248.92000000000002
+      ],
+      "uuid": "0eeeefb8-2aed-5477-8a00-0cc18bd7a695"
+    },
+    {
+      "ref": "FB7",
+      "symbol": "FB",
+      "value": "0R / bead option",
+      "nets": {
+        "1": "P1V1",
+        "2": "AVDD11"
+      },
+      "at": [
+        72,
+        64
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "0R / bead option",
+      "note": "Populate 0R first. Ferrite substitution requires transient/stability measurements",
+      "sch": [
+        368.3,
+        276.86
+      ],
+      "uuid": "8f9d52b6-f0c5-59b4-ad98-374458f0bde3"
+    },
+    {
+      "ref": "FB8",
+      "symbol": "FB",
+      "value": "0R / bead option",
+      "nets": {
+        "1": "P3V3",
+        "2": "DVDD33_FLASH"
+      },
+      "at": [
+        76,
+        64
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "0R / bead option",
+      "note": "Populate 0R first. Ferrite substitution requires transient/stability measurements",
+      "sch": [
+        434.34000000000003,
+        276.86
+      ],
+      "uuid": "c61c2ea1-9b98-5bac-8656-f2adc8e58a91"
+    },
+    {
+      "ref": "C1",
+      "symbol": "C",
+      "value": "10uF 10V X7R",
+      "nets": {
+        "1": "SYS_5V",
+        "2": "GND"
+      },
+      "at": [
+        68,
+        27.5
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "10uF 10V X7R",
+      "note": "",
+      "sch": [
+        502.92,
+        30.48
+      ],
+      "uuid": "4a4a7053-d352-577f-a963-f036762f9932"
+    },
+    {
+      "ref": "C2",
+      "symbol": "C",
+      "value": "10uF 10V X7R",
+      "nets": {
+        "1": "P3V3",
+        "2": "GND"
+      },
+      "at": [
+        76,
+        27.5
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "10uF 10V X7R",
+      "note": "",
+      "sch": [
+        502.92,
+        50.8
+      ],
+      "uuid": "6386166a-094a-5a70-b304-0fd67602b426"
+    },
+    {
+      "ref": "C3",
+      "symbol": "C",
+      "value": "10uF 10V X7R",
+      "nets": {
+        "1": "SYS_5V",
+        "2": "GND"
+      },
+      "at": [
+        68,
+        37.5
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "10uF 10V X7R",
+      "note": "",
+      "sch": [
+        502.92,
+        81.28
+      ],
+      "uuid": "1d06fd3f-9ffd-5840-8640-dd9afddaa99c"
+    },
+    {
+      "ref": "C4",
+      "symbol": "C",
+      "value": "10uF 10V X7R",
+      "nets": {
+        "1": "P2V5",
+        "2": "GND"
+      },
+      "at": [
+        76,
+        37.5
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "10uF 10V X7R",
+      "note": "",
+      "sch": [
+        502.92,
+        101.6
+      ],
+      "uuid": "af955a32-1b8c-5a3c-9eff-46f5fd4dbf7f"
+    },
+    {
+      "ref": "C5",
+      "symbol": "C",
+      "value": "10uF 10V X7R",
+      "nets": {
+        "1": "P2V5",
+        "2": "GND"
+      },
+      "at": [
+        68,
+        47.5
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "10uF 10V X7R",
+      "note": "",
+      "sch": [
+        502.92,
+        132.08
+      ],
+      "uuid": "b19f9978-c900-5e40-ab26-ffb3ed37adf1"
+    },
+    {
+      "ref": "C6",
+      "symbol": "C",
+      "value": "10uF 10V X7R",
+      "nets": {
+        "1": "P1V1",
+        "2": "GND"
+      },
+      "at": [
+        76,
+        47.5
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "10uF 10V X7R",
+      "note": "",
+      "sch": [
+        502.92,
+        152.4
+      ],
+      "uuid": "98c70a50-f682-5810-9f05-b46157ef5c48"
+    },
+    {
+      "ref": "C7",
+      "symbol": "C",
+      "value": "22pF C0G",
+      "nets": {
+        "1": "XTIN",
+        "2": "GND"
+      },
+      "at": [
+        59.5,
+        50.5
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "22pF C0G",
+      "note": "22pF crystal capacitors are starting values; tune for actual CL and PCB stray",
+      "sch": [
+        365.76,
+        317.5
+      ],
+      "uuid": "254d0e57-c3cf-5e67-8287-564d0450bae7"
+    },
+    {
+      "ref": "C8",
+      "symbol": "C",
+      "value": "22pF C0G",
+      "nets": {
+        "1": "XTOUT",
+        "2": "GND"
+      },
+      "at": [
+        64.5,
+        50.5
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "22pF C0G",
+      "note": "22pF crystal capacitors are starting values; tune for actual CL and PCB stray",
+      "sch": [
+        421.64,
+        317.5
+      ],
+      "uuid": "39f154e4-5cc4-5c28-9df1-4849137b2b63"
+    },
+    {
+      "ref": "C9",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "HDMI_5V",
+        "2": "GND"
+      },
+      "at": [
+        42,
+        35.5
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        477.52,
+        317.5
+      ],
+      "uuid": "4b0df390-5749-55a2-a216-d55704399253"
+    },
+    {
+      "ref": "C10",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "USB_TX_P",
+        "2": "USB_CTX_P"
+      },
+      "at": [
+        65,
+        68
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        533.4,
+        317.5
+      ],
+      "uuid": "abe73c73-2904-5d28-ad85-369a3ca0efd9"
+    },
+    {
+      "ref": "C11",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "USB_TX_N",
+        "2": "USB_CTX_N"
+      },
+      "at": [
+        65,
+        66
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        30.48,
+        335.28000000000003
+      ],
+      "uuid": "e7ad3962-4343-5a0e-9999-99599b087b51"
+    },
+    {
+      "ref": "C12",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "DVDD33",
+        "2": "GND"
+      },
+      "at": [
+        45.35,
+        57.5
+      ],
+      "angle": 90,
+      "side": "B",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        86.36,
+        335.28000000000003
+      ],
+      "uuid": "ffa8dfba-f541-52aa-85ae-f7265c3b3539"
+    },
+    {
+      "ref": "C13",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "AVDD33_USB",
+        "2": "GND"
+      },
+      "at": [
+        47.25,
+        57.5
+      ],
+      "angle": 90,
+      "side": "B",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        142.24,
+        335.28000000000003
+      ],
+      "uuid": "d308e2f6-a886-549b-8679-cd4b655378a3"
+    },
+    {
+      "ref": "C14",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "AVDD33_USB",
+        "2": "GND"
+      },
+      "at": [
+        49.15,
+        57.5
+      ],
+      "angle": 90,
+      "side": "B",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        198.12,
+        335.28000000000003
+      ],
+      "uuid": "3ccf1bb1-64c6-501a-a7db-ecfb40338abc"
+    },
+    {
+      "ref": "C15",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "AVDD11_USB",
+        "2": "GND"
+      },
+      "at": [
+        51.05,
+        57.5
+      ],
+      "angle": 90,
+      "side": "B",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        254.0,
+        335.28000000000003
+      ],
+      "uuid": "5324c6c9-60f9-592e-908c-f80a3d663095"
+    },
+    {
+      "ref": "C16",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "AVDD33_USB",
+        "2": "GND"
+      },
+      "at": [
+        52.95,
+        57.5
+      ],
+      "angle": 90,
+      "side": "B",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        309.88,
+        335.28000000000003
+      ],
+      "uuid": "806a0bac-8e9a-5191-9c07-787bd8f83c23"
+    },
+    {
+      "ref": "C17",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "AVDD11_USB",
+        "2": "GND"
+      },
+      "at": [
+        54.85,
+        57.5
+      ],
+      "angle": 90,
+      "side": "B",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        365.76,
+        335.28000000000003
+      ],
+      "uuid": "ac30e6a3-ac6f-5c99-bfd4-5f549232fb56"
+    },
+    {
+      "ref": "C18",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "AVDD11_USB",
+        "2": "GND"
+      },
+      "at": [
+        56.75,
+        57.5
+      ],
+      "angle": 90,
+      "side": "B",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        421.64,
+        335.28000000000003
+      ],
+      "uuid": "aa0106e8-bb88-5458-87b3-4a14471b49c1"
+    },
+    {
+      "ref": "C19",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "DVDD33",
+        "2": "GND"
+      },
+      "at": [
+        58.65,
+        57.5
+      ],
+      "angle": 90,
+      "side": "B",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        477.52,
+        335.28000000000003
+      ],
+      "uuid": "6948bd90-3954-557f-bd21-246964b50684"
+    },
+    {
+      "ref": "C20",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "DVDD11",
+        "2": "GND"
+      },
+      "at": [
+        63.5,
+        49.8
+      ],
+      "angle": 0,
+      "side": "B",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        533.4,
+        335.28000000000003
+      ],
+      "uuid": "9de918c2-d281-5067-a81a-5cf7d90d211c"
+    },
+    {
+      "ref": "C21",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "AVDD25",
+        "2": "GND"
+      },
+      "at": [
+        63.5,
+        47.9
+      ],
+      "angle": 0,
+      "side": "B",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        30.48,
+        353.06
+      ],
+      "uuid": "b284872f-7b58-51d1-a565-f4619222d8a4"
+    },
+    {
+      "ref": "C22",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "AVDD25",
+        "2": "GND"
+      },
+      "at": [
+        63.5,
+        46.0
+      ],
+      "angle": 0,
+      "side": "B",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        86.36,
+        353.06
+      ],
+      "uuid": "66cd2407-8832-59c7-b17f-c596cb023e41"
+    },
+    {
+      "ref": "C23",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "AVDD11",
+        "2": "GND"
+      },
+      "at": [
+        63.5,
+        44.1
+      ],
+      "angle": 0,
+      "side": "B",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        142.24,
+        353.06
+      ],
+      "uuid": "6270a583-e39a-59be-bf1e-a774d6dfe109"
+    },
+    {
+      "ref": "C24",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "DVDD33",
+        "2": "GND"
+      },
+      "at": [
+        63.5,
+        42.2
+      ],
+      "angle": 0,
+      "side": "B",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        198.12,
+        353.06
+      ],
+      "uuid": "d1053930-d37b-5aaf-a899-0a98d1acf1fc"
+    },
+    {
+      "ref": "C25",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "DVDD33",
+        "2": "GND"
+      },
+      "at": [
+        55.8,
+        34.5
+      ],
+      "angle": 90,
+      "side": "B",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        254.0,
+        353.06
+      ],
+      "uuid": "f2196f31-be23-5a0c-8e72-3b44bce13296"
+    },
+    {
+      "ref": "C26",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "DVDD11",
+        "2": "GND"
+      },
+      "at": [
+        53.9,
+        34.5
+      ],
+      "angle": 90,
+      "side": "B",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        309.88,
+        353.06
+      ],
+      "uuid": "4e16211c-0fb2-5e9c-8eb5-73053a207e50"
+    },
+    {
+      "ref": "C27",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "DVDD33",
+        "2": "GND"
+      },
+      "at": [
+        52.0,
+        34.5
+      ],
+      "angle": 90,
+      "side": "B",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        365.76,
+        353.06
+      ],
+      "uuid": "48a65943-eebb-5cc5-a663-1068dd95a347"
+    },
+    {
+      "ref": "C28",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "AVDD25",
+        "2": "GND"
+      },
+      "at": [
+        50.1,
+        34.5
+      ],
+      "angle": 90,
+      "side": "B",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        421.64,
+        353.06
+      ],
+      "uuid": "38d05a43-44cc-5f1f-b099-e71d7cf62db9"
+    },
+    {
+      "ref": "C29",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "AVDD33",
+        "2": "GND"
+      },
+      "at": [
+        48.2,
+        34.5
+      ],
+      "angle": 90,
+      "side": "B",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        477.52,
+        353.06
+      ],
+      "uuid": "57cf72bb-fd62-5472-b304-2359516142a2"
+    },
+    {
+      "ref": "C30",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "AVDD11",
+        "2": "GND"
+      },
+      "at": [
+        36,
+        42.0
+      ],
+      "angle": 0,
+      "side": "B",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        533.4,
+        353.06
+      ],
+      "uuid": "96c75a40-5ff6-5dba-9289-c0ba79682c9c"
+    },
+    {
+      "ref": "C31",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "AVDD33",
+        "2": "GND"
+      },
+      "at": [
+        36,
+        43.6
+      ],
+      "angle": 0,
+      "side": "B",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        30.48,
+        370.84000000000003
+      ],
+      "uuid": "9e4acfe9-60f8-52f8-b9a7-5af65beb5057"
+    },
+    {
+      "ref": "C32",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "AVDD11",
+        "2": "GND"
+      },
+      "at": [
+        36,
+        45.2
+      ],
+      "angle": 0,
+      "side": "B",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        86.36,
+        370.84000000000003
+      ],
+      "uuid": "bf77f12b-b24f-5abb-b536-a731a5ac73aa"
+    },
+    {
+      "ref": "C33",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "AVDD33",
+        "2": "GND"
+      },
+      "at": [
+        36,
+        46.8
+      ],
+      "angle": 0,
+      "side": "B",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        142.24,
+        370.84000000000003
+      ],
+      "uuid": "eb3f1aff-4bd2-56f7-8f22-b64c625f32e4"
+    },
+    {
+      "ref": "C34",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "AVDD11",
+        "2": "GND"
+      },
+      "at": [
+        36,
+        48.4
+      ],
+      "angle": 0,
+      "side": "B",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        198.12,
+        370.84000000000003
+      ],
+      "uuid": "bd3cea8b-6fcc-56e0-8d37-81b4e4c66f54"
+    },
+    {
+      "ref": "C35",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "AVDD33",
+        "2": "GND"
+      },
+      "at": [
+        36,
+        50.0
+      ],
+      "angle": 0,
+      "side": "B",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        254.0,
+        370.84000000000003
+      ],
+      "uuid": "79d1220d-d45c-547d-a148-ce8914eee6a8"
+    },
+    {
+      "ref": "C36",
+      "symbol": "C",
+      "value": "1uF 10V X7R",
+      "nets": {
+        "1": "DVDD33",
+        "2": "GND"
+      },
+      "at": [
+        64,
+        61
+      ],
+      "angle": 0,
+      "side": "B",
+      "mpn": "1uF 10V X7R",
+      "note": "",
+      "sch": [
+        309.88,
+        370.84000000000003
+      ],
+      "uuid": "46c6867c-7ad2-5e7e-b6e7-c3e5e4e5515c"
+    },
+    {
+      "ref": "C37",
+      "symbol": "C",
+      "value": "1uF 10V X7R",
+      "nets": {
+        "1": "AVDD33_USB",
+        "2": "GND"
+      },
+      "at": [
+        68,
+        61
+      ],
+      "angle": 0,
+      "side": "B",
+      "mpn": "1uF 10V X7R",
+      "note": "",
+      "sch": [
+        365.76,
+        370.84000000000003
+      ],
+      "uuid": "1c7a668b-eb1d-59f7-91e5-22a3775e3352"
+    },
+    {
+      "ref": "C38",
+      "symbol": "C",
+      "value": "1uF 10V X7R",
+      "nets": {
+        "1": "AVDD33",
+        "2": "GND"
+      },
+      "at": [
+        72,
+        61
+      ],
+      "angle": 0,
+      "side": "B",
+      "mpn": "1uF 10V X7R",
+      "note": "",
+      "sch": [
+        421.64,
+        370.84000000000003
+      ],
+      "uuid": "05f241cf-0632-531c-97ad-c8e5517e20c7"
+    },
+    {
+      "ref": "C39",
+      "symbol": "C",
+      "value": "1uF 10V X7R",
+      "nets": {
+        "1": "AVDD25",
+        "2": "GND"
+      },
+      "at": [
+        76,
+        61
+      ],
+      "angle": 0,
+      "side": "B",
+      "mpn": "1uF 10V X7R",
+      "note": "",
+      "sch": [
+        477.52,
+        370.84000000000003
+      ],
+      "uuid": "f0f8914e-4d63-5d01-b1ef-37f91f029860"
+    },
+    {
+      "ref": "C40",
+      "symbol": "C",
+      "value": "1uF 10V X7R",
+      "nets": {
+        "1": "DVDD11",
+        "2": "GND"
+      },
+      "at": [
+        64,
+        66
+      ],
+      "angle": 0,
+      "side": "B",
+      "mpn": "1uF 10V X7R",
+      "note": "",
+      "sch": [
+        533.4,
+        370.84000000000003
+      ],
+      "uuid": "3930dc68-98c8-52e2-9e00-89e9e172438c"
+    },
+    {
+      "ref": "C41",
+      "symbol": "C",
+      "value": "1uF 10V X7R",
+      "nets": {
+        "1": "AVDD11_USB",
+        "2": "GND"
+      },
+      "at": [
+        68,
+        66
+      ],
+      "angle": 0,
+      "side": "B",
+      "mpn": "1uF 10V X7R",
+      "note": "",
+      "sch": [
+        30.48,
+        388.62
+      ],
+      "uuid": "ad023c0b-438c-566a-903c-bde09cee99dc"
+    },
+    {
+      "ref": "C42",
+      "symbol": "C",
+      "value": "1uF 10V X7R",
+      "nets": {
+        "1": "AVDD11",
+        "2": "GND"
+      },
+      "at": [
+        72,
+        66
+      ],
+      "angle": 0,
+      "side": "B",
+      "mpn": "1uF 10V X7R",
+      "note": "",
+      "sch": [
+        86.36,
+        388.62
+      ],
+      "uuid": "95b76344-892b-5c12-bd18-e0265f67f5fe"
+    },
+    {
+      "ref": "C43",
+      "symbol": "C",
+      "value": "1uF 10V X7R",
+      "nets": {
+        "1": "DVDD33_FLASH",
+        "2": "GND"
+      },
+      "at": [
+        76,
+        66
+      ],
+      "angle": 0,
+      "side": "B",
+      "mpn": "1uF 10V X7R",
+      "note": "",
+      "sch": [
+        142.24,
+        388.62
+      ],
+      "uuid": "182759fd-e3ac-51e1-bf92-1939734353ac"
+    },
+    {
+      "ref": "C44",
+      "symbol": "C",
+      "value": "100nF",
+      "nets": {
+        "1": "DVDD33_FLASH",
+        "2": "GND"
+      },
+      "at": [
+        56,
+        24
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "100nF",
+      "note": "",
+      "sch": [
+        198.12,
+        388.62
+      ],
+      "uuid": "ff888584-652c-582e-ad8d-005c5c787ee2"
+    },
+    {
+      "ref": "D1",
+      "symbol": "TVS",
+      "value": "TPD1E05U06DYAR",
+      "nets": {
+        "1": "HDMI_D2_P",
+        "2": "GND"
+      },
+      "at": [
+        42.5,
+        51.6
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "TPD1E05U06DYAR",
+      "note": "",
+      "sch": [
+        35.56,
+        261.62
+      ],
+      "uuid": "7eebb96d-d33b-5a19-ad7c-2df3b52045ae"
+    },
+    {
+      "ref": "D2",
+      "symbol": "TVS",
+      "value": "TPD1E05U06DYAR",
+      "nets": {
+        "1": "HDMI_D2_N",
+        "2": "GND"
+      },
+      "at": [
+        42.5,
+        50.0
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "TPD1E05U06DYAR",
+      "note": "",
+      "sch": [
+        96.52,
+        261.62
+      ],
+      "uuid": "19c5302b-180c-549c-b184-c1b4ed006704"
+    },
+    {
+      "ref": "D3",
+      "symbol": "TVS",
+      "value": "TPD1E05U06DYAR",
+      "nets": {
+        "1": "HDMI_D1_P",
+        "2": "GND"
+      },
+      "at": [
+        42.5,
+        48.4
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "TPD1E05U06DYAR",
+      "note": "",
+      "sch": [
+        157.48,
+        261.62
+      ],
+      "uuid": "67010ab3-f5ce-5555-a637-d9d0d6160ca0"
+    },
+    {
+      "ref": "D4",
+      "symbol": "TVS",
+      "value": "TPD1E05U06DYAR",
+      "nets": {
+        "1": "HDMI_D1_N",
+        "2": "GND"
+      },
+      "at": [
+        42.5,
+        46.8
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "TPD1E05U06DYAR",
+      "note": "",
+      "sch": [
+        218.44,
+        261.62
+      ],
+      "uuid": "8c941ef1-07b4-5b73-a25e-8b4d7d3e6bf5"
+    },
+    {
+      "ref": "D5",
+      "symbol": "TVS",
+      "value": "TPD1E05U06DYAR",
+      "nets": {
+        "1": "HDMI_D0_P",
+        "2": "GND"
+      },
+      "at": [
+        42.5,
+        45.2
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "TPD1E05U06DYAR",
+      "note": "",
+      "sch": [
+        279.4,
+        261.62
+      ],
+      "uuid": "2def97e7-f8c9-5abe-b375-88ea89d1b674"
+    },
+    {
+      "ref": "D6",
+      "symbol": "TVS",
+      "value": "TPD1E05U06DYAR",
+      "nets": {
+        "1": "HDMI_D0_N",
+        "2": "GND"
+      },
+      "at": [
+        42.5,
+        43.6
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "TPD1E05U06DYAR",
+      "note": "",
+      "sch": [
+        340.36,
+        261.62
+      ],
+      "uuid": "23535013-e522-5fef-8b82-8a6386839eaa"
+    },
+    {
+      "ref": "D7",
+      "symbol": "TVS",
+      "value": "TPD1E05U06DYAR",
+      "nets": {
+        "1": "HDMI_C_P",
+        "2": "GND"
+      },
+      "at": [
+        42.5,
+        42.0
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "TPD1E05U06DYAR",
+      "note": "",
+      "sch": [
+        401.32,
+        261.62
+      ],
+      "uuid": "273b8314-b3b8-5553-aaff-5aa5df4057ff"
+    },
+    {
+      "ref": "D8",
+      "symbol": "TVS",
+      "value": "TPD1E05U06DYAR",
+      "nets": {
+        "1": "HDMI_C_N",
+        "2": "GND"
+      },
+      "at": [
+        42.5,
+        40.4
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "TPD1E05U06DYAR",
+      "note": "",
+      "sch": [
+        462.28000000000003,
+        261.62
+      ],
+      "uuid": "e1d7c33f-c2eb-56db-a97d-1dcaa88b387a"
+    },
+    {
+      "ref": "D9",
+      "symbol": "TVS",
+      "value": "TPD1E05U06DYAR",
+      "nets": {
+        "1": "USB_D_N",
+        "2": "GND"
+      },
+      "at": [
+        81,
+        55.0
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "TPD1E05U06DYAR",
+      "note": "",
+      "sch": [
+        523.24,
+        261.62
+      ],
+      "uuid": "c822f611-5315-518e-a56a-c763de9d938d"
+    },
+    {
+      "ref": "D10",
+      "symbol": "TVS",
+      "value": "TPD1E05U06DYAR",
+      "nets": {
+        "1": "USB_D_P",
+        "2": "GND"
+      },
+      "at": [
+        81,
+        56.8
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "TPD1E05U06DYAR",
+      "note": "",
+      "sch": [
+        35.56,
+        289.56
+      ],
+      "uuid": "91c86e72-28ec-58d7-a069-8c7edb2c1526"
+    },
+    {
+      "ref": "D11",
+      "symbol": "TVS",
+      "value": "TPD1E05U06DYAR",
+      "nets": {
+        "1": "USB_CTX_N",
+        "2": "GND"
+      },
+      "at": [
+        81,
+        58.6
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "TPD1E05U06DYAR",
+      "note": "",
+      "sch": [
+        96.52,
+        289.56
+      ],
+      "uuid": "94bac9a3-61a1-5ecc-b362-2dbd98ab4697"
+    },
+    {
+      "ref": "D12",
+      "symbol": "TVS",
+      "value": "TPD1E05U06DYAR",
+      "nets": {
+        "1": "USB_CTX_P",
+        "2": "GND"
+      },
+      "at": [
+        81,
+        60.4
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "TPD1E05U06DYAR",
+      "note": "",
+      "sch": [
+        157.48,
+        289.56
+      ],
+      "uuid": "60ddd462-9b27-5754-81d8-2e5a83945ffe"
+    },
+    {
+      "ref": "D13",
+      "symbol": "TVS",
+      "value": "TPD1E05U06DYAR",
+      "nets": {
+        "1": "USB_RX_N",
+        "2": "GND"
+      },
+      "at": [
+        81,
+        62.2
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "TPD1E05U06DYAR",
+      "note": "",
+      "sch": [
+        218.44,
+        289.56
+      ],
+      "uuid": "f8ce804b-5b76-594d-a473-bca48580f9b8"
+    },
+    {
+      "ref": "D14",
+      "symbol": "TVS",
+      "value": "TPD1E05U06DYAR",
+      "nets": {
+        "1": "USB_RX_P",
+        "2": "GND"
+      },
+      "at": [
+        81,
+        64.0
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "TPD1E05U06DYAR",
+      "note": "",
+      "sch": [
+        279.4,
+        289.56
+      ],
+      "uuid": "3cc1703c-4abc-59f2-a3bd-48493d1c3a6f"
+    },
+    {
+      "ref": "D15",
+      "symbol": "TVS",
+      "value": "TPD1E05U06DYAR",
+      "nets": {
+        "1": "HDMI_SCL",
+        "2": "GND"
+      },
+      "at": [
+        37,
+        56
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "TPD1E05U06DYAR",
+      "note": "",
+      "sch": [
+        340.36,
+        289.56
+      ],
+      "uuid": "02c589ea-e42b-5e25-b461-aae302496934"
+    },
+    {
+      "ref": "D16",
+      "symbol": "TVS",
+      "value": "TPD1E05U06DYAR",
+      "nets": {
+        "1": "HDMI_SDA",
+        "2": "GND"
+      },
+      "at": [
+        37,
+        58
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "TPD1E05U06DYAR",
+      "note": "",
+      "sch": [
+        401.32,
+        289.56
+      ],
+      "uuid": "9b57c1fe-2097-5b8e-a7a6-795c40f44b6a"
+    },
+    {
+      "ref": "D17",
+      "symbol": "TVS",
+      "value": "TPD1E05U06DYAR",
+      "nets": {
+        "1": "HDMI_HPD",
+        "2": "GND"
+      },
+      "at": [
+        37,
+        60
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "TPD1E05U06DYAR",
+      "note": "",
+      "sch": [
+        462.28000000000003,
+        289.56
+      ],
+      "uuid": "c6af1609-317a-5fab-a6b9-9e441a170960"
+    },
+    {
+      "ref": "D18",
+      "symbol": "TVS",
+      "value": "TPD1E05U06DYAR",
+      "nets": {
+        "1": "HDMI_5V",
+        "2": "GND"
+      },
+      "at": [
+        37,
+        62
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "TPD1E05U06DYAR",
+      "note": "",
+      "sch": [
+        523.24,
+        289.56
+      ],
+      "uuid": "0ea81a40-ac99-50c2-9c65-61cc17429992"
+    },
+    {
+      "ref": "TP1",
+      "symbol": "TESTPOINT",
+      "value": "SYS_5V",
+      "nets": {
+        "1": "SYS_5V"
+      },
+      "at": [
+        84,
+        46
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "SYS_5V",
+      "note": "",
+      "sch": [
+        434.34000000000003,
+        170.18
+      ],
+      "uuid": "b5e9a9a7-9449-59e4-8d61-3e5d261577ec"
+    },
+    {
+      "ref": "TP2",
+      "symbol": "TESTPOINT",
+      "value": "P3V3",
+      "nets": {
+        "1": "P3V3"
+      },
+      "at": [
+        78,
+        30
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "P3V3",
+      "note": "",
+      "sch": [
+        500.38,
+        170.18
+      ],
+      "uuid": "bbc3f940-6e2d-5321-8aa8-eebf929345c8"
+    },
+    {
+      "ref": "TP3",
+      "symbol": "TESTPOINT",
+      "value": "P2V5",
+      "nets": {
+        "1": "P2V5"
+      },
+      "at": [
+        78,
+        40
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "P2V5",
+      "note": "",
+      "sch": [
+        368.3,
+        187.96
+      ],
+      "uuid": "0b9b4a0f-ca25-5d6a-95aa-f1c6025abaa4"
+    },
+    {
+      "ref": "TP4",
+      "symbol": "TESTPOINT",
+      "value": "P1V1",
+      "nets": {
+        "1": "P1V1"
+      },
+      "at": [
+        78,
+        50
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "P1V1",
+      "note": "",
+      "sch": [
+        434.34000000000003,
+        187.96
+      ],
+      "uuid": "dd647116-ba23-5c09-9e81-9be04f652288"
+    },
+    {
+      "ref": "TP5",
+      "symbol": "TESTPOINT",
+      "value": "GND",
+      "nets": {
+        "1": "GND"
+      },
+      "at": [
+        84,
+        50
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "GND",
+      "note": "",
+      "sch": [
+        500.38,
+        187.96
+      ],
+      "uuid": "f27506a8-6970-55b6-a7cf-4afd8fb33149"
+    },
+    {
+      "ref": "TP6",
+      "symbol": "TESTPOINT",
+      "value": "VBUS_DET",
+      "nets": {
+        "1": "VBUS_DET"
+      },
+      "at": [
+        64,
+        35
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "VBUS_DET",
+      "note": "",
+      "sch": [
+        368.3,
+        205.74
+      ],
+      "uuid": "1a27f6c2-0c9f-5f08-97e2-2e167d870562"
+    },
+    {
+      "ref": "TP7",
+      "symbol": "TESTPOINT",
+      "value": "HDMI_HPD_IC",
+      "nets": {
+        "1": "HDMI_HPD_IC"
+      },
+      "at": [
+        47,
+        28
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "HDMI_HPD_IC",
+      "note": "",
+      "sch": [
+        434.34000000000003,
+        205.74
+      ],
+      "uuid": "3153f5e0-11b3-52a2-ad1a-305f38be840c"
+    },
+    {
+      "ref": "#FLG1",
+      "symbol": "FLAG",
+      "value": "GND",
+      "nets": {
+        "1": "GND"
+      },
+      "at": [
+        0,
+        0
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "GND",
+      "note": "",
+      "sch": [
+        38.1,
+        223.52
+      ],
+      "uuid": "18bc3583-79e1-5f7a-9913-f64f134e1a73"
+    },
+    {
+      "ref": "#FLG2",
+      "symbol": "FLAG",
+      "value": "SYS_5V",
+      "nets": {
+        "1": "SYS_5V"
+      },
+      "at": [
+        0,
+        0
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "SYS_5V",
+      "note": "",
+      "sch": [
+        81.28,
+        223.52
+      ],
+      "uuid": "665f5171-b309-5134-8e68-fb7693016534"
+    },
+    {
+      "ref": "#FLG3",
+      "symbol": "FLAG",
+      "value": "DVDD33",
+      "nets": {
+        "1": "DVDD33"
+      },
+      "at": [
+        0,
+        0
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "DVDD33",
+      "note": "",
+      "sch": [
+        124.46000000000001,
+        223.52
+      ],
+      "uuid": "15e296f7-e191-54df-827f-2662e20f2027"
+    },
+    {
+      "ref": "#FLG4",
+      "symbol": "FLAG",
+      "value": "AVDD33_USB",
+      "nets": {
+        "1": "AVDD33_USB"
+      },
+      "at": [
+        0,
+        0
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "AVDD33_USB",
+      "note": "",
+      "sch": [
+        167.64000000000001,
+        223.52
+      ],
+      "uuid": "271e84a4-6364-5eb3-b9e8-eecae26753ff"
+    },
+    {
+      "ref": "#FLG5",
+      "symbol": "FLAG",
+      "value": "AVDD33",
+      "nets": {
+        "1": "AVDD33"
+      },
+      "at": [
+        0,
+        0
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "AVDD33",
+      "note": "",
+      "sch": [
+        210.82,
+        223.52
+      ],
+      "uuid": "24c6c83b-27ee-56e8-9445-aadb2a8aefb6"
+    },
+    {
+      "ref": "#FLG6",
+      "symbol": "FLAG",
+      "value": "AVDD25",
+      "nets": {
+        "1": "AVDD25"
+      },
+      "at": [
+        0,
+        0
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "AVDD25",
+      "note": "",
+      "sch": [
+        38.1,
+        236.22
+      ],
+      "uuid": "c37013d7-265a-5f00-883d-d75150ce7103"
+    },
+    {
+      "ref": "#FLG7",
+      "symbol": "FLAG",
+      "value": "DVDD11",
+      "nets": {
+        "1": "DVDD11"
+      },
+      "at": [
+        0,
+        0
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "DVDD11",
+      "note": "",
+      "sch": [
+        81.28,
+        236.22
+      ],
+      "uuid": "240df671-d15f-5ee3-8ea6-5ed16f502f1a"
+    },
+    {
+      "ref": "#FLG8",
+      "symbol": "FLAG",
+      "value": "AVDD11_USB",
+      "nets": {
+        "1": "AVDD11_USB"
+      },
+      "at": [
+        0,
+        0
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "AVDD11_USB",
+      "note": "",
+      "sch": [
+        124.46000000000001,
+        236.22
+      ],
+      "uuid": "c1c45902-42e4-5433-a1d3-d744a36135d1"
+    },
+    {
+      "ref": "#FLG9",
+      "symbol": "FLAG",
+      "value": "AVDD11",
+      "nets": {
+        "1": "AVDD11"
+      },
+      "at": [
+        0,
+        0
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "AVDD11",
+      "note": "",
+      "sch": [
+        167.64000000000001,
+        236.22
+      ],
+      "uuid": "8ab694ff-86da-50a0-934a-c4e42223182b"
+    },
+    {
+      "ref": "#FLG10",
+      "symbol": "FLAG",
+      "value": "DVDD33_FLASH",
+      "nets": {
+        "1": "DVDD33_FLASH"
+      },
+      "at": [
+        0,
+        0
+      ],
+      "angle": 0,
+      "side": "F",
+      "mpn": "DVDD33_FLASH",
+      "note": "",
+      "sch": [
+        210.82,
+        236.22
+      ],
+      "uuid": "931c2cea-6d8a-5e80-a12e-86482aa27ea0"
+    }
+  ]
+}

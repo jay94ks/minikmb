@@ -1,0 +1,9 @@
+/target/
+/dist/
+__pycache__/
+/data/
+*.log
+*.jsonl
+*.jsonl.*
+*.lock
+!Cargo.lock

@@ -1,0 +1,17 @@
+{
+  "version": "2.2.0",
+  "pico-sdk": {
+    "source": "https://github.com/raspberrypi/pico-sdk",
+    "commit": "a1438dff1d38bd9c65dbd693f0e5db4b9ae91779"
+  },
+  "tinyusb": {
+    "source": "https://github.com/hathach/tinyusb",
+    "commit": "86ad6e56c1700e85f1c5678607a762cfe3aa2f47"
+  },
+  "archive": {
+    "file": "pico-sdk-2.2.0-source.tar.gz",
+    "sha256": "58fad05febe2f9fa83b47e27e3b8e7503a78841c24e234f766e9265dae4b9f51",
+    "bytes": 5263616,
+    "scope": "Pico SDK core and TinyUSB sources/licenses used by this project. Git/build metadata, SDK docs/tests and unused Bluetooth/Wi-Fi/lwIP/mbedtls stacks excluded."
+  }
+}

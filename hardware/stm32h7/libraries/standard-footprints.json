@@ -1,0 +1,127 @@
+[
+  {
+    "footprint": "Capacitor_SMD:C_0402_1005Metric",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "3d8a1dc70b71dbc3a5786560f7f9d0cabe99f1182653b072cde5046e4e3f6fc4"
+  },
+  {
+    "footprint": "Capacitor_SMD:C_0603_1608Metric",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "d45eebd5cb9faace255d4ec95a0f9484efde898359507b02e2ba9bbb3ef6d857"
+  },
+  {
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "e890bdf55fa18fc6df6878eb1b5251a991e1b93985509175eb269d3d002880b4"
+  },
+  {
+    "footprint": "Capacitor_SMD:C_1206_3216Metric",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "420c3ac494743fbc47653b6e7d0107d51620e25c77eaf73f083e799807fd1381"
+  },
+  {
+    "footprint": "Connector_Card:microSD_HC_Hirose_DM3D-SF",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "29c431075b0c966f5a852c5a60fea9c68d687c8a8aa03660e85c8aec7378a9a4"
+  },
+  {
+    "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "e3c3501f520fc1fc39eeb5d72137e680e509c0df2348ca77fef1b9db6ab974f0"
+  },
+  {
+    "footprint": "Connector_USB:USB_C_Receptacle_Amphenol_12401610E4-2A",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "1d07a526b38831c7213ce15b08bdce5d52e4301796f0a5f930b093379635f6e9"
+  },
+  {
+    "footprint": "Connector_USB:USB_C_Receptacle_Palconn_UTC16-G",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "a7e19b00b05e5ba3602003d52c34761c6e0ba505af46cfac86b7b39e6e0edb71"
+  },
+  {
+    "footprint": "Connector_Video:HDMI_A_Molex_208658-1001_Horizontal",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "23012b81ebe86011a72211241df4897be3ffc745c71966ad76aab942a935ad4f"
+  },
+  {
+    "footprint": "Crystal:Crystal_SMD_2012-2Pin_2.0x1.2mm",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "2ba294cd131785621729b3922e862e6a1b78deeebe3f3e05a8e13f27973a7d01"
+  },
+  {
+    "footprint": "Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "0efc1a86f641a5e4d27a4483811386c23ddfa5b416c628f65cef963ef7edbb62"
+  },
+  {
+    "footprint": "Crystal:Crystal_SMD_HC49-SD",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "9c6f0293b11d0f2dc9b68ab8350bf3bd4edeea5f0f3feb871fa9690127cfc80a"
+  },
+  {
+    "footprint": "Diode_SMD:D_SMA",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "e2d049a54ef961e231eb8e7e769078a3c44feb8475a7bdafba01c6646a5144f3"
+  },
+  {
+    "footprint": "Inductor_SMD:L_0603_1608Metric",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "3fcbaea27d33b968bc9da19e1fb7973635671eb634e8d84dbc897255cfda1478"
+  },
+  {
+    "footprint": "Inductor_SMD:L_Sunlord_SWPA4020S",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "adcb2e6128b55eb6418f5bf4ba298b55630a149f5bd90a6c70e2cf1f9a0c1f5d"
+  },
+  {
+    "footprint": "Package_BGA:TFBGA-100_8x8mm_Layout10x10_P0.8mm",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "9b441922adb16cd08aacfee9d18fb23fe32e2a20571f800e4bab8c40b8d88d48"
+  },
+  {
+    "footprint": "Package_DFN_QFN:QFN-32-1EP_5x5mm_P0.5mm_EP3.45x3.45mm",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "64e68cc96f211cd956fe5e01adab0cc3c9fdec03006543eb02789b909c519186"
+  },
+  {
+    "footprint": "Package_DFN_QFN:QFN-64-1EP_9x9mm_P0.5mm_EP5.7x5.7mm",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "d66af2335f11188086f0ef872fa3335a43ec0b19b62e22af6b98fbf9db497b78"
+  },
+  {
+    "footprint": "Package_DFN_QFN:Texas_X2QFN-12_1.6x1.6mm_P0.4mm",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "fc93cc3bacd218204b9a85e59e899f5c0513701ff4c5d2d204c083aa35e163b7"
+  },
+  {
+    "footprint": "Package_DFN_QFN:WQFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "30eca29d5d2c36d0e7243ca8f24d055b8ff1ca2f1a8b69380ee3d21604d21379"
+  },
+  {
+    "footprint": "Package_SO:SOIC-8_5.3x5.3mm_P1.27mm",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "728e44941d9abc0835ce409dc25dd239ac6c9d7b63e6892491dd71bda43e6878"
+  },
+  {
+    "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "684a94089f59798a46492dac8dd0242edfa4d915e76a210abdca369e4faa4f9b"
+  },
+  {
+    "footprint": "Package_TO_SOT_SMD:SOT-23-6",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "ea29040bed73e5dfa455e36f2c9324b0de7782c5a6cf79040b7d885ff766fdb4"
+  },
+  {
+    "footprint": "Resistor_SMD:R_0402_1005Metric",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "6ed88b70926af431471c0ccaf6a55485f8cedab01cce4d1d4f3298a6cb6cef2c"
+  },
+  {
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-footprints",
+    "sha256": "949bbbe025b509557866ddd9fcb0403244571f3ceb4f954c9766ee622d18421c"
+  }
+]

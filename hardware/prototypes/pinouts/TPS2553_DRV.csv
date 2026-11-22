@@ -1,0 +1,8 @@
+﻿pin,name,electrical_type,description
+1,OUT,power_out,
+2,ILIM,output,Current-limit programming resistor; current-source output
+3,~{FAULT},open_collector,Active-low open-drain fault output
+4,EN,input,
+5,GND,power_in,
+6,IN,power_in,
+7,EP,power_in,PowerPAD; connect externally to GND

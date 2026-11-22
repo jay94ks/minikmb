@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-22",
+  "rust": {
+    "lib_passed": 268,
+    "binary_ui_passed": 15,
+    "hardware_ignored": 5,
+    "fmt": "passed",
+    "clippy_all_targets_deny_warnings": "passed"
+  },
+  "packaging_tests": 8,
+  "app_zip_files_verified": 836,
+  "approved_executable_sha256": "267a4d46464d1cb675d351905a6ce24eb296202c8462bd8f7124c68668f01d85",
+  "rp2040_host_suites_passed": 9,
+  "rp2040_master_build": "passed, UF2 generated",
+  "rp2040_slave_build": "passed, UF2 generated",
+  "stm32_portable_build": "93 translation units, passed",
+  "stm32_host_hid": "FS/HS adapter + independent interface and management-wire fixtures passed; not physical HS qualification",
+  "electron": {
+    "typecheck": "passed",
+    "build": "passed",
+    "regression_scripts": 17
+  },
+  "scope": "Host validation and source/build portability. No new board flashing, HID input, SD formatting or NIC mutation in publication work."
+}

@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name "Future_ICS")(type "KiCad")(uri "${KIPRJMOD}/footprints/Future_ICS.pretty")(options "")(descr "Future IC footprints"))
+)

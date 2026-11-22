@@ -1,0 +1,9 @@
+﻿pin,name,electrical_type,description
+1,SW,power_out,
+2,BST,passive,
+3,VCC,power_out,Bias supply; decouple to GND
+4,GND,power_in,
+5,FB,input,
+6,PG,open_collector,Open-drain power-good output
+7,EN/SYNC,input,
+8,IN,power_in,

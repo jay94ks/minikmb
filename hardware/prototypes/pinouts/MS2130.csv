@@ -1,0 +1,66 @@
+﻿pin,name,electrical_type,description
+1,DVDD33_1,power_in,
+2,AVDD33_USB1,power_in,
+3,DM,bidirectional,USB 2.0 D-
+4,DP,bidirectional,USB 2.0 D+
+5,AVDD33_USB2,power_in,
+6,AVDD11_USB1,power_in,
+7,USB_REXT,passive,USB external reference resistor
+8,AVDD33_USB3,power_in,
+9,SSTXM,output,USB 3.x SuperSpeed TX-
+10,AVDD11_USB2,power_in,
+11,SSTXP,output,USB 3.x SuperSpeed TX+
+12,AVDD11_USB3,power_in,
+13,SSRXM,input,USB 3.x SuperSpeed RX-
+14,SSRXP,input,USB 3.x SuperSpeed RX+
+15,AVSS_1,power_in,
+16,DVDD33_2,power_in,
+17,DVSS_1,power_in,
+18,DVDD11_1,power_in,
+19,AVSS_2,power_in,
+20,AVDD25_1,power_in,
+21,XTIN,input,Crystal/clock input
+22,XTOUT,output,Crystal output
+23,AVDD25_2,power_in,
+24,AVDD11_1,power_in,
+25,AVSS_3,power_in,
+26,RXDDCSCL,input,HDMI DDC clock
+27,RXDDCSDA,bidirectional,HDMI DDC data
+28,HDRXDET,input,HDMI receiver detect
+29,HDRXHPD,output,HDMI hot-plug detect
+30,DVSS_2,power_in,
+31,DVDD33_3,power_in,
+32,DVSS_3,power_in,
+33,DVDD33_4,power_in,
+34,DVSS_4,power_in,
+35,GPIO4/SPIMOSI/SCL,bidirectional,
+36,GPIO3/SPISCLK/URRX/SDA,bidirectional,
+37,GPIO5/SPIMISO,bidirectional,
+38,GPIO2/SPICS/URTX,bidirectional,
+39,DVDD11_2,power_in,
+40,DVSS_5,power_in,
+41,DVDD33_5,power_in,
+42,GPIO0,bidirectional,
+43,GPIO1,bidirectional,
+44,MCU_SEL,input,
+45,HDRX_REXT,passive,HDMI receiver external reference resistor
+46,HDRXCN,input,HDMI receiver clock-
+47,AVDD25_3,power_in,
+48,AVDD33_1,power_in,
+49,HDRXCP,input,HDMI receiver clock+
+50,AVSS_4,power_in,
+51,AVDD11_2,power_in,
+52,AVDD33_2,power_in,
+53,HDRX0N,input,
+54,HDRX0P,input,
+55,AVDD11_3,power_in,
+56,AVDD33_3,power_in,
+57,HDRX1N,input,
+58,HDRX1P,input,
+59,AVDD11_4,power_in,
+60,AVDD33_4,power_in,
+61,HDRX2N,input,
+62,HDRX2P,input,
+63,DVO_D7,output,
+64,DVSS_6,power_in,
+65,EP,power_in,Exposed pad; connect to analog ground

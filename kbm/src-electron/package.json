@@ -1,0 +1,15 @@
+{
+  "name": "quasar-electron-app",
+  "version": "1.0.0",
+  "description": "Quasar Electron Folder",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "serialport": "^13.0.0",
+    "tcpip": "0.4.0"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.3.0",
+    "electron": "latest"
+  }
+}

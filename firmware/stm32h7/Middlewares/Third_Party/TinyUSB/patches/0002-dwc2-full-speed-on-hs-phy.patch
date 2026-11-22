@@ -1,0 +1,16 @@
+--- a/src/portable/synopsys/dwc2/dcd_dwc2.c
++++ b/src/portable/synopsys/dwc2/dcd_dwc2.c
+@@ -466,8 +466,11 @@
+ 
+   //------------- 7.1 Device Initialization -------------//
+   // Set device max speed
+-  uint32_t dcfg = dwc2->dcfg & ~DCFG_DSPD_Msk;
+-  if (is_hs_phy) {
++  uint32_t dcfg = dwc2->dcfg & ~(DCFG_DSPD_Msk | DCFG_XCVRDLY);
++  if (is_hs_phy && rh_init->speed == TUSB_SPEED_FULL) {
++    // Keep the selected external ULPI PHY while limiting the bus to Full Speed.
++    dcfg |= DCFG_DSPD_FS_HSPHY << DCFG_DSPD_Pos;
++  } else if (is_hs_phy) {
+     // dcfg Highspeed's mask is 0
+ 
+     // XCVRDLY: transceiver delay between xcvr_sel and txvalid during device chirp is required

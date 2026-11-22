@@ -1,0 +1,38 @@
+{
+  "noto": {
+    "version": "2.004",
+    "commit": "523d033d6cb47f4a80c58a35753646f5c3608a78",
+    "url": "https://raw.githubusercontent.com/notofonts/noto-cjk/523d033d6cb47f4a80c58a35753646f5c3608a78/Sans/SubsetOTF/KR/NotoSansKR-Regular.otf",
+    "license": "SIL OFL-1.1",
+    "file": "NotoSansKR-Regular.otf",
+    "sha256": "69975a0ac8472717870aefeab0a4d52739308d90856b9955313b2ad5e0148d68",
+    "bytes": 4644748,
+    "license_file": "Noto-OFL.txt",
+    "license_sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2",
+    "notice_file": "Noto-NOTICE.txt",
+    "notice_sha256": "5f2177229c6b53c1dc06601cb4be44db3bfc3df18af8e013097909c0a7cc4137",
+    "license_url": "https://raw.githubusercontent.com/notofonts/noto-cjk/523d033d6cb47f4a80c58a35753646f5c3608a78/LICENSE"
+  },
+  "lucide": {
+    "version": "0.577.0",
+    "url": "https://registry.npmjs.org/lucide-static/-/lucide-static-0.577.0.tgz",
+    "npm_integrity": "sha512-hx39J5Tq4JWF2ALY+5YRg+SxQLpeAmLJDXNcqiBJH/UuVwp43it9fyki/onZO7AVFgG5ZbB+fWwZR9mwGHE2XQ==",
+    "license": "ISC AND MIT (Feather portions)",
+    "file": "lucide.ttf",
+    "sha256": "f98b9ced96072c8b5bb04c8069f8da59860f8e988a803cc1d2ce7bb73abce61c",
+    "bytes": 817964,
+    "license_file": "Lucide-LICENSE.txt",
+    "license_sha256": "668dcc52803480e0a026b31140a4cae668772663cd764e5991d252eef03f98db",
+    "glyphs": {
+      "panels-top-left": 57644,
+      "monitor": 57629,
+      "key-round": 58531,
+      "book-open": 57439,
+      "plug": 58239,
+      "settings": 57684,
+      "activity": 57400,
+      "logs": 58868,
+      "pencil": 57849
+    }
+  }
+}

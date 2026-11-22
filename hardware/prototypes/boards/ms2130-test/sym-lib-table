@@ -1,0 +1,1 @@
+(sym_lib_table (lib (name "TestBoard")(type "KiCad")(uri "${KIPRJMOD}/TestBoard.kicad_sym")(options "")(descr "Self-contained prototype library")))

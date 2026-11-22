@@ -1,0 +1,6 @@
+{
+  "tools": [
+    {"id":"swd","file":"probe-rs.exe","version":"0.32.0","bytes":34974208,"sha256":"11ee6674f3d4584d46aa4e7f3952a5a3f7354091d8438d39d660e8c503fc8262","license":"MIT OR Apache-2.0"},
+    {"id":"spi","file":"minikmb-ms2130-helper.exe","version":"flashrom-1.8.0-frwr","sha256":"51ddb8022beaa2364308dfdfc1b48f4699d037d220e67af35f0386f64de4e9ca","license":"GPL-2.0-or-later"}
+  ]
+}

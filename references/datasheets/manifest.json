@@ -1,0 +1,487 @@
+{
+  "documents": [
+    {
+      "part": "USB_C_Receptacle_USB2.0_16P",
+      "references": [
+        "J3",
+        "J4"
+      ],
+      "source": "https://datasheet.lcsc.com/datasheet/pdf/9e56b777c022540fcce7c7f67825f55e.pdf",
+      "file": "USB_C_Receptacle_USB2.0_16P.pdf",
+      "bytes": 118176,
+      "sha256": "6ae33d50ac47820114661138dc4e4659f40fdc5d4f485b46685dfec338da1a9e",
+      "rights": "Original manufacturer/publisher copyright; not MIT."
+    },
+    {
+      "part": "SS34",
+      "references": [
+        "D1",
+        "D2"
+      ],
+      "source": "https://datasheet.lcsc.com/datasheet/pdf/dfa1ff67dea875d0135103ba9ada713a.pdf?productCode=C8678",
+      "file": "SS34.pdf",
+      "bytes": 1300729,
+      "sha256": "fb4970875779696914d235bcf954240569302fb325399838f2861d474cbf9760",
+      "rights": "Original manufacturer/publisher copyright; not MIT."
+    },
+    {
+      "part": "SWD",
+      "references": [
+        "J5",
+        "J6"
+      ],
+      "source": "https://www.xfconn.com/uploads/soft/20240711/4-240G11122102R.pdf",
+      "file": "SWD.pdf",
+      "bytes": 138866,
+      "sha256": "e2966566f91532f87d0cb87317238d17d1e883ea6846ef4a0d6b6a83468cd9c9",
+      "rights": "Original manufacturer/publisher copyright; not MIT."
+    },
+    {
+      "part": "DM3D-SF",
+      "references": [
+        "J7",
+        "J8"
+      ],
+      "source": "https://static.chipdip.ru/lib/930/DOC036930988.pdf",
+      "file": "DM3D-SF.pdf",
+      "bytes": 282226,
+      "sha256": "ea2cf1d30b80504654f23bd3facc30b8ab2783a5a5172952a8a1b0249e69d395",
+      "rights": "Original manufacturer/publisher copyright; not MIT."
+    },
+    {
+      "part": "USBLC6-2SC6",
+      "references": [
+        "U1",
+        "U2"
+      ],
+      "source": "https://www.st.com/resource/en/datasheet/usblc6-2.pdf",
+      "file": "USBLC6-2SC6.pdf",
+      "bytes": 147077,
+      "sha256": "fc2a9a0a9163c2736419feb8274ae386e9b6fb44ed539b8d1ad3431929fdd2b2",
+      "rights": "Original manufacturer/publisher copyright; not MIT."
+    },
+    {
+      "part": "MS2130",
+      "references": [
+        "U3",
+        "U4"
+      ],
+      "source": "https://datasheet.lcsc.com/datasheet/pdf/5e5b81537e2ff3b4c2bdcbedb88db519.pdf?productCode=C5905137",
+      "file": "MS2130.pdf",
+      "bytes": 2544109,
+      "sha256": "27bbb9319fa764c89870678061a07c8f31ae4ef65c2c64d22af1bb88f3f038f2",
+      "rights": "Original manufacturer/publisher copyright; not MIT."
+    },
+    {
+      "part": "GL3510-OSY52",
+      "references": [
+        "U10"
+      ],
+      "source": "https://datasheet.lcsc.com/datasheet/pdf/4321c9a7aefd52779b485a0872567b52.pdf?productCode=C7501408",
+      "file": "GL3510-OSY52.pdf",
+      "bytes": 1252944,
+      "sha256": "21b50bd6744d5cf909c7a4d8f43d4fea12c09358cf7a34096c011dfe7f135f1b",
+      "rights": "Original manufacturer/publisher copyright; not MIT."
+    },
+    {
+      "part": "TUSB321RWBR",
+      "references": [
+        "U15"
+      ],
+      "source": "https://www.ti.com/lit/ds/symlink/tusb321.pdf",
+      "file": "TUSB321RWBR.pdf",
+      "bytes": 846489,
+      "sha256": "ef1cea96d1e85a985410e1316a6b52381cf50a482681dbb91da9a9920025305e",
+      "rights": "Original manufacturer/publisher copyright; not MIT."
+    },
+    {
+      "part": "LM26480SQ",
+      "references": [
+        "U13"
+      ],
+      "source": "https://www.ti.com/lit/ds/symlink/lm26480.pdf",
+      "file": "LM26480SQ.pdf",
+      "bytes": 6940264,
+      "sha256": "b622405f07ebf19a1c14532c5205ef9ee13eb69afc81e84645c08051b38f3cd8",
+      "rights": "Original manufacturer/publisher copyright; not MIT."
+    },
+    {
+      "part": "RP2040",
+      "references": [],
+      "source": "https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf",
+      "file": "RP2040.pdf",
+      "bytes": 5322174,
+      "sha256": "cbc62e3b93c78ec245fc7e73a701d98420b87f358e60b60dce7f965c31dec4dc",
+      "rights": "Original manufacturer/publisher copyright; not MIT."
+    },
+    {
+      "part": "CH482X",
+      "references": [
+        "U17"
+      ],
+      "source": "https://cdn.icstop.com/upload/pdfs/38/41/384110180368ca2f616c00f531f5e09c.pdf",
+      "file": "CH482X.pdf",
+      "bytes": 408727,
+      "sha256": "60388d40e22c7a83e4fd3ce1cb7c7d0613946e58a7b02bf1e6e0304c8eb1512d",
+      "rights": "Original manufacturer/publisher copyright; not MIT."
+    },
+    {
+      "part": "USB3300-EZK",
+      "references": [
+        "U5",
+        "U6"
+      ],
+      "source": "https://ww1.microchip.com/downloads/aemDocuments/documents/UNG/ProductDocuments/DataSheets/USB3300-Data-Sheet-DS00001783.pdf",
+      "file": "USB3300-EZK.pdf",
+      "bytes": 2266143,
+      "sha256": "873c903385ac8a7784d5aceff816921bf05edd0e6b707e6930eeeec3b6ee6d08",
+      "rights": "Original manufacturer/publisher copyright; not MIT."
+    },
+    {
+      "part": "W25Q16JVSS",
+      "source": "https://www.winbond.com/resource-files/w25q16jv%20spi%20revh%2004082019%20plus.pdf",
+      "file": "W25Q16JVSS.pdf",
+      "bytes": 1706343,
+      "sha256": "81af3f69b0bff95fd1097949a1005431dc5b3a6ecb5f1947e695a17298e7cf1b",
+      "rights": "Original manufacturer/publisher copyright; not MIT."
+    }
+  ],
+  "unavailable": [
+    {
+      "part": "18pF",
+      "references": [
+        "C33",
+        "C34",
+        "C35",
+        "C36",
+        "C55",
+        "C56",
+        "C81",
+        "C82",
+        "C86",
+        "C88"
+      ],
+      "source": "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_FH--Guangdong-Fenghua-Advanced-Tech-0402CG180J500NT_C1549.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "10pF",
+      "references": [
+        "C67",
+        "C77",
+        "C105",
+        "C107"
+      ],
+      "source": "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_FH--Guangdong-Fenghua-Advanced-Tech-0402CG100J500NT_C1545.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "68pF",
+      "references": [
+        "C108"
+      ],
+      "source": "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/1811081616_Murata-Electronics-GRM1555C1H680JA01D_C76977.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "USB_C_Receptacle",
+      "references": [
+        "J9"
+      ],
+      "source": "https://cdn.amphenol-cs.com/media/wysiwyg/files/drawing/c12401610_c.pdf",
+      "unavailable": "HTTP Error 403: Forbidden"
+    },
+    {
+      "part": "30pF",
+      "references": [
+        "C15",
+        "C16",
+        "C17",
+        "C18"
+      ],
+      "source": "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_FH--Guangdong-Fenghua-Advanced-Tech-0402CG300J500NT_C1570.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "330pF",
+      "references": [
+        "C109"
+      ],
+      "source": "https://www.lcsc.com/datasheet/lcsc_datasheet_1811081612_Murata-Electronics-GRM1555C1H331JA01D_C76965.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "BLM18EG221TN1D",
+      "references": [
+        "L1"
+      ],
+      "source": "https://www.lcsc.com/datasheet/lcsc_datasheet_1810311110_Murata-Electronics-BLM18EG221TN1D_C113025.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "5.1k",
+      "references": [
+        "R13",
+        "R14",
+        "R15",
+        "R16",
+        "R23",
+        "R25",
+        "R43"
+      ],
+      "source": "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0402WGF5101TCE_C25905.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "47k",
+      "references": [
+        "R9",
+        "R10",
+        "R11",
+        "R12",
+        "R65",
+        "R66"
+      ],
+      "source": "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010100_UNI-ROYAL-Uniroyal-Elec-0402WGF4702TCE_C25792.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "1M",
+      "references": [
+        "R2",
+        "R4",
+        "R5",
+        "R7",
+        "R63"
+      ],
+      "source": "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010200_UNI-ROYAL-Uniroyal-Elec-0805W8F1004T5E_C17514.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "0",
+      "references": [
+        "R1",
+        "R3",
+        "R6",
+        "R8",
+        "R64"
+      ],
+      "source": "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010216_UNI-ROYAL-Uniroyal-Elec-0805W8F0000T5E_C17477.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "1.6k",
+      "references": [
+        "R17",
+        "R18"
+      ],
+      "source": "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010216_UNI-ROYAL-Uniroyal-Elec-0402WGF1601TCE_C4908.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "1k",
+      "references": [
+        "R19",
+        "R20",
+        "R21",
+        "R22"
+      ],
+      "source": "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010216_UNI-ROYAL-Uniroyal-Elec-0402WGF1001TCE_C11702.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "10k",
+      "references": [
+        "R24",
+        "R26",
+        "R35",
+        "R36",
+        "R37",
+        "R40",
+        "R42",
+        "R44",
+        "R46",
+        "R47",
+        "R48",
+        "R56",
+        "R59",
+        "R60"
+      ],
+      "source": "https://www.lcsc.com/datasheet/lcsc_datasheet_2411221126_UNI-ROYAL-Uniroyal-Elec-0402WGF1002TCE_C25744.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "12k",
+      "references": [
+        "R27",
+        "R28"
+      ],
+      "source": "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010100_UNI-ROYAL-Uniroyal-Elec-0402WGF1202TCE_C25752.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "1M",
+      "references": [
+        "R31",
+        "R32",
+        "R45"
+      ],
+      "source": "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010030_UNI-ROYAL-Uniroyal-Elec-0402WGF1004TCE_C26083.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "100k",
+      "references": [
+        "R33",
+        "R34",
+        "R55",
+        "R61"
+      ],
+      "source": "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010100_UNI-ROYAL-Uniroyal-Elec-0402WGF1003TCE_C25741.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "20k",
+      "references": [
+        "R38"
+      ],
+      "source": "https://www.lcsc.com/datasheet/lcsc_datasheet_2206010100_UNI-ROYAL-Uniroyal-Elec-0402WGF2002TCE_C25765.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "237k",
+      "references": [
+        "R49"
+      ],
+      "source": "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2210190401_YAGEO-RT0402BRD07237KL_C852654.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "200",
+      "references": [
+        "R29",
+        "R30"
+      ],
+      "source": "https://www.lcsc.com/datasheet/lcsc_datasheet_2205311900_UNI-ROYAL-Uniroyal-Elec-0402WGF2000TCE_C25087.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "10k",
+      "references": [
+        "R52"
+      ],
+      "source": "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_YAGEO-RT0402BRD0710KL_C190095.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "196k",
+      "references": [
+        "R50"
+      ],
+      "source": "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2404241436_YAGEO-RT0402BRD07196KL_C852585.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "100",
+      "references": [
+        "R57",
+        "R58"
+      ],
+      "source": "https://www.lcsc.com/datasheet/lcsc_datasheet_2205311900_UNI-ROYAL-Uniroyal-Elec-0402WGF1000TCE_C25076.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "56.2k",
+      "references": [
+        "R51"
+      ],
+      "source": "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2012011710_YAGEO-RT0402BRB0756K2L_C705626.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "XC6220B331MR",
+      "references": [
+        "U14",
+        "U16"
+      ],
+      "source": "https://product.torexsemi.com/system/files/series/xc6220.pdf",
+      "unavailable": "HTTP Error 403: Forbidden"
+    },
+    {
+      "part": "887k",
+      "references": [
+        "R62"
+      ],
+      "source": "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2205312216_UNI-ROYAL-Uniroyal-Elec-0402WGF8873TCE_C423127.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "24MHz",
+      "references": [
+        "Y1",
+        "Y2"
+      ],
+      "source": "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2205251416_HCI-X49SS2-24-000-F18LJDT_C2890201.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "24MHz",
+      "references": [
+        "Y3",
+        "Y4"
+      ],
+      "source": "https://www.lcsc.com/datasheet/lcsc_datasheet_2403291504_YXC-Crystal-Oscillators-X322524MOB4SI_C70590.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "32.768kHz",
+      "references": [
+        "Y6",
+        "Y9"
+      ],
+      "source": "https://www.lcsc.com/datasheet/lcsc_datasheet_2012081709_Seiko-Epson-X1A0000610006_C99009.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "25MHz",
+      "references": [
+        "Y5",
+        "Y7",
+        "Y8"
+      ],
+      "source": "https://www.lcsc.com/datasheet/lcsc_datasheet_2403291504_YXC-Crystal-Oscillators-X322525MOB4SI_C9006.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "2.2uH",
+      "references": [
+        "L2",
+        "L3",
+        "L4"
+      ],
+      "source": "https://www.lcsc.com/datasheet/lcsc_datasheet_2310251551_Sunlord-SWPA4020S2R2MT_C83423.pdf",
+      "unavailable": "source returned non-PDF"
+    },
+    {
+      "part": "STM32H743VIHx",
+      "references": [
+        "U9",
+        "U12"
+      ],
+      "source": "https://www.st.com/resource/en/datasheet/stm32h743vi.pdf",
+      "unavailable": "The read operation timed out"
+    },
+    {
+      "part": "ADuM1201",
+      "references": [],
+      "source": "https://www.analog.com/media/en/technical-documentation/data-sheets/ADuM1200_1201.pdf",
+      "unavailable": "The read operation timed out"
+    },
+    {
+      "part": "STM32H743-reference-manual",
+      "references": [],
+      "source": "https://www.st.com/resource/en/reference_manual/rm0433-stm32h742-stm32h743753-and-stm32h750-value-line-advanced-armbased-32bit-mcus-stmicroelectronics.pdf",
+      "unavailable": "The read operation timed out"
+    }
+  ]
+}

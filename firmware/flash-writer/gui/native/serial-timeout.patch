@@ -1,0 +1,36 @@
+--- a/serial.c
++++ b/serial.c
+@@ -168,6 +168,9 @@
+ 	dcb.ByteSize = 8;
+ 	dcb.Parity = NOPARITY;
+ 	dcb.StopBits = ONESTOPBIT;
++	/* frwr embedded frontend: finite USB serial read/write waits. */
++	COMMTIMEOUTS bounded = {MAXDWORD, 0, 5000, 0, 5000};
++	if (!SetCommTimeouts(fd, &bounded)) return 1;
+ 	if (!SetCommState(fd, &dcb)) {
+ 		msg_perr_strerror("Could not change serial port configuration: ");
+ 		return 1;
+@@ -419,6 +422,10 @@
+ 			msg_perr("Serial port write error!\n");
+ 			return 1;
+ 		}
++		if (!tmp) {
++			msg_perr("Serial write timed out.\n");
++			return 1;
++		}
+ #else
+ 		tmp = write(sp_fd, buf, writecnt);
+ 		if (tmp == -1) {
+@@ -463,8 +470,10 @@
+ 			return 1;
+ 		}
+ #endif
+-		if (!tmp)
+-			msg_pdbg2("Empty read\n");
++		if (!tmp) {
++			msg_perr("Serial read timed out.\n");
++			return 1;
++		}
+ 		readcnt -= tmp;
+ 		buf += tmp;
+ 	}

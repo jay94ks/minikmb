@@ -1,0 +1,984 @@
+{
+  "sources": [
+    {
+      "path": "kbm/src/services/hid-keyboard.ts",
+      "sha256": "e98d37e9241540030ccb0ee05f7e01e6f366621f889dad326110f162a26d69f9"
+    },
+    {
+      "path": "kbm/src/services/mini-keyboard.ts",
+      "sha256": "ae7484310a517eeaae98d8c73f39c4068172725e917707d4e96d8aad48cb974d"
+    }
+  ],
+  "windows_reference": "https://learn.microsoft.com/en-us/windows/win32/inputdev/about-keyboard-input",
+  "note": "Expected usage/special values executed from Electron v1; Windows VK/Scan1/E0 samples are independently specified. No keyboard injection.",
+  "keys": [
+    {
+      "code": "Enter",
+      "vk": 13,
+      "scan": 28,
+      "extended": false,
+      "usage": 40,
+      "special": false
+    },
+    {
+      "code": "Escape",
+      "vk": 27,
+      "scan": 1,
+      "extended": false,
+      "usage": 41,
+      "special": false
+    },
+    {
+      "code": "Backspace",
+      "vk": 8,
+      "scan": 14,
+      "extended": false,
+      "usage": 42,
+      "special": false
+    },
+    {
+      "code": "Tab",
+      "vk": 9,
+      "scan": 15,
+      "extended": false,
+      "usage": 43,
+      "special": false
+    },
+    {
+      "code": "Space",
+      "vk": 32,
+      "scan": 57,
+      "extended": false,
+      "usage": 44,
+      "special": false
+    },
+    {
+      "code": "Minus",
+      "vk": 189,
+      "scan": 12,
+      "extended": false,
+      "usage": 45,
+      "special": false
+    },
+    {
+      "code": "Equal",
+      "vk": 187,
+      "scan": 13,
+      "extended": false,
+      "usage": 46,
+      "special": false
+    },
+    {
+      "code": "BracketLeft",
+      "vk": 219,
+      "scan": 26,
+      "extended": false,
+      "usage": 47,
+      "special": false
+    },
+    {
+      "code": "BracketRight",
+      "vk": 221,
+      "scan": 27,
+      "extended": false,
+      "usage": 48,
+      "special": false
+    },
+    {
+      "code": "Backslash",
+      "vk": 220,
+      "scan": 43,
+      "extended": false,
+      "usage": 49,
+      "special": false
+    },
+    {
+      "code": "Semicolon",
+      "vk": 186,
+      "scan": 39,
+      "extended": false,
+      "usage": 51,
+      "special": false
+    },
+    {
+      "code": "Quote",
+      "vk": 222,
+      "scan": 40,
+      "extended": false,
+      "usage": 52,
+      "special": false
+    },
+    {
+      "code": "Backquote",
+      "vk": 192,
+      "scan": 41,
+      "extended": false,
+      "usage": 53,
+      "special": false
+    },
+    {
+      "code": "Comma",
+      "vk": 188,
+      "scan": 51,
+      "extended": false,
+      "usage": 54,
+      "special": false
+    },
+    {
+      "code": "Period",
+      "vk": 190,
+      "scan": 52,
+      "extended": false,
+      "usage": 55,
+      "special": false
+    },
+    {
+      "code": "Slash",
+      "vk": 191,
+      "scan": 53,
+      "extended": false,
+      "usage": 56,
+      "special": false
+    },
+    {
+      "code": "CapsLock",
+      "vk": 20,
+      "scan": 58,
+      "extended": false,
+      "usage": 57,
+      "special": false
+    },
+    {
+      "code": "PrintScreen",
+      "vk": 44,
+      "scan": 55,
+      "extended": true,
+      "usage": 70,
+      "special": true
+    },
+    {
+      "code": "ScrollLock",
+      "vk": 145,
+      "scan": 70,
+      "extended": false,
+      "usage": 71,
+      "special": true
+    },
+    {
+      "code": "Pause",
+      "vk": 19,
+      "scan": 69,
+      "extended": false,
+      "usage": 72,
+      "special": true
+    },
+    {
+      "code": "Insert",
+      "vk": 45,
+      "scan": 82,
+      "extended": true,
+      "usage": 73,
+      "special": false
+    },
+    {
+      "code": "Home",
+      "vk": 36,
+      "scan": 71,
+      "extended": true,
+      "usage": 74,
+      "special": false
+    },
+    {
+      "code": "PageUp",
+      "vk": 33,
+      "scan": 73,
+      "extended": true,
+      "usage": 75,
+      "special": false
+    },
+    {
+      "code": "Delete",
+      "vk": 46,
+      "scan": 83,
+      "extended": true,
+      "usage": 76,
+      "special": false
+    },
+    {
+      "code": "End",
+      "vk": 35,
+      "scan": 79,
+      "extended": true,
+      "usage": 77,
+      "special": false
+    },
+    {
+      "code": "PageDown",
+      "vk": 34,
+      "scan": 81,
+      "extended": true,
+      "usage": 78,
+      "special": false
+    },
+    {
+      "code": "ArrowRight",
+      "vk": 39,
+      "scan": 77,
+      "extended": true,
+      "usage": 79,
+      "special": false
+    },
+    {
+      "code": "ArrowLeft",
+      "vk": 37,
+      "scan": 75,
+      "extended": true,
+      "usage": 80,
+      "special": false
+    },
+    {
+      "code": "ArrowDown",
+      "vk": 40,
+      "scan": 80,
+      "extended": true,
+      "usage": 81,
+      "special": false
+    },
+    {
+      "code": "ArrowUp",
+      "vk": 38,
+      "scan": 72,
+      "extended": true,
+      "usage": 82,
+      "special": false
+    },
+    {
+      "code": "NumLock",
+      "vk": 144,
+      "scan": 69,
+      "extended": false,
+      "usage": 83,
+      "special": false
+    },
+    {
+      "code": "NumpadDivide",
+      "vk": 111,
+      "scan": 53,
+      "extended": true,
+      "usage": 84,
+      "special": false
+    },
+    {
+      "code": "NumpadMultiply",
+      "vk": 106,
+      "scan": 55,
+      "extended": false,
+      "usage": 85,
+      "special": false
+    },
+    {
+      "code": "NumpadSubtract",
+      "vk": 109,
+      "scan": 74,
+      "extended": false,
+      "usage": 86,
+      "special": false
+    },
+    {
+      "code": "NumpadAdd",
+      "vk": 107,
+      "scan": 78,
+      "extended": false,
+      "usage": 87,
+      "special": false
+    },
+    {
+      "code": "NumpadEnter",
+      "vk": 13,
+      "scan": 28,
+      "extended": true,
+      "usage": 88,
+      "special": false
+    },
+    {
+      "code": "Numpad1",
+      "vk": 97,
+      "scan": 79,
+      "extended": false,
+      "usage": 89,
+      "special": false
+    },
+    {
+      "code": "Numpad2",
+      "vk": 98,
+      "scan": 80,
+      "extended": false,
+      "usage": 90,
+      "special": false
+    },
+    {
+      "code": "Numpad3",
+      "vk": 99,
+      "scan": 81,
+      "extended": false,
+      "usage": 91,
+      "special": false
+    },
+    {
+      "code": "Numpad4",
+      "vk": 100,
+      "scan": 75,
+      "extended": false,
+      "usage": 92,
+      "special": false
+    },
+    {
+      "code": "Numpad5",
+      "vk": 101,
+      "scan": 76,
+      "extended": false,
+      "usage": 93,
+      "special": false
+    },
+    {
+      "code": "Numpad6",
+      "vk": 102,
+      "scan": 77,
+      "extended": false,
+      "usage": 94,
+      "special": false
+    },
+    {
+      "code": "Numpad7",
+      "vk": 103,
+      "scan": 71,
+      "extended": false,
+      "usage": 95,
+      "special": false
+    },
+    {
+      "code": "Numpad8",
+      "vk": 104,
+      "scan": 72,
+      "extended": false,
+      "usage": 96,
+      "special": false
+    },
+    {
+      "code": "Numpad9",
+      "vk": 105,
+      "scan": 73,
+      "extended": false,
+      "usage": 97,
+      "special": false
+    },
+    {
+      "code": "Numpad0",
+      "vk": 96,
+      "scan": 82,
+      "extended": false,
+      "usage": 98,
+      "special": false
+    },
+    {
+      "code": "NumpadDecimal",
+      "vk": 110,
+      "scan": 83,
+      "extended": false,
+      "usage": 99,
+      "special": false
+    },
+    {
+      "code": "IntlBackslash",
+      "vk": 226,
+      "scan": 86,
+      "extended": false,
+      "usage": 100,
+      "special": false
+    },
+    {
+      "code": "ContextMenu",
+      "vk": 93,
+      "scan": 93,
+      "extended": true,
+      "usage": 101,
+      "special": true
+    },
+    {
+      "code": "IntlRo",
+      "vk": 226,
+      "scan": 115,
+      "extended": false,
+      "usage": 135,
+      "special": true
+    },
+    {
+      "code": "IntlYen",
+      "vk": 220,
+      "scan": 125,
+      "extended": false,
+      "usage": 137,
+      "special": true
+    },
+    {
+      "code": "Lang1",
+      "vk": 21,
+      "scan": 56,
+      "extended": true,
+      "usage": 144,
+      "special": true
+    },
+    {
+      "code": "Lang2",
+      "vk": 25,
+      "scan": 29,
+      "extended": true,
+      "usage": 145,
+      "special": true
+    },
+    {
+      "code": "ControlLeft",
+      "vk": 162,
+      "scan": 29,
+      "extended": false,
+      "usage": 224,
+      "special": false
+    },
+    {
+      "code": "ShiftLeft",
+      "vk": 160,
+      "scan": 42,
+      "extended": false,
+      "usage": 225,
+      "special": false
+    },
+    {
+      "code": "AltLeft",
+      "vk": 164,
+      "scan": 56,
+      "extended": false,
+      "usage": 226,
+      "special": false
+    },
+    {
+      "code": "MetaLeft",
+      "vk": 91,
+      "scan": 91,
+      "extended": true,
+      "usage": 227,
+      "special": true
+    },
+    {
+      "code": "ControlRight",
+      "vk": 163,
+      "scan": 29,
+      "extended": true,
+      "usage": 228,
+      "special": false
+    },
+    {
+      "code": "ShiftRight",
+      "vk": 161,
+      "scan": 54,
+      "extended": false,
+      "usage": 229,
+      "special": false
+    },
+    {
+      "code": "AltRight",
+      "vk": 165,
+      "scan": 56,
+      "extended": true,
+      "usage": 230,
+      "special": false
+    },
+    {
+      "code": "MetaRight",
+      "vk": 92,
+      "scan": 92,
+      "extended": true,
+      "usage": 231,
+      "special": true
+    },
+    {
+      "code": "KeyA",
+      "vk": 65,
+      "scan": 30,
+      "extended": false,
+      "usage": 4,
+      "special": false
+    },
+    {
+      "code": "KeyB",
+      "vk": 66,
+      "scan": 48,
+      "extended": false,
+      "usage": 5,
+      "special": false
+    },
+    {
+      "code": "KeyC",
+      "vk": 67,
+      "scan": 46,
+      "extended": false,
+      "usage": 6,
+      "special": false
+    },
+    {
+      "code": "KeyD",
+      "vk": 68,
+      "scan": 32,
+      "extended": false,
+      "usage": 7,
+      "special": false
+    },
+    {
+      "code": "KeyE",
+      "vk": 69,
+      "scan": 18,
+      "extended": false,
+      "usage": 8,
+      "special": false
+    },
+    {
+      "code": "KeyF",
+      "vk": 70,
+      "scan": 33,
+      "extended": false,
+      "usage": 9,
+      "special": false
+    },
+    {
+      "code": "KeyG",
+      "vk": 71,
+      "scan": 34,
+      "extended": false,
+      "usage": 10,
+      "special": false
+    },
+    {
+      "code": "KeyH",
+      "vk": 72,
+      "scan": 35,
+      "extended": false,
+      "usage": 11,
+      "special": false
+    },
+    {
+      "code": "KeyI",
+      "vk": 73,
+      "scan": 23,
+      "extended": false,
+      "usage": 12,
+      "special": false
+    },
+    {
+      "code": "KeyJ",
+      "vk": 74,
+      "scan": 36,
+      "extended": false,
+      "usage": 13,
+      "special": false
+    },
+    {
+      "code": "KeyK",
+      "vk": 75,
+      "scan": 37,
+      "extended": false,
+      "usage": 14,
+      "special": false
+    },
+    {
+      "code": "KeyL",
+      "vk": 76,
+      "scan": 38,
+      "extended": false,
+      "usage": 15,
+      "special": false
+    },
+    {
+      "code": "KeyM",
+      "vk": 77,
+      "scan": 50,
+      "extended": false,
+      "usage": 16,
+      "special": false
+    },
+    {
+      "code": "KeyN",
+      "vk": 78,
+      "scan": 49,
+      "extended": false,
+      "usage": 17,
+      "special": false
+    },
+    {
+      "code": "KeyO",
+      "vk": 79,
+      "scan": 24,
+      "extended": false,
+      "usage": 18,
+      "special": false
+    },
+    {
+      "code": "KeyP",
+      "vk": 80,
+      "scan": 25,
+      "extended": false,
+      "usage": 19,
+      "special": false
+    },
+    {
+      "code": "KeyQ",
+      "vk": 81,
+      "scan": 16,
+      "extended": false,
+      "usage": 20,
+      "special": false
+    },
+    {
+      "code": "KeyR",
+      "vk": 82,
+      "scan": 19,
+      "extended": false,
+      "usage": 21,
+      "special": false
+    },
+    {
+      "code": "KeyS",
+      "vk": 83,
+      "scan": 31,
+      "extended": false,
+      "usage": 22,
+      "special": false
+    },
+    {
+      "code": "KeyT",
+      "vk": 84,
+      "scan": 20,
+      "extended": false,
+      "usage": 23,
+      "special": false
+    },
+    {
+      "code": "KeyU",
+      "vk": 85,
+      "scan": 22,
+      "extended": false,
+      "usage": 24,
+      "special": false
+    },
+    {
+      "code": "KeyV",
+      "vk": 86,
+      "scan": 47,
+      "extended": false,
+      "usage": 25,
+      "special": false
+    },
+    {
+      "code": "KeyW",
+      "vk": 87,
+      "scan": 17,
+      "extended": false,
+      "usage": 26,
+      "special": false
+    },
+    {
+      "code": "KeyX",
+      "vk": 88,
+      "scan": 45,
+      "extended": false,
+      "usage": 27,
+      "special": false
+    },
+    {
+      "code": "KeyY",
+      "vk": 89,
+      "scan": 21,
+      "extended": false,
+      "usage": 28,
+      "special": false
+    },
+    {
+      "code": "KeyZ",
+      "vk": 90,
+      "scan": 44,
+      "extended": false,
+      "usage": 29,
+      "special": false
+    },
+    {
+      "code": "Digit0",
+      "vk": 48,
+      "scan": 11,
+      "extended": false,
+      "usage": 39,
+      "special": false
+    },
+    {
+      "code": "Digit1",
+      "vk": 49,
+      "scan": 2,
+      "extended": false,
+      "usage": 30,
+      "special": false
+    },
+    {
+      "code": "Digit2",
+      "vk": 50,
+      "scan": 3,
+      "extended": false,
+      "usage": 31,
+      "special": false
+    },
+    {
+      "code": "Digit3",
+      "vk": 51,
+      "scan": 4,
+      "extended": false,
+      "usage": 32,
+      "special": false
+    },
+    {
+      "code": "Digit4",
+      "vk": 52,
+      "scan": 5,
+      "extended": false,
+      "usage": 33,
+      "special": false
+    },
+    {
+      "code": "Digit5",
+      "vk": 53,
+      "scan": 6,
+      "extended": false,
+      "usage": 34,
+      "special": false
+    },
+    {
+      "code": "Digit6",
+      "vk": 54,
+      "scan": 7,
+      "extended": false,
+      "usage": 35,
+      "special": false
+    },
+    {
+      "code": "Digit7",
+      "vk": 55,
+      "scan": 8,
+      "extended": false,
+      "usage": 36,
+      "special": false
+    },
+    {
+      "code": "Digit8",
+      "vk": 56,
+      "scan": 9,
+      "extended": false,
+      "usage": 37,
+      "special": false
+    },
+    {
+      "code": "Digit9",
+      "vk": 57,
+      "scan": 10,
+      "extended": false,
+      "usage": 38,
+      "special": false
+    },
+    {
+      "code": "F1",
+      "vk": 112,
+      "scan": 59,
+      "extended": false,
+      "usage": 58,
+      "special": false
+    },
+    {
+      "code": "F2",
+      "vk": 113,
+      "scan": 60,
+      "extended": false,
+      "usage": 59,
+      "special": false
+    },
+    {
+      "code": "F3",
+      "vk": 114,
+      "scan": 61,
+      "extended": false,
+      "usage": 60,
+      "special": false
+    },
+    {
+      "code": "F4",
+      "vk": 115,
+      "scan": 62,
+      "extended": false,
+      "usage": 61,
+      "special": false
+    },
+    {
+      "code": "F5",
+      "vk": 116,
+      "scan": 63,
+      "extended": false,
+      "usage": 62,
+      "special": false
+    },
+    {
+      "code": "F6",
+      "vk": 117,
+      "scan": 64,
+      "extended": false,
+      "usage": 63,
+      "special": false
+    },
+    {
+      "code": "F7",
+      "vk": 118,
+      "scan": 65,
+      "extended": false,
+      "usage": 64,
+      "special": false
+    },
+    {
+      "code": "F8",
+      "vk": 119,
+      "scan": 66,
+      "extended": false,
+      "usage": 65,
+      "special": false
+    },
+    {
+      "code": "F9",
+      "vk": 120,
+      "scan": 67,
+      "extended": false,
+      "usage": 66,
+      "special": false
+    },
+    {
+      "code": "F10",
+      "vk": 121,
+      "scan": 68,
+      "extended": false,
+      "usage": 67,
+      "special": false
+    },
+    {
+      "code": "F11",
+      "vk": 122,
+      "scan": 87,
+      "extended": false,
+      "usage": 68,
+      "special": false
+    },
+    {
+      "code": "F12",
+      "vk": 123,
+      "scan": 88,
+      "extended": false,
+      "usage": 69,
+      "special": false
+    },
+    {
+      "code": "F13",
+      "vk": 124,
+      "scan": 100,
+      "extended": false,
+      "usage": 104,
+      "special": false
+    },
+    {
+      "code": "F14",
+      "vk": 125,
+      "scan": 101,
+      "extended": false,
+      "usage": 105,
+      "special": false
+    },
+    {
+      "code": "F15",
+      "vk": 126,
+      "scan": 102,
+      "extended": false,
+      "usage": 106,
+      "special": false
+    },
+    {
+      "code": "F16",
+      "vk": 127,
+      "scan": 103,
+      "extended": false,
+      "usage": 107,
+      "special": false
+    },
+    {
+      "code": "F17",
+      "vk": 128,
+      "scan": 104,
+      "extended": false,
+      "usage": 108,
+      "special": false
+    },
+    {
+      "code": "F18",
+      "vk": 129,
+      "scan": 105,
+      "extended": false,
+      "usage": 109,
+      "special": false
+    },
+    {
+      "code": "F19",
+      "vk": 130,
+      "scan": 106,
+      "extended": false,
+      "usage": 110,
+      "special": false
+    },
+    {
+      "code": "F20",
+      "vk": 131,
+      "scan": 107,
+      "extended": false,
+      "usage": 111,
+      "special": false
+    },
+    {
+      "code": "F21",
+      "vk": 132,
+      "scan": 108,
+      "extended": false,
+      "usage": 112,
+      "special": false
+    },
+    {
+      "code": "F22",
+      "vk": 133,
+      "scan": 109,
+      "extended": false,
+      "usage": 113,
+      "special": false
+    },
+    {
+      "code": "F23",
+      "vk": 134,
+      "scan": 110,
+      "extended": false,
+      "usage": 114,
+      "special": false
+    },
+    {
+      "code": "F24",
+      "vk": 135,
+      "scan": 118,
+      "extended": false,
+      "usage": 115,
+      "special": false
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+(fp_lib_table (lib (name "TestBoard")(type "KiCad")(uri "${KIPRJMOD}/TestBoard.pretty")(options "")(descr "Copied KiCad footprints plus custom MS2130/HDMI")))

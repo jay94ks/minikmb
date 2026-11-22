@@ -1,0 +1,106 @@
+--- a/src/class/msc/msc_device.h
++++ b/src/class/msc/msc_device.h
+@@ -87,6 +87,8 @@
+         Data I/O will be done asynchronously in a background task. Application should return immediately.
+         tud_msc_async_io_done() must be called once IO/ is done to signal completion.
+ */
++// Validate the complete logical block range and BOT host data length before reading.
++bool tud_msc_read10_validate_cb(uint8_t lun, uint32_t lba, uint16_t blocks, uint32_t bytes);
+ int32_t tud_msc_read10_cb (uint8_t lun, uint32_t lba, uint32_t offset, void* buffer, uint32_t bufsize);
+ int32_t tud_msc_write10_cb (uint8_t lun, uint32_t lba, uint32_t offset, uint8_t* buffer, uint32_t bufsize);
+ 
+--- a/src/class/msc/msc_device.c
++++ b/src/class/msc/msc_device.c
+@@ -230,6 +230,11 @@
+ //--------------------------------------------------------------------+
+ // Weak stubs: invoked if no strong implementation is available
+ //--------------------------------------------------------------------+
++TU_ATTR_WEAK bool tud_msc_read10_validate_cb(uint8_t lun, uint32_t lba, uint16_t blocks, uint32_t bytes) {
++  (void)lun; (void)lba; (void)blocks; (void)bytes;
++  return true;
++}
++
+ TU_ATTR_WEAK void tud_msc_read10_complete_cb(uint8_t lun) {
+   (void) lun;
+ }
+@@ -390,6 +395,7 @@
+ }
+ 
+ static void proc_bot_reset(mscd_interface_t* p_msc) {
++  p_msc->pending_io  = false;
+   p_msc->stage       = MSC_STAGE_CMD;
+   p_msc->total_len   = 0;
+   p_msc->xferred_len = 0;
+@@ -496,6 +502,9 @@
+       }
+ 
+       memcpy(p_cbw, _mscd_epbuf.buf, sizeof(msc_cbw_t));
++      if (p_cbw->command[0] != SCSI_CMD_REQUEST_SENSE) {
++        (void)tud_msc_set_sense(p_cbw->lun, 0, 0, 0);
++      }
+ 
+       TU_LOG_DRV("  SCSI Command [Lun%u]: %s\r\n", p_cbw->lun, tu_lookup_find(&_msc_scsi_cmd_table, p_cbw->command[0]));
+       // TU_LOG_MEM(CFG_TUD_MSC_LOG_LEVEL, p_cbw, xferred_bytes, 2);
+@@ -510,15 +519,34 @@
+       p_msc->total_len = p_cbw->total_bytes;
+       p_msc->xferred_len = 0;
+ 
+-      // Read10 or Write10
+-      if ((SCSI_CMD_READ_10 == p_cbw->command[0]) || (SCSI_CMD_WRITE_10 == p_cbw->command[0])) {
++      // Optical hosts can use READ(12). Normalize supported lengths to the common data path.
++      bool read_invalid = p_cbw->command[0] == SCSI_CMD_READ_10 && p_cbw->cmd_len != 10;
++      if (p_cbw->command[0] == 0xA8) {
++        const uint32_t blocks = tu_ntohl(tu_unaligned_read32(p_cbw->command + 6));
++        read_invalid = p_cbw->cmd_len != 12 || blocks > UINT16_MAX;
++        p_cbw->command[0] = SCSI_CMD_READ_10;
++        p_cbw->command[6] = p_cbw->command[10];
++        p_cbw->command[7] = (uint8_t)(blocks >> 8);
++        p_cbw->command[8] = (uint8_t)blocks;
++        p_cbw->command[9] = p_cbw->command[11];
++      }
++      const bool bad_lun = p_cbw->lun >= tud_msc_get_maxlun_cb();
++      if (bad_lun || read_invalid) {
++        (void)tud_msc_set_sense(p_cbw->lun, SCSI_SENSE_ILLEGAL_REQUEST, bad_lun ? 0x25 : 0x24, 0);
++        fail_scsi_op(p_msc, MSC_CSW_STATUS_FAILED);
++      } else if ((SCSI_CMD_READ_10 == p_cbw->command[0]) || (SCSI_CMD_WRITE_10 == p_cbw->command[0])) {
+         uint8_t const status = rdwr10_validate_cmd(p_cbw);
+ 
+         if (status != MSC_CSW_STATUS_PASSED) {
+           fail_scsi_op(p_msc, status);
+         } else if (p_cbw->total_bytes > 0) {
+           if (SCSI_CMD_READ_10 == p_cbw->command[0]) {
+-            proc_read10_cmd(p_msc);
++            if (tud_msc_read10_validate_cb(p_cbw->lun, rdwr10_get_lba(p_cbw->command),
++                                           rdwr10_get_blockcount(p_cbw), p_cbw->total_bytes)) {
++              proc_read10_cmd(p_msc);
++            } else {
++              fail_scsi_op(p_msc, MSC_CSW_STATUS_FAILED);
++            }
+           } else {
+             proc_write10_cmd(p_msc);
+           }
+@@ -786,6 +814,7 @@
+     }
+ 
+     case SCSI_CMD_INQUIRY: {
++      if ((scsi_cmd[1] & 1U) != 0) return -1; // VPD is defined by the device.
+       scsi_inquiry_resp_t *inquiry_rsp = (scsi_inquiry_resp_t *) buffer;
+       tu_memclr(inquiry_rsp, sizeof(scsi_inquiry_resp_t));
+       inquiry_rsp->is_removable = 1;
+@@ -803,6 +832,7 @@
+     }
+ 
+     case SCSI_CMD_MODE_SENSE_6: {
++      if ((scsi_cmd[2] & 0x3FU) != 0) return -1; // Optional pages belong to the device.
+       scsi_mode_sense6_resp_t mode_resp = {
+         .data_len = 3,
+         .medium_type = 0,
+@@ -878,7 +908,7 @@
+       case TUD_MSC_RET_ERROR:
+         // error -> endpoint is stalled & status in CSW set to failed
+         TU_LOG_DRV("  IO read() failed\r\n");
+-        set_sense_medium_not_present(p_msc->cbw.lun);
++        if (p_msc->sense_key == 0) set_sense_medium_not_present(p_msc->cbw.lun);
+         fail_scsi_op(p_msc, MSC_CSW_STATUS_FAILED);
+         break;
+ 

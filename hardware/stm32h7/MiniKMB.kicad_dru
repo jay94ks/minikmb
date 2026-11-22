@@ -1,0 +1,128 @@
+(version 1)
+(rule "Through vias only"
+ (condition "A.Type == 'Via' && A.Via_Type != 'Through'")
+ (constraint disallow via))
+(rule "JLCPCB no-surcharge standard through vias"
+ (condition "A.Type == 'Via'")
+ (constraint via_diameter (min 0.45mm))
+ (constraint hole_size (min 0.30mm))
+ (constraint annular_width (min 0.075mm)))
+(rule "JLCPCB fine-pitch pads within the same footprint"
+ (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.Parent == B.Parent")
+ (constraint clearance (min 0.10mm)))
+
+(rule "Inner layers reserved for continuous GND reference"
+ (condition "A.Type == 'Track' && A.NetName != 'GND' && (A.Layer == 'In1.Cu' || A.Layer == 'In3.Cu') && !(A.Layer == 'In3.Cu' && A.NetName == '+3V3' && A.enclosedByArea('CW_MCU_3V3_LOCAL_BRIDGE')) && !(A.Layer == 'In3.Cu' && A.NetName == '+3V3' && A.enclosedByArea('DG_U17_3V3_L4_FEED')) && !(A.Layer == 'In1.Cu' && A.NetName == '+1V1' && A.enclosedByArea('L2_1V1_REVIEWED_CORRIDOR')) && !(A.Layer == 'In3.Cu' && A.NetName == '+3V3' && A.enclosedByArea('L4_3V3_BD_RIGHT_BRIDGE')) && !(A.Layer == 'In3.Cu' && A.NetName == '+1V1' && A.enclosedByArea('L4_1V1_BH_SHORT_BRIDGE')) && !(A.Layer == 'In3.Cu' && A.NetName == '+5V_USBH' && A.enclosedByArea('BV_WIDE_5V_1')) && !(A.Layer == 'In3.Cu' && A.NetName == '+2V5' && A.enclosedByArea('BY_2V5_2_In3.Cu')) && !(A.Layer == 'In3.Cu' && A.NetName == 'Net-(U10-AVDD12)' && A.enclosedByArea('BY_AVDD_0_In3.Cu')) && !(A.Layer == 'In3.Cu' && A.NetName == '+2V5' && A.enclosedByArea('BY_2V5_SHORT_0_In3.Cu')) && !(A.Layer == 'In3.Cu' && A.NetName == '+2V5' && A.enclosedByArea('BY_2V5_LEFT_0_In3.Cu')) && !(A.Layer == 'In1.Cu' && A.NetName == '+3V3_HUB' && A.enclosedByArea('BZ_3V3_REFINE_0_In1.Cu')) && !(A.Layer == 'In3.Cu' && A.NetName == '+3V3_HUB' && A.enclosedByArea('BZ_3V3_REFINE_0_In3.Cu')) && !(A.Layer == 'In1.Cu' && A.NetName == '+3V3_HUB' && A.enclosedByArea('CA_3V3_0_In1.Cu')) && !(A.Layer == 'In3.Cu' && A.NetName == '+3V3_HUB' && A.enclosedByArea('CC_FLASH_FEED_1')) && !(A.Layer == 'In3.Cu' && A.NetName == 'Net-(U10-AVDD12)' && A.enclosedByArea('CD_MULTIPOWER_0')) && !(A.Layer == 'In3.Cu' && A.NetName == 'Net-(U10-AVDD12)' && A.enclosedByArea('CD_MULTIPOWER_2')) && !(A.Layer == 'In1.Cu' && A.NetName == '+3V3_HUB' && A.enclosedByArea('CD_MULTIPOWER2_1')) && !(A.Layer == 'In1.Cu' && A.NetName == '+3V3_HUB' && A.enclosedByArea('CD_MULTIPOWER2_3')) && !(A.Layer == 'In3.Cu' && A.NetName == 'Net-(U10-AVDD12)' && A.enclosedByArea('CD_PINPOWER_0')) && !(A.Layer == 'In3.Cu' && A.NetName == 'Net-(U10-AVDD12)' && A.enclosedByArea('CD_PINPOWER_1')) && !(A.Layer == 'In3.Cu' && A.NetName == '+5V_USBH' && A.enclosedByArea('CD_R43POWER_0')) && !(A.Layer == 'In3.Cu' && A.NetName == 'Net-(U10-AVDD12)' && A.enclosedByArea('CE_U10_PIN46_POWER')) && !(A.Layer == 'In3.Cu' && A.NetName == 'Net-(U10-AVDD12)' && A.enclosedByArea('CF_U10_PIN40_POWER')) && !(A.Layer == 'In1.Cu' && A.NetName == 'Net-(U10-VBUS)' && A.enclosedByArea('CN_VBUS_L2_CORRIDOR')) && !(A.Layer == 'In3.Cu' && A.NetName == '+3V3' && A.enclosedByArea('DW6_3V3_L4_FEED')) && !(A.Layer == 'In3.Cu' && A.NetName == '/DBG_1_RX' && A.enclosedByArea('ED9_DBG1_RX_In3.Cu')) && !(A.Layer == 'In1.Cu' && A.NetName == '/DBG_0_CLK' && A.enclosedByArea('EG3_DBG0_CLK_In1.Cu')) && !(A.Layer == 'In3.Cu' && A.NetName == '/DBG_0_RX' && A.enclosedByArea('EH6_DBG0_RX_In3.Cu')) && !(A.Layer == 'In3.Cu' && A.NetName == '/DBG_1_CLK' && A.enclosedByArea('EJ8_CLK_In3.Cu')) && !(A.Layer == 'In3.Cu' && A.NetName == '/DBG_1_DIO' && A.enclosedByArea('EL10_0_In3.Cu')) && !(A.Layer == 'In3.Cu' && A.NetName == '/DBG_0_CLK' && A.enclosedByArea('EL49_1_In3.Cu')) && !(A.Layer == 'In1.Cu' && A.NetName == '+2V5' && A.enclosedByArea('EM82_2V5_L2_REFERENCE_REPAIR')) && !(A.Layer == 'In1.Cu' && A.NetName == '+1V1' && A.enclosedByArea('EM110_1V1_L2_FEED')) && !(A.Layer == 'In1.Cu' && A.NetName == '+3V3' && A.enclosedByArea('EM116_3V3_FEED_In1.Cu')) && !(A.Layer == 'In3.Cu' && A.NetName == 'Net-(U10-AVDD12)' && A.enclosedByArea('EM158_AVDD_REFERENCE_In3.Cu')) && !(A.Layer == 'In3.Cu' && A.NetName == 'Net-(U10-AVDD12)' && A.enclosedByArea('M2_HUB_SPI_AVDD_In3.Cu')) && !(A.Layer == 'In1.Cu' && A.NetName == 'Net-(U10-AVDD12)' && A.enclosedByArea('M2_HUB_USB_AVDD_In1.Cu')) && !(A.Layer == 'In1.Cu' && A.NetName == '+3V3' && A.enclosedByArea('M2_SD_U17_POWER')) && !(A.Layer == 'In1.Cu' && A.NetName == 'Net-(J9-CC1)' && A.enclosedByArea('EDGE_CC1_L2')) && !(A.Layer == 'In1.Cu' && A.NetName == 'Net-(J9-CC2)' && A.enclosedByArea('EDGE_CC2_L2')) && !(A.Layer == 'In1.Cu' && A.NetName == '+3V3' && A.enclosedByArea('EDGE_3V3_REFERENCE_REPAIR')) && !(A.Layer == 'In1.Cu' && A.NetName == '+3V3' && A.memberOfGroup('POWER_WIDTH_REVIEW_1_TRACKS')) && !(A.Layer == 'In1.Cu' && A.NetName == '+1V1' && A.memberOfGroup('POWER_WIDTH_REVIEW_3_TRACKS')) && !(A.Layer == 'In1.Cu' && A.NetName == '+2V5' && A.memberOfGroup('POWER_REROUTE_REVIEW_2')) && !(A.Layer == 'In3.Cu' && A.NetName == '+2V5' && A.memberOfGroup('POWER_REROUTE_REVIEW_3')) && !(A.Layer == 'In1.Cu' && A.NetName == '+3V3' && A.memberOfGroup('POWER_REROUTE_REVIEW_4')) && !(A.Layer == 'In3.Cu' && A.NetName == '+3V3' && A.memberOfGroup('POWER_REROUTE_REVIEW_5')) && !(A.Layer == 'In1.Cu' && A.NetName == '+1V1' && A.memberOfGroup('POWER_REROUTE_REVIEW_6')) && !(A.Layer == 'In1.Cu' && A.NetName == 'Net-(J9-CC2)' && A.memberOfGroup('VIA030_CC2_L2'))")
+ (constraint disallow track))
+(rule "Default physical clearance from through-via drills to SMD pads"
+ (condition "A.Type == 'Via' && B.Pad_Type == 'SMD'")
+ (constraint physical_hole_clearance (min 0.20mm)))
+(rule "USB3 section length budget"
+ (condition "A.hasNetclass('USB3_90ohm')")
+ (constraint length (max 120mm))
+ (constraint via_count (max 4)))
+(rule "HDMI section length budget"
+ (condition "A.hasNetclass('HDMI_100ohm')")
+ (constraint length (max 20mm)))
+
+(rule "L3 controlled single-ended routing width"
+ (condition "A.Layer == 'In2.Cu' && (A.hasNetclass('ULPI_50ohm') || A.hasNetclass('SDMMC_50ohm') || A.hasNetclass('SPI_50ohm'))")
+ (constraint track_width (min 0.10mm) (opt 0.1420mm) (max 0.16mm)))
+
+(rule "Controlled traces to coplanar zone separation"
+ (condition "(A.Type == 'Zone' && B.Type == 'Track' && (B.hasNetclass('HDMI_100ohm') || B.hasNetclass('USB3_90ohm') || B.hasNetclass('USB2_HS_90ohm') || B.hasNetclass('USB2_FS_90ohm') || B.hasNetclass('ULPI_50ohm') || B.hasNetclass('SDMMC_50ohm') || B.hasNetclass('SPI_50ohm'))) || (B.Type == 'Zone' && A.Type == 'Track' && (A.hasNetclass('HDMI_100ohm') || A.hasNetclass('USB3_90ohm') || A.hasNetclass('USB2_HS_90ohm') || A.hasNetclass('USB2_FS_90ohm') || A.hasNetclass('ULPI_50ohm') || A.hasNetclass('SDMMC_50ohm') || A.hasNetclass('SPI_50ohm')))")
+ (constraint clearance (min 0.50mm)))
+
+(rule "Filled and copper-capped matching pad connection"
+ (condition "A.Type == 'Via' && B.Pad_Type == 'SMD' && A.NetName == B.NetName")
+ (constraint physical_hole_clearance (min 0mm)))
+
+(rule "Filled copper caps under solder-paste apertures"
+ (condition "A.Type == 'Via' && B.Type == 'Pad' && !B.existsOnLayer('F.Cu') && !B.existsOnLayer('B.Cu') && (B.existsOnLayer('F.Paste') || B.existsOnLayer('B.Paste'))")
+ (constraint physical_hole_clearance (min 0mm)))
+
+(rule "L3 90ohm differential routing dimensions"
+ (condition "A.Layer == 'In2.Cu' && (A.hasNetclass('USB3_90ohm') || A.hasNetclass('USB2_HS_90ohm') || A.hasNetclass('USB2_FS_90ohm'))")
+ (constraint track_width (min 0.10mm) (opt 0.1278mm) (max 0.16mm))
+ (constraint diff_pair_gap (opt 0.1501mm)))
+
+(rule "L3 main 5V distribution starting width"
+ (condition "A.Layer == 'In2.Cu' && A.hasNetclass('POWER_5V_MAIN_3A')")
+ (constraint track_width (opt 6mm)))
+
+(rule "L5 limited to explicitly classified low-speed signals"
+ (condition "A.Type == 'Track' && A.Layer == 'In4.Cu' && A.NetName != 'GND' && !A.hasNetclass('L5_LOW_SPEED') && !(A.NetName == 'Net-(U10-AVDD12)' && A.enclosedByArea('L5_AVDD12_REVIEWED_CORRIDOR')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('BM_POWER_BRIDGE_1')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('BM_POWER_BRIDGE_2')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('BM_POWER_BRIDGE_3')) && !(A.Layer == 'In4.Cu' && A.NetName == '+5V_USBH' && A.enclosedByArea('BV_POWER_BRIDGE_1')) && !(A.Layer == 'In4.Cu' && A.NetName == '+5V_USBH' && A.enclosedByArea('BV_WIDE_5V_2')) && !(A.Layer == 'In4.Cu' && A.NetName == '+2V5' && A.enclosedByArea('BY_2V5_0_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+2V5' && A.enclosedByArea('BY_2V5_1_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+2V5' && A.enclosedByArea('BY_2V5_2_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+2V5' && A.enclosedByArea('BY_2V5_3_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == 'Net-(U10-AVDD12)' && A.enclosedByArea('BY_AVDD_2_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+2V5' && A.enclosedByArea('BY_2V5_SHORT_0_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3_HUB' && A.enclosedByArea('BZ_3V3_0_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3_HUB' && A.enclosedByArea('BZ_3V3_REFINE_0_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+2V5' && A.enclosedByArea('CB_2V5_LOCAL_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3_HUB' && A.enclosedByArea('CC_FLASH_FEED_0')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3_HUB' && A.enclosedByArea('CC_FLASH_FEED_2')) && !(A.Layer == 'In4.Cu' && A.NetName == 'Net-(U10-AVDD12)' && A.enclosedByArea('CD_MULTIPOWER_1')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3_HUB' && A.enclosedByArea('CD_MULTIPOWER2_0')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3_HUB' && A.enclosedByArea('CD_MULTIPOWER2_2')) && !(A.Layer == 'In4.Cu' && A.NetName == 'Net-(U10-AVDD12)' && A.enclosedByArea('CH_AVDD_RX_REFERENCE_0')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('CJ_3V3_RECONNECT_1')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('DB_MCU_3V3_RESTORE_L5')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('DW6_3V3_L5_FEED')) && !(A.Layer == 'In4.Cu' && A.NetName == '/DBG_1_RX' && A.enclosedByArea('ED9_DBG1_RX_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('ED12_C91_L5_FEED')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('ED12_INPUT_BRIDGE_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '/DBG_1_CLK' && A.enclosedByArea('EJ8_CLK_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '/DBG_1_TX' && A.enclosedByArea('EL28_TX_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('EL30_0_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('EL30_1_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('EL41_0_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '/DBG_0_CLK' && A.enclosedByArea('EL49_0_In4.Cu')) && !(A.NetName == '/DBG_1_CLK' && A.enclosedByArea('EM94_DBG1_L5_CORRIDOR')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('EM116_3V3_FEED_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('EM116_3V3_L5_DOWNSTREAM')) && !(A.Layer == 'In4.Cu' && A.NetName == 'Net-(U10-AVDD12)' && A.enclosedByArea('EM158_AVDD_REFERENCE_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == 'Net-(U10-AVDD12)' && A.enclosedByArea('M2_HUB_SPI_AVDD_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '/DBG_1_CLK' && A.enclosedByArea('M2_SD_DBG1_CLK')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.memberOfGroup('POWER_WIDTH_REVIEW_2_TRACKS')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3_HUB' && A.memberOfGroup('POWER_REROUTE_REVIEW_1'))")
+ (constraint disallow track))
+(rule "L5 preserve high-speed return-current corridors"
+ (condition "A.Type == 'Track' && A.Layer == 'In4.Cu' && A.NetName != 'GND' && A.intersectsArea('L5_HS_RETURN_PROTECT') && !(A.NetName == 'Net-(U12-NRST)' && A.enclosedByArea('L5_NRST_BD_LOCAL_BRIDGE')) && !(A.NetName == 'Net-(U10-AVDD12)' && A.enclosedByArea('L5_AVDD12_REVIEWED_CORRIDOR')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('BM_POWER_BRIDGE_1')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('BM_POWER_BRIDGE_2')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('BM_POWER_BRIDGE_3')) && !(A.Layer == 'In4.Cu' && A.NetName == '+5V_USBH' && A.enclosedByArea('BV_POWER_BRIDGE_1')) && !(A.Layer == 'In4.Cu' && A.NetName == '+5V_USBH' && A.enclosedByArea('BV_WIDE_5V_2')) && !(A.Layer == 'In4.Cu' && A.NetName == '+2V5' && A.enclosedByArea('BY_2V5_0_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+2V5' && A.enclosedByArea('BY_2V5_1_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+2V5' && A.enclosedByArea('BY_2V5_2_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+2V5' && A.enclosedByArea('BY_2V5_3_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == 'Net-(U10-AVDD12)' && A.enclosedByArea('BY_AVDD_2_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+2V5' && A.enclosedByArea('BY_2V5_SHORT_0_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3_HUB' && A.enclosedByArea('BZ_3V3_0_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3_HUB' && A.enclosedByArea('BZ_3V3_REFINE_0_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+2V5' && A.enclosedByArea('CB_2V5_LOCAL_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3_HUB' && A.enclosedByArea('CC_FLASH_FEED_0')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3_HUB' && A.enclosedByArea('CC_FLASH_FEED_2')) && !(A.Layer == 'In4.Cu' && A.NetName == 'Net-(U10-AVDD12)' && A.enclosedByArea('CD_MULTIPOWER_1')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3_HUB' && A.enclosedByArea('CD_MULTIPOWER2_0')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3_HUB' && A.enclosedByArea('CD_MULTIPOWER2_2')) && !(A.Layer == 'In4.Cu' && A.NetName == 'Net-(U10-AVDD12)' && A.enclosedByArea('CH_AVDD_RX_REFERENCE_0')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('CJ_3V3_RECONNECT_1')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('DB_MCU_3V3_RESTORE_L5')) && !(A.Layer == 'In4.Cu' && A.NetName == '/ULPI_0_RST' && A.enclosedByArea('CL_ULPI0_RESET_REVIEWED')) && !(A.Layer == 'In4.Cu' && A.NetName == '/ULPI_0_RST' && A.enclosedByArea('CS_ULPI0_RESET_REFERENCE_REPAIR')) && !(A.Layer == 'In4.Cu' && A.NetName == '/ULPI_0_RST' && A.enclosedByArea('CT_ULPI0_RESET_UPPER_REFERENCE_REPAIR')) && !(A.Layer == 'In4.Cu' && A.NetName == '/ULPI_0_RST' && A.enclosedByArea('DC_ULPI0_RST_L5_CORRIDOR')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('DW6_3V3_L5_FEED')) && !(A.Layer == 'In4.Cu' && A.NetName == '/ULPI_0_RST' && A.enclosedByArea('DW6_RST_L5_SHIFT')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('ED12_C91_L5_FEED')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('ED12_INPUT_BRIDGE_In4.Cu')) && !(A.NetName == '/DBG_1_RX' && A.enclosedByArea('ED9_DBG1_RX_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '/DBG_1_CLK' && A.enclosedByArea('EJ8_CLK_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '/DBG_1_TX' && A.enclosedByArea('EL28_TX_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('EL30_0_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('EL30_1_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('EL41_0_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '/DBG_0_CLK' && A.enclosedByArea('EL49_0_In4.Cu')) && !(A.NetName == '/DBG_1_CLK' && A.enclosedByArea('EM94_DBG1_L5_CORRIDOR')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('EM116_3V3_FEED_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.enclosedByArea('EM116_3V3_L5_DOWNSTREAM')) && !(A.Layer == 'In4.Cu' && A.NetName == 'Net-(U10-AVDD12)' && A.enclosedByArea('EM158_AVDD_REFERENCE_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == 'Net-(U10-AVDD12)' && A.enclosedByArea('M2_HUB_SPI_AVDD_In4.Cu')) && !(A.Layer == 'In4.Cu' && A.NetName == '/DBG_1_CLK' && A.enclosedByArea('M2_SD_DBG1_CLK')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3' && A.memberOfGroup('POWER_WIDTH_REVIEW_2_TRACKS')) && !(A.Layer == 'In4.Cu' && A.NetName == '+3V3_HUB' && A.memberOfGroup('POWER_REROUTE_REVIEW_1')) && !(A.Layer == 'In4.Cu' && A.memberOfGroup('VIA030_DEBUG_PAD_LINKS'))")
+ (constraint disallow track))
+(rule "L5 narrow low-speed excursions"
+ (condition "A.Layer == 'In4.Cu' && A.hasNetclass('L5_LOW_SPEED')")
+ (constraint track_width (min 0.10mm) (opt 0.15mm) (max 0.20mm)))
+
+(rule "Reviewed AVDD12 L5 feed width"
+ (condition "A.Type == 'Track' && A.Layer == 'In4.Cu' && A.NetName == 'Net-(U10-AVDD12)'")
+ (constraint track_width (min 0.30mm) (opt 0.30mm) (max 0.30mm)))
+
+(rule "USB2 per-net maximum; full endpoint paths audited separately"
+ (condition "A.hasNetclass('USB2_HS_90ohm') || A.hasNetclass('USB2_FS_90ohm')")
+ (constraint length (max 250mm)))
+(rule "Capture0 RX uncoupled source 45ohm nominal width"
+ (condition "A.Type == 'Track' && A.Layer == 'F.Cu' && (A.NetName == 'Net-(U3-SSRXP)' || A.NetName == 'Net-(U3-SSRXM)') && A.enclosedByArea('RX0_F_45OHM_SOURCE')")
+ (constraint track_width (min 0.1857mm) (opt 0.1857mm) (max 0.1857mm)))
+
+(rule "Capture0 USB2 uncoupled source 45ohm nominal width"
+ (condition "A.Type == 'Track' && A.Layer == 'F.Cu' && (A.NetName == 'Net-(U10-DP_P1)' || A.NetName == 'Net-(U10-DM_P1)') && A.enclosedByArea('USB2_CAP0_F_45OHM_SOURCE')")
+ (constraint track_width (min 0.1857mm) (opt 0.1857mm) (max 0.1857mm)))
+
+# User requirement 2026-10-31: each SDMMC bus <=1mm spread; each MCU-card path <=90mm.
+# Explicit six-net groups include all main-path copper and used via spans.
+# Only verified CMD pull-up branch tracks are excluded; DET and supply/GND do not match.
+# SDMMC0 branch: R65.1 to (182.64,130.91), three B.Cu tracks.
+(rule "SDMMC0 MCU-card length and skew"
+ (condition "(A.NetName == '/SDMMC_0_CLK' || A.NetName == '/SDMMC_0_CMD' || A.NetName == '/SDMMC_0_D0' || A.NetName == '/SDMMC_0_D1' || A.NetName == '/SDMMC_0_D2' || A.NetName == '/SDMMC_0_D3') && !A.memberOfGroup('SDMMC0_CMD_PULLUP_BRANCH')")
+ (constraint length (max 90mm))
+ (constraint skew (max 1mm)))
+
+# BW: fromTo omits short overlapping endpoint traces and then loses via height in KiCad 10.0.1.
+# Include all six main nets; exclude only the four verified R66 pull-up branch tracks.
+# Keep this branch group current after editing CMD; limits remain 90mm / 1mm.
+(rule "SDMMC1 MCU-card length and skew"
+ (condition "(A.NetName == '/SDMMC_1_CLK' || A.NetName == '/SDMMC_1_CMD' || A.NetName == '/SDMMC_1_D0' || A.NetName == '/SDMMC_1_D1' || A.NetName == '/SDMMC_1_D2' || A.NetName == '/SDMMC_1_D3') && !A.memberOfGroup('SDMMC1_CMD_PULLUP_BRANCH')")
+ (constraint length (max 90mm))
+ (constraint skew (max 1mm)))
+
+(rule "BH short 1V1 bridge width"
+ (condition "A.Type == 'Track' && A.Layer == 'In3.Cu' && A.NetName == '+1V1' && A.enclosedByArea('L4_1V1_BH_SHORT_BRIDGE')")
+ (constraint track_width (min 0.8mm) (opt 0.8mm)))
+
+(rule "CZ USB3300 channel0 uncoupled 45ohm outer sections"
+ (condition "A.Type == 'Track' && (A.Layer == 'F.Cu' || A.Layer == 'B.Cu') && (A.NetName == 'Net-(U5-DP)' || A.NetName == 'Net-(U5-DM)')")
+ (constraint track_width (min 0.1857mm) (opt 0.1857mm) (max 0.1857mm)))
+
+(rule "CZ J3 input uncoupled 45ohm outer sections"
+ (condition "A.Type == 'Track' && (A.Layer == 'F.Cu' || A.Layer == 'B.Cu') && (A.NetName == 'Net-(J3-D+-PadA6)' || A.NetName == 'Net-(J3-D--PadA7)')")
+ (constraint track_width (min 0.1857mm) (opt 0.1857mm) (max 0.1857mm)))
+
+# M2: short J4-to-U2 uncoupled L3 links, 45.02 ohm nominal quasi-static model.
+# Both USB-C orientations merge symmetrically on F.Cu; used via spans match.
+(rule "M2 J4 input uncoupled L3 45ohm sections"
+ (condition "A.Type == 'Track' && A.Layer == 'In2.Cu' && (A.NetName == 'Net-(J4-D+-PadA6)' || A.NetName == 'Net-(J4-D--PadA7)')")
+ (constraint track_width (min 0.1700mm) (opt 0.1700mm) (max 0.1700mm)))
+
+(rule "Hub RXN local uncoupled 45ohm compensation"
+ (condition "A.Type == 'Track' && A.Layer == 'In2.Cu' && A.NetName == '/MS2130_1_RXN' && A.enclosedByArea('M2_HUB_RXN_UNCOUPLED_45OHM')")
+ (constraint track_width (min 0.16mm) (opt 0.16mm) (max 0.16mm)))
+
+(rule "Hub RXP local uncoupled 45ohm compensation"
+ (condition "A.Type == 'Track' && A.Layer == 'In2.Cu' && A.NetName == '/MS2130_1_RXP' && A.enclosedByArea('M2_HUB_RXP_UNCOUPLED_45OHM')")
+ (constraint track_width (min 0.16mm) (opt 0.16mm) (max 0.16mm)))
+
+(rule "EDGE_USB2_DP_45OHM nominal uncoupled 45ohm width"
+ (condition "A.Type == 'Track' && A.Layer == 'In2.Cu' && A.NetName == '/USBH_DP' && A.enclosedByArea('EDGE_USB2_DP_45OHM')")
+ (constraint track_width (min 0.17mm) (opt 0.17mm) (max 0.17mm)))
+
+(rule "EDGE_USB2_DN_45OHM nominal uncoupled 45ohm width"
+ (condition "A.Type == 'Track' && A.Layer == 'In2.Cu' && A.NetName == '/USBH_DN' && A.enclosedByArea('EDGE_USB2_DN_45OHM')")
+ (constraint track_width (min 0.17mm) (opt 0.17mm) (max 0.17mm)))
+

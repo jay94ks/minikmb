@@ -1,0 +1,29 @@
+--- a/src/portable/synopsys/dwc2/dcd_dwc2.c
++++ b/src/portable/synopsys/dwc2/dcd_dwc2.c
+@@ -774,9 +774,25 @@
+   uint8_t const dir = tu_edpt_dir(ep_addr);
+   dwc2_dep_t* dep = &dwc2->ep[dir == TUSB_DIR_IN ? 0 : 1][epnum];
+ 
++#if defined(MINIKMB_TUSB_TARGET_INSTANCE) && defined(STM32H743xx)
++  // The device stack drops its pending transfer when clearing a halt.
++  // Stop and flush an armed IN transaction before clearing the hardware state.
++  usbd_spin_lock(false);
++  if (epnum != 0 && dir == TUSB_DIR_IN &&
++      (dep->ctl & EPCTL_EPTYP_Msk) == (TUSB_XFER_BULK << EPCTL_EPTYP_Pos) &&
++      edpt_is_enabled(dep)) {
++    edpt_disable(rhport, ep_addr, true);
++    dwc2->diepempmsk &= ~TU_BIT(epnum);
++    dep->diepint = DIEPINT_XFRC;
++  }
++#endif
++
+   // Clear stall and reset data toggle
+-  dep->ctl &= ~EPCTL_STALL;;
++  dep->ctl &= ~EPCTL_STALL;
+   dep->ctl |= EPCTL_SD0PID_SEVNFRM;
++#if defined(MINIKMB_TUSB_TARGET_INSTANCE) && defined(STM32H743xx)
++  usbd_spin_unlock(false);
++#endif
+ }
+ 
+ //--------------------------------------------------------------------

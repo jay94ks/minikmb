@@ -1,0 +1,34 @@
+﻿pin,name,electrical_type,description
+1,VDD,power_in,3.3 V power input
+2,C0VD,input,C0 port VBUS detect
+3,C1VD,input,C1 port VBUS detect
+4,PDRST,input,External chip reset
+5,VDDA,power_in,3.3 V analog power input
+6,VCOD,input,VCONN detect
+7,CREF,input,USB PD voltage reference
+8,C01M,input,C0 port CC1 voltage detect
+9,C1HU,power_out,C1 port Rp for default USB power
+10,RSV1,no_connect,Reserved
+11,C1CM,input,C1 port CC1 voltage detect
+12,C1TD,output,C1 port CC BMC transport
+13,C0H1,input,C0 port Rp for 1.5 A
+14,RSV2,no_connect,Reserved
+15,VBEN,output,VBUS enable
+16,RSV3,no_connect,Reserved
+17,VDD,power_in,3.3 V power input
+18,RSV4,no_connect,Reserved
+19,PTSR,no_connect,Reserved
+20,PRST,no_connect,Reserved
+21,C01D,output,C0 port Rd
+22,C0H3,output,C0 port Rp for 3.0 A
+23,TA,bidirectional,Firmware upgrade interface A
+24,TB,bidirectional,Firmware upgrade interface B
+25,PDEN,output,C0 port PD engine enable
+26,CTIN,input,External clock input
+27,C01TD,output,C0 port CC1 BMC transport
+28,C12TD,output,C1 port CC2 BMC transport
+29,C11TD,output,C1 port CC2 BMC transport
+30,HPD,input,DP hot-plug detect
+31,PDBT,input,System reference; connect 100 kOhm to GND
+32,CTCO,output,System clock output
+33,EP,power_in,Exposed pad ground

@@ -1,0 +1,7 @@
+﻿pin,name,electrical_type,description
+1,IN,power_in,
+2,GND,power_in,
+3,EN,input,
+4,~{FAULT},open_collector,Active-low open-drain fault output
+5,ILIM,output,Current-limit programming resistor; current-source output
+6,OUT,power_out,

@@ -1,0 +1,41 @@
+--- a/src/class/net/ncm_device.c
++++ b/src/class/net/ncm_device.c
+@@ -173,13 +173,14 @@
+   .wLength                  = sizeof(ntb_parameters_t),
+   .bmNtbFormatsSupported    = 0x01,// 16-bit NTB supported
+   .dwNtbInMaxSize           = CFG_TUD_NCM_IN_NTB_MAX_SIZE,
+-  .wNdbInDivisor            = 1,
+-  .wNdbInPayloadRemainder   = 0,
++  // Ethernet starts on 4-byte boundaries, so the IP payload starts at remainder 2.
++  .wNdbInDivisor            = TUD_NCM_ALIGNMENT,
++  .wNdbInPayloadRemainder   = 2,
+   .wNdbInAlignment          = TUD_NCM_ALIGNMENT,
+   .wReserved                = 0,
+   .dwNtbOutMaxSize          = CFG_TUD_NCM_OUT_NTB_MAX_SIZE,
+-  .wNdbOutDivisor           = 1,
+-  .wNdbOutPayloadRemainder  = 0,
++  .wNdbOutDivisor           = TUD_NCM_ALIGNMENT,
++  .wNdbOutPayloadRemainder  = 2,
+   .wNdbOutAlignment         = TUD_NCM_ALIGNMENT,
+   .wNtbOutMaxDatagrams      = CFG_TUD_NCM_OUT_MAX_DATAGRAMS_PER_NTB,
+ };
+@@ -427,7 +428,7 @@
+   }
+ 
+   // Kick off an endpoint transfer
+-  usbd_edpt_xfer(0, ncm_interface.ep_in, ncm_interface.xmit_tinyusb_ntb->data, ncm_interface.xmit_tinyusb_ntb->nth.wBlockLength, false);
++  usbd_edpt_xfer(rhport, ncm_interface.ep_in, ncm_interface.xmit_tinyusb_ntb->data, ncm_interface.xmit_tinyusb_ntb->nth.wBlockLength, false);
+ } // xmit_start_if_possible
+ 
+ /**
+@@ -777,7 +778,9 @@
+   ntb->ndp_datagram[ncm_interface.xmit_glue_ntb_datagram_ndx].wDatagramLength = size;
+   ncm_interface.xmit_glue_ntb_datagram_ndx += 1;
+ 
+-  ntb->nth.wBlockLength += (uint16_t) (size + XMIT_ALIGN_OFFSET(size));
++  const uint16_t padding = (uint16_t) XMIT_ALIGN_OFFSET(size);
++  memset(ntb->data + ntb->nth.wBlockLength + size, 0, padding);
++  ntb->nth.wBlockLength += (uint16_t) (size + padding);
+ 
+   if (ntb->nth.wBlockLength > CFG_TUD_NCM_IN_NTB_MAX_SIZE) {
+     TU_LOG_DRV("(EE) tud_network_xmit: buffer overflow\n"); // must not happen (really)

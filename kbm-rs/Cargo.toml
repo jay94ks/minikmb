@@ -1,0 +1,57 @@
+[package]
+name = "minikmb-native"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.95"
+description = "MiniKMB native control application"
+publish = false
+
+[dependencies]
+eframe = { version = "=0.33.3", default-features = false, features = ["default_fonts", "wgpu", "accesskit"] }
+wgpu = { version = "27", default-features = false, features = ["dx12", "wgsl", "std"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["rt-multi-thread", "net", "sync", "time", "macros", "io-util", "fs"] }
+axum = { version = "0.8", features = ["json", "macros"] }
+rmcp = { version = "3", features = ["server", "transport-streamable-http-server", "schemars"] }
+serialport = { version = "4", default-features = false }
+crc32fast = "1"
+cobs = "0.5"
+getrandom = "0.3"
+base64 = "0.22"
+sha2 = "0.10"
+subtle = "2"
+arboard = { version = "3", default-features = false }
+image = { version = "0.25", default-features = false, features = ["jpeg", "png"] }
+thiserror = "2"
+directories = "6"
+parking_lot = "0.12"
+tempfile = "3"
+schemars = "1"
+tokio-util = "0.7"
+futures-util = "0.3"
+raw-window-handle = "0.6"
+smoltcp = { version = "=0.14.0", default-features = false, features = ["std", "medium-ethernet", "proto-ipv4", "socket-tcp", "socket-udp"] }
+
+[target.'cfg(windows)'.dependencies]
+winit = { version = "=0.30.13", default-features = false, features = ["rwh_06"] }
+windows-core = "0.62"
+windows = { version = "0.62", features = ["Win32_Devices_Communication", "Win32_System_IO", "Win32_System_Pipes", "Win32_Security", "Win32_NetworkManagement_Ndis", "Win32_Networking_WinSock", "Win32_NetworkManagement_IpHelper", "Win32_Foundation", "Win32_Graphics_Gdi", "Win32_Globalization", "Win32_Media_MediaFoundation", "Win32_System_Com", "Win32_System_Threading", "Win32_System_LibraryLoader", "Win32_Devices_DeviceAndDriverInstallation", "Win32_UI_Controls_Dialogs", "Win32_UI_WindowsAndMessaging", "Win32_UI_Input_KeyboardAndMouse", "Win32_UI_Shell", "Win32_UI_Shell_Common", "Win32_Storage_FileSystem", "Win32_Graphics_Direct3D11", "Win32_Graphics_Dxgi", "Win32_Graphics_Dxgi_Common"] }
+
+[dev-dependencies]
+jsonschema = { version = "=0.61.2", default-features = false }
+tower = { version = "0.5", features = ["util"] }
+http-body-util = "0.1"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = "debuginfo"
+
+# Keep the development GUI responsive while decoding live 1080p frames.
+[profile.dev.package.image]
+opt-level = 2
+[profile.dev.package.zune-jpeg]
+opt-level = 3
+[profile.dev.package.zune-core]
+opt-level = 3

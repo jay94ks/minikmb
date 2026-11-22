@@ -1,0 +1,48 @@
+--- a/src/portable/synopsys/dwc2/dcd_dwc2.c
++++ b/src/portable/synopsys/dwc2/dcd_dwc2.c
+@@ -365,6 +365,31 @@
+   }
+ }
+ 
++#if defined(STM32H743xx) && defined(USB_OTG_HS_PERIPH_BASE)
++// Read an ordered AHB register once per minimum bus cycle to avoid CPU clock assumptions.
++static void stm32h743_wait_usb_ahb(const dwc2_regs_t* dwc2, unsigned cycles) {
++  __DSB();
++  for (unsigned i = 0; i < cycles; ++i) {
++    (void) dwc2->gahbcfg;
++  }
++}
++
++// ES0392 §2.25.7: keep the IN endpoint in NAK while the core arms a ZLP.
++static void stm32h743_arm_in_zlp(dwc2_regs_t* dwc2, dwc2_dep_t* dep,
++                               uint32_t enabled, const uint8_t* buffer) {
++  const uint32_t nak = (enabled & ~(DIEPCTL_CNAK | DIEPCTL_EPENA)) | DIEPCTL_SNAK;
++  if (dma_device_enabled(dwc2)) {
++    dep->diepdma = (uintptr_t) buffer;
++  } else {
++    dep->diepctl = nak;
++    stm32h743_wait_usb_ahb(dwc2, 20);
++  }
++  dep->diepctl = nak | DIEPCTL_EPENA;
++  stm32h743_wait_usb_ahb(dwc2, 15);
++  dep->diepctl = enabled & ~DIEPCTL_SNAK;
++}
++#endif
++
+ // Since this function returns void, it is not possible to return a boolean success message
+ // We must make sure that this function is not called when the EP is disabled
+ // Must be called from critical section
+@@ -408,6 +433,13 @@
+       depctl.set_data1_iso_odd = 1;
+     }
+   }
++
++  #if defined(STM32H743xx) && defined(USB_OTG_HS_PERIPH_BASE)
++  if ((uintptr_t) dwc2 == USB_OTG_HS_PERIPH_BASE && dir == TUSB_DIR_IN && total_bytes == 0) {
++    stm32h743_arm_in_zlp(dwc2, dep, depctl.value, xfer->buffer);
++    return;
++  }
++  #endif
+ 
+   #if CFG_TUD_DWC2_DMA_ENABLE
+   const bool is_dma = dma_device_enabled(dwc2);

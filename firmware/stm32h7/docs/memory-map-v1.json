@@ -1,0 +1,133 @@
+{
+  "version": 1,
+  "mcu": "STM32H743VIH6",
+  "status": "derived from current FLASH linker",
+  "regions": [
+    {
+      "name": "FLASH_APP",
+      "start": "0x08000000",
+      "end_inclusive": "0x081FFFFF",
+      "size_bytes": 2097152
+    },
+    {
+      "name": "ITCM_CODE",
+      "start": "0x00000000",
+      "end_inclusive": "0x0000FFFF",
+      "size_bytes": 65536
+    },
+    {
+      "name": "DTCM_FAST",
+      "start": "0x20000000",
+      "end_inclusive": "0x20017FFF",
+      "size_bytes": 98304
+    },
+    {
+      "name": "DTCM_GUARD",
+      "start": "0x20018000",
+      "end_inclusive": "0x2001BFFF",
+      "size_bytes": 16384
+    },
+    {
+      "name": "DTCM_MSP",
+      "start": "0x2001C000",
+      "end_inclusive": "0x2001FFFF",
+      "size_bytes": 16384
+    },
+    {
+      "name": "AXI_EXTENTS",
+      "start": "0x24000000",
+      "end_inclusive": "0x2400FFFF",
+      "size_bytes": 65536
+    },
+    {
+      "name": "AXI_FILES",
+      "start": "0x24010000",
+      "end_inclusive": "0x2401FFFF",
+      "size_bytes": 65536
+    },
+    {
+      "name": "AXI_RESERVE",
+      "start": "0x24020000",
+      "end_inclusive": "0x2405FFFF",
+      "size_bytes": 262144
+    },
+    {
+      "name": "USB_FS_DMA",
+      "start": "0x24060000",
+      "end_inclusive": "0x24063FFF",
+      "size_bytes": 16384
+    },
+    {
+      "name": "USB_HS_DMA",
+      "start": "0x24064000",
+      "end_inclusive": "0x2406BFFF",
+      "size_bytes": 32768
+    },
+    {
+      "name": "SD_DMA",
+      "start": "0x2406C000",
+      "end_inclusive": "0x24073FFF",
+      "size_bytes": 32768
+    },
+    {
+      "name": "NCM_DMA",
+      "start": "0x24074000",
+      "end_inclusive": "0x2407BFFF",
+      "size_bytes": 32768
+    },
+    {
+      "name": "DMA_RESERVE",
+      "start": "0x2407C000",
+      "end_inclusive": "0x2407FFFF",
+      "size_bytes": 16384
+    },
+    {
+      "name": "D2_PROTOCOL",
+      "start": "0x30000000",
+      "end_inclusive": "0x3001FFFF",
+      "size_bytes": 131072
+    },
+    {
+      "name": "D2_HEAP",
+      "start": "0x30020000",
+      "end_inclusive": "0x30021FFF",
+      "size_bytes": 8192
+    },
+    {
+      "name": "D2_NETWORK",
+      "start": "0x30022000",
+      "end_inclusive": "0x3002FFFF",
+      "size_bytes": 57344
+    },
+    {
+      "name": "D2_STACKS",
+      "start": "0x30030000",
+      "end_inclusive": "0x3003FFFF",
+      "size_bytes": 65536
+    },
+    {
+      "name": "D2_LOG",
+      "start": "0x30040000",
+      "end_inclusive": "0x30047FFF",
+      "size_bytes": 32768
+    },
+    {
+      "name": "D3_CRASH",
+      "start": "0x38000000",
+      "end_inclusive": "0x38000FFF",
+      "size_bytes": 4096
+    },
+    {
+      "name": "D3_RESERVE",
+      "start": "0x38001000",
+      "end_inclusive": "0x3800FFFF",
+      "size_bytes": 61440
+    },
+    {
+      "name": "BKPSRAM",
+      "start": "0x38800000",
+      "end_inclusive": "0x38800FFF",
+      "size_bytes": 4096
+    }
+  ]
+}

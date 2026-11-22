@@ -1,0 +1,236 @@
+--- a/src/class/msc/msc_device.c
++++ b/src/class/msc/msc_device.c
+@@ -64,6 +64,10 @@
+ };
+ 
+ typedef struct {
++  uint8_t key, asc, ascq;
++} msc_sense_t;
++
++typedef struct {
+   TU_ATTR_ALIGNED(4) msc_cbw_t cbw; // 31 bytes
+   uint8_t  rhport;
+ 
+@@ -79,14 +83,18 @@
+   uint8_t stage;
+ 
+   // SCSI Sense Response Data
+-  uint8_t sense_key;
+-  uint8_t add_sense_code;
+-  uint8_t add_sense_qualifier;
++  msc_sense_t sense[16];
+ 
+   bool pending_io; // pending async IO
+ }mscd_interface_t;
+ 
+ static mscd_interface_t _mscd_itf;
++/* Separate from interface state so a bus or BOT reset cannot reuse a ticket. */
++static uint32_t _msc_io_ticket;
++
++static msc_sense_t *sense_for(mscd_interface_t *p_msc, uint8_t lun) {
++  return &p_msc->sense[lun & 0x0f];
++}
+ 
+ CFG_TUD_MEM_SECTION static struct {
+   TUD_EPBUF_DEF(buf, CFG_TUD_MSC_EP_BUFSIZE);
+@@ -134,7 +142,7 @@
+   p_msc->stage        = MSC_STAGE_STATUS;
+ 
+   // failed but sense key is not set: default to Illegal Request
+-  if (p_msc->sense_key == 0) {
++  if (sense_for(p_msc, p_msc->cbw.lun)->key == 0) {
+     (void) tud_msc_set_sense(p_cbw->lun, SCSI_SENSE_ILLEGAL_REQUEST, 0x20, 0x00);
+   }
+ 
+@@ -267,6 +275,11 @@
+   return true;
+ }
+ 
++TU_ATTR_WEAK bool tud_msc_write10_validate_cb(uint8_t lun, uint32_t lba, uint16_t blocks, uint32_t bytes) {
++  (void) lun; (void) lba; (void) blocks; (void) bytes;
++  return true;
++}
++
+ TU_ATTR_WEAK int32_t tud_msc_request_sense_cb(uint8_t lun, void* buffer, uint16_t bufsize) {
+   (void) lun;
+   (void) buffer;
+@@ -309,10 +322,7 @@
+ // APPLICATION API
+ //--------------------------------------------------------------------+
+ bool tud_msc_set_sense(uint8_t lun, uint8_t sense_key, uint8_t add_sense_code, uint8_t add_sense_qualifier) {
+-  (void) lun;
+-  _mscd_itf.sense_key           = sense_key;
+-  _mscd_itf.add_sense_code      = add_sense_code;
+-  _mscd_itf.add_sense_qualifier = add_sense_qualifier;
++  *sense_for(&_mscd_itf, lun) = (msc_sense_t){sense_key, add_sense_code, add_sense_qualifier};
+   return true;
+ }
+ 
+@@ -344,6 +354,17 @@
+   if (p_msc->stage == MSC_STAGE_STATUS) {
+     proc_stage_status(p_msc);
+   }
++}
++
++uint32_t tud_msc_io_ticket(uint8_t lun) {
++  return _mscd_itf.pending_io && _mscd_itf.stage == MSC_STAGE_DATA &&
++         _mscd_itf.cbw.lun == lun ? _msc_io_ticket : 0;
++}
++
++bool tud_msc_finish_io(uint8_t lun, uint32_t ticket, int32_t bytes) {
++  TU_VERIFY(ticket != 0 && tud_msc_io_ticket(lun) == ticket);
++  proc_async_io_done((void *)(intptr_t)(bytes == 0 ? TUD_MSC_RET_ERROR : bytes));
++  return true;
+ }
+ 
+ bool tud_msc_async_io_done(int32_t bytes_io, bool in_isr) {
+@@ -399,9 +420,7 @@
+   p_msc->stage       = MSC_STAGE_CMD;
+   p_msc->total_len   = 0;
+   p_msc->xferred_len = 0;
+-  p_msc->sense_key           = 0;
+-  p_msc->add_sense_code      = 0;
+-  p_msc->add_sense_qualifier = 0;
++  tu_memclr(p_msc->sense, sizeof(p_msc->sense));
+ }
+ 
+ // Invoked when a control transfer occurred on an interface of this class
+@@ -531,7 +550,8 @@
+         p_cbw->command[9] = p_cbw->command[11];
+       }
+       const bool bad_lun = p_cbw->lun >= tud_msc_get_maxlun_cb();
+-      if (bad_lun || read_invalid) {
++      const bool write_invalid = p_cbw->command[0] == SCSI_CMD_WRITE_10 && p_cbw->cmd_len != 10;
++      if (bad_lun || read_invalid || write_invalid) {
+         (void)tud_msc_set_sense(p_cbw->lun, SCSI_SENSE_ILLEGAL_REQUEST, bad_lun ? 0x25 : 0x24, 0);
+         fail_scsi_op(p_msc, MSC_CSW_STATUS_FAILED);
+       } else if ((SCSI_CMD_READ_10 == p_cbw->command[0]) || (SCSI_CMD_WRITE_10 == p_cbw->command[0])) {
+@@ -547,8 +567,11 @@
+             } else {
+               fail_scsi_op(p_msc, MSC_CSW_STATUS_FAILED);
+             }
++          } else if (tud_msc_write10_validate_cb(p_cbw->lun, rdwr10_get_lba(p_cbw->command),
++                                                 rdwr10_get_blockcount(p_cbw), p_cbw->total_bytes)) {
++            proc_write10_cmd(p_msc);
+           } else {
+-            proc_write10_cmd(p_msc);
++            fail_scsi_op(p_msc, MSC_CSW_STATUS_FAILED);
+           }
+         } else {
+           // no data transfer, only exist in complaint test suite
+@@ -572,7 +595,7 @@
+           int32_t resplen = proc_builtin_scsi(p_cbw->lun, p_cbw->command, _mscd_epbuf.buf, CFG_TUD_MSC_EP_BUFSIZE);
+ 
+           // Invoke user callback if not built-in
+-          if ((resplen < 0) && (p_msc->sense_key == 0)) {
++          if ((resplen < 0) && (sense_for(p_msc, p_msc->cbw.lun)->key == 0)) {
+             resplen = tud_msc_scsi_cb(p_cbw->lun, p_cbw->command, _mscd_epbuf.buf,
+                                       (uint16_t) tu_min32(p_msc->total_len, CFG_TUD_MSC_EP_BUFSIZE));
+           }
+@@ -716,7 +739,7 @@
+         resplen = -1;
+ 
+         // set default sense if not set by callback
+-        if (p_msc->sense_key == 0) {
++        if (sense_for(p_msc, p_msc->cbw.lun)->key == 0) {
+           set_sense_medium_not_present(lun);
+         }
+       }
+@@ -730,7 +753,7 @@
+         resplen = -1;
+ 
+         // set default sense if not set by callback
+-        if (p_msc->sense_key == 0) {
++        if (sense_for(p_msc, p_msc->cbw.lun)->key == 0) {
+           set_sense_medium_not_present(lun);
+         }
+       }
+@@ -745,7 +768,7 @@
+         resplen = -1;
+ 
+         // set default sense if not set by callback
+-        if (p_msc->sense_key == 0) {
++        if (sense_for(p_msc, p_msc->cbw.lun)->key == 0) {
+           set_sense_medium_not_present(lun);
+         }
+       }
+@@ -766,7 +789,7 @@
+         resplen = -1;
+ 
+         // set default sense if not set by callback
+-        if (p_msc->sense_key == 0) {
++        if (sense_for(p_msc, p_msc->cbw.lun)->key == 0) {
+           set_sense_medium_not_present(lun);
+         }
+       } else {
+@@ -800,7 +823,7 @@
+         resplen = -1;
+ 
+         // set default sense if not set by callback
+-        if (p_msc->sense_key == 0) {
++        if (sense_for(p_msc, p_msc->cbw.lun)->key == 0) {
+           set_sense_medium_not_present(lun);
+         }
+       } else {
+@@ -857,9 +880,9 @@
+       };
+ 
+       sense_rsp.add_sense_len = sizeof(scsi_sense_fixed_resp_t) - 8;
+-      sense_rsp.sense_key = (uint8_t)(p_msc->sense_key & 0x0F);
+-      sense_rsp.add_sense_code = p_msc->add_sense_code;
+-      sense_rsp.add_sense_qualifier = p_msc->add_sense_qualifier;
++      sense_rsp.sense_key = (uint8_t)(sense_for(p_msc, p_msc->cbw.lun)->key & 0x0F);
++      sense_rsp.add_sense_code = sense_for(p_msc, p_msc->cbw.lun)->asc;
++      sense_rsp.add_sense_qualifier = sense_for(p_msc, p_msc->cbw.lun)->ascq;
+ 
+       resplen = sizeof(sense_rsp);
+       TU_VERIFY(0 == tu_memcpy_s(buffer, bufsize, &sense_rsp, (size_t) resplen));
+@@ -890,6 +913,7 @@
+   // remaining bytes capped at class buffer
+   int32_t nbytes = (int32_t)tu_min32(CFG_TUD_MSC_EP_BUFSIZE, p_cbw->total_bytes - p_msc->xferred_len);
+ 
++  if (++_msc_io_ticket == 0) ++_msc_io_ticket;
+   p_msc->pending_io = true;
+   nbytes = tud_msc_read10_cb(p_cbw->lun, lba, offset, _mscd_epbuf.buf, (uint32_t)nbytes);
+   if (nbytes != TUD_MSC_RET_ASYNC) {
+@@ -908,7 +932,7 @@
+       case TUD_MSC_RET_ERROR:
+         // error -> endpoint is stalled & status in CSW set to failed
+         TU_LOG_DRV("  IO read() failed\r\n");
+-        if (p_msc->sense_key == 0) set_sense_medium_not_present(p_msc->cbw.lun);
++        if (sense_for(p_msc, p_msc->cbw.lun)->key == 0) set_sense_medium_not_present(p_msc->cbw.lun);
+         fail_scsi_op(p_msc, MSC_CSW_STATUS_FAILED);
+         break;
+ 
+@@ -950,6 +974,7 @@
+   uint32_t const lba = rdwr10_get_lba(p_cbw->command) + (p_msc->xferred_len / block_sz);
+   uint32_t const offset = p_msc->xferred_len % block_sz;
+ 
++  if (++_msc_io_ticket == 0) ++_msc_io_ticket;
+   p_msc->pending_io = true;
+   int32_t nbytes =  tud_msc_write10_cb(p_cbw->lun, lba, offset, _mscd_epbuf.buf, xferred_bytes);
+   if (nbytes != TUD_MSC_RET_ASYNC) {
+@@ -965,7 +990,7 @@
+       case TUD_MSC_RET_ERROR:
+         // IO error -> failed this scsi op
+         TU_LOG_DRV("  IO write() failed\r\n");
+-        set_sense_medium_not_present(p_msc->cbw.lun);
++        if (sense_for(p_msc, p_msc->cbw.lun)->key == 0) set_sense_medium_not_present(p_msc->cbw.lun);
+         fail_scsi_op(p_msc, MSC_CSW_STATUS_FAILED);
+         break;
+ 
+--- a/src/class/msc/msc_device.h
++++ b/src/class/msc/msc_device.h
+@@ -89,6 +89,12 @@
+ */
+ // Validate the complete logical block range and BOT host data length before reading.
+ bool tud_msc_read10_validate_cb(uint8_t lun, uint32_t lba, uint16_t blocks, uint32_t bytes);
++bool tud_msc_write10_validate_cb(uint8_t lun, uint32_t lba, uint16_t blocks, uint32_t bytes);
++
++// Only use in the USB task that runs this MSC class instance.
++uint32_t tud_msc_io_ticket(uint8_t lun);
++bool tud_msc_finish_io(uint8_t lun, uint32_t ticket, int32_t bytes);
++
+ int32_t tud_msc_read10_cb (uint8_t lun, uint32_t lba, uint32_t offset, void* buffer, uint32_t bufsize);
+ int32_t tud_msc_write10_cb (uint8_t lun, uint32_t lba, uint32_t offset, uint8_t* buffer, uint32_t bufsize);
+ 

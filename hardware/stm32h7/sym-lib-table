@@ -1,0 +1,5 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "CH482X") (type "KiCad") (uri "${KIPRJMOD}/libraries/CH482X.kicad_sym") (options "") (descr ""))
+  (lib (name "GL3510") (type "KiCad") (uri "${KIPRJMOD}/libraries/GL3510.kicad_sym") (options "") (descr ""))
+)
