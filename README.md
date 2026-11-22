@@ -1,5 +1,8 @@
 # MiniKMB
 
+[한국어](README.md) · [English](README.en.md)
+
+
 두 대의 미니 PC를 하나의 관리 PC에서 다루기 위해 제작한 USB KVM 프로젝트입니다. HDMI 영상, 키보드·절대좌표 마우스, 시리얼, 가상 디스크와 네트워크 기능을 함께 제공합니다. RP2040 배선 프로토타입에서 시작해 STM32H7 기반 전용 PCB와 Rust 데스크톱 앱으로 발전했습니다.
 
 [Windows 앱·펌웨어 다운로드](https://github.com/jay94ks/minikmb/releases) · [빌드 안내](docs/BUILDING.md) · [하드웨어와 주의사항](docs/HARDWARE.md) · [References](#references)
@@ -27,7 +30,11 @@ GUI·REST·MCP 전체에서 **활성 채널은 한 개**입니다. 채널 선택
 
 Windows 10/11 x64, DirectX 12와 Media Foundation을 사용하는 미리보기 앱입니다. Visual C++ v14 x64 Runtime이 필요할 수 있습니다. 새 디스크 이미지의 파일시스템 생성은 WSL의 `mkfs`/`fsck` 도구를 사용합니다. 앱 자체 실행에는 Rust·Node.js·Python 설치가 필요하지 않습니다.
 
-현재 배포 펌웨어는 **STM32 v1.0 / FS-HID r63**이며, Rust 앱 패키지 버전은 **0.1.0 preview**입니다. Electron v1.0 소스도 함께 보존합니다. 타깃 USB의 Full Speed 동작을 우선 제공하며, USB3300/ULPI를 통한 High Speed 송신 중단 문제는 조사 중입니다. MS2130의 USB 3.x 영상 경로와 MCU의 USB3300/ULPI 경로는 서로 별개입니다. 자세한 범위는 [알려진 제한](docs/KNOWN-ISSUES.md)을 확인해 주세요.
+현재 배포 펌웨어는 **STM32 v1.0 / FS-HID r63**이며, Rust 앱 패키지 버전은 **0.1.0 preview**입니다. Electron v1.0 소스도 함께 보존합니다. 타깃 USB는 현재 Full Speed(FS)로 제공합니다. 설계자는 USB-C 삽입 방향 감지·신호 선택 회로의 부재와 그에 따른 HS 경로의 임피던스 불일치를, HS 연결이 안정적으로 수립되지 않거나 연결 후 오류율이 높았던 원인으로 판단하고 있습니다. 이 설계 회고와 검증 범위는 [HS 제한 및 설계 회고](docs/KNOWN-ISSUES.md#타깃-usb-hs와-설계-회고)에 정리했습니다. MS2130의 USB 3.x 영상 경로와 MCU의 USB3300/ULPI 경로는 서로 별개입니다. 자세한 범위는 [알려진 제한](docs/KNOWN-ISSUES.md)을 확인해 주세요.
+
+## 문서 언어
+
+공개 안내문서는 [한글 문서](docs/README.md)와 [영문 문서](docs/README.en.md)에서 각각 찾을 수 있습니다. 각 안내문서 상단에서 언어를 전환할 수 있습니다. 프로토콜 상세 명세·소스 주석은 개발 참고자료로 연결하고, 제조사 데이터시트와 외부 라이선스 원문은 원래 언어로 보존합니다.
 
 ## 개발 과정과 사진
 
@@ -86,11 +93,13 @@ Electron 앱을 바탕으로 Rust·egui 앱을 구현했습니다. 채널을 묶
 
 [빌드 안내](docs/BUILDING.md)에 Windows 앱, WSL RP2040, STM32CubeIDE와 포터블 ARM 빌드 절차를 정리했습니다. 하드웨어와 독립적인 테스트는 [테스트 안내](docs/TESTING.md)를 참조해 주세요. 단위 테스트 통과, 펌웨어 빌드, 실제 타깃 동작 확인은 구분합니다.
 
-이 프로젝트는 **OpenAI Codex의 GPT 6 Astra와 Sol을 활용하여 개발**했습니다. 하드웨어 제작·연결·납땜·실사용 확인은 제작자가 수행하고, 회로/배치 검토·펌웨어·앱 구현·문서화 과정에서 두 모델을 활용했습니다.
+**회로도는 제작자 jay94ks가 직접 작성했습니다.** 타깃 USB-C의 방향 감지·신호 선택 구성과 HS 경로의 임피던스 조건을 충분히 검토하지 않은 채 PCB 아트웍으로 진행한 것이 이번 설계의 검토 누락이었습니다. 이 문제를 GPT가 회로도를 잘못 작성한 결과로 기록하지 않습니다.
+
+이 프로젝트는 **OpenAI Codex의 GPT 6 Astra와 Sol을 활용하여 개발**했습니다. 제작자가 회로도 작성·하드웨어 제작·연결·납땜·실사용 확인을 수행했으며, 두 모델은 PCB 배치·배선 작업, 펌웨어·앱 구현과 문서화에 활용했습니다.
 
 ## 라이선스
 
-직접 작성한 코드와 설계·문서는 [MIT License](LICENSE)로 공개합니다. **아래 외부 구성 요소까지 MIT로 재허가하는 것은 아닙니다.** 원래 저작권·라이선스·예외 조항이 우선하며, 자료별 적용 범위는 [NOTICE](NOTICE.md)와 [References](references/README.md)에 정리했습니다.
+직접 작성한 코드와 설계·문서는 [MIT License](LICENSE)로 공개합니다. **아래 외부 구성 요소까지 MIT로 재허가하는 것은 아닙니다.** 원래 저작권·라이선스·예외 조항이 우선하며, 자료별 적용 범위는 [라이선스 고지](NOTICE.ko.md)와 [References](references/README.md)에 정리했습니다.
 
 | 구성 요소 | 적용 조건과 고지 |
 |---|---|

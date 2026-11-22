@@ -1,29 +1,39 @@
-# Hardware
+# 하드웨어
 
-## STM32H7 board
+[한국어](HARDWARE.md) · [English](HARDWARE.en.md)
 
-Open `hardware/stm32h7/MiniKMB.kicad_pro` in KiCad 10. The schematic embeds its symbols; CH482X/GL3510 footprint and symbol tables use project-relative paths. Standard footprints use the installed KiCad libraries.
+## STM32H7 보드
 
-| Connector | Role |
+KiCad 10에서 `hardware/stm32h7/MiniKMB.kicad_pro`를 엽니다. 심볼은 회로도에 내장되어 있으며 CH482X·GL3510과 사용한 표준 풋프린트는 프로젝트 로컬 라이브러리로 포함했습니다. 선택적인 표준 3D 모델은 KiCad 설치 경로를 사용합니다.
+
+| 커넥터 | 역할 |
 |---|---|
-| J9 | Management PC USB, upstream of GL3510 hub |
-| J1 / J3 / J7 / J5 | Channel 0: HDMI input / target USB / microSD / SWD |
-| J2 / J4 / J8 / J6 | Channel 1: HDMI input / target USB / microSD / SWD |
+| J9 | 관리 PC USB, GL3510 허브의 upstream |
+| J1 / J3 / J7 / J5 | 채널 0: HDMI 입력 / 타깃 USB / microSD / SWD |
+| J2 / J4 / J8 / J6 | 채널 1: HDMI 입력 / 타깃 USB / microSD / SWD |
 
-Fixed hub mapping: downstream P1 → MS2130 channel 0; P2 → MS2130 channel 1; P3 → channel 0 MCU management FS; P4 → channel 1 MCU management FS. The app groups siblings under the same physical hub and queries the MCU UID. It does not pair devices by global enumeration order or use a UID to discover arbitrary ports.
+고정 허브 포트는 P1→채널 0 MS2130, P2→채널 1 MS2130, P3→채널 0 MCU 관리 FS, P4→채널 1 MCU 관리 FS입니다. 앱은 같은 물리 허브의 장치들을 묶고 MCU에서 UID를 조회합니다. 전역 열거 순서로 묶거나 UID로 임의 포트를 찾지 않습니다.
 
-Manufactured revision: `20261104-via030`, nominal 80 × 54 mm, six copper layers, 1.6 mm board, JLC06161H-3313 stackup, 1 oz outer / 0.5 oz inner copper, ENIG. Through vias use 0.30 mm drill / 0.45 mm copper pad; the order used the 0.3 mm/(0.4/0.45 mm) option and filled/capped vias. Confirm current fabrication options with the manufacturer before reordering.
+제작 리비전은 `20261104-via030`입니다. 외형은 공칭 80×54mm, 6층, 두께 1.6mm이며 JLC06161H-3313 스택업, 외층 1oz/내층 0.5oz, ENIG를 사용했습니다. 관통 비아는 드릴 0.30mm/패드 0.45mm이며 주문 시 0.3mm/(0.4/0.45mm) 옵션과 충진·캡핑을 선택했습니다. 재제작 전에는 제조사의 현재 조건을 확인하십시오.
 
-Historical impedance targets: USB differential 90 Ω, HDMI differential 100 Ω, ULPI/SDMMC single-ended 50 Ω, ±10% target. Design targets and saved calculations are not laboratory measurements of the assembled board.
+설계 당시 목표는 USB 90Ω 차동, HDMI 100Ω 차동, ULPI·SDMMC 50Ω 단일 종단, 허용오차 ±10%였습니다. 이 수치는 설계 목표이며 조립 보드의 실측 임피던스를 의미하지 않습니다.
 
-`hardware/stm32h7/manufacturing/` preserves the actual historical Gerber archive and partial-assembly BOM/CPL. HDMI J1/J2 were manually assembled. R39/R41/U7/U8/U11 were DNP in that order. The MS2130 SPI flashes were subsequently fitted/programmed to obtain video; do not copy that DNP choice to a new working build without considering this change.
+`hardware/stm32h7/manufacturing/`에는 실제 주문 때의 Gerber와 부분 조립 BOM/CPL을 보존했습니다. HDMI J1/J2는 직접 조립했고 R39/R41/U7/U8/U11은 당시 DNP였습니다. MS2130의 SPI 플래시는 이후 부착·기록해 영상을 확인했으므로, 다음 제작에 과거 DNP를 그대로 적용하기 전에 검토해야 합니다.
 
-## Bring-up rework
+## 타깃 USB-C와 HS 설계 검토
 
-A 1 MΩ parallel bias resistor was added across each USB3300 crystal Y1/Y2 on the working boards. This improved observed crystal start-up behavior, but it does not establish the root cause of the remaining High Speed transmit stalls. The archived schematic/Gerbers remain the manufactured revision; this rework is documented rather than silently changing the source of the original batch.
+**회로도는 제작자 jay94ks가 직접 작성했습니다.** 설계자는 타깃 USB-C 플러그의 삽입 방향 감지·신호 선택 회로가 빠진 구성과 그에 따른 HS 경로의 임피던스 불일치를, HS 연결 미수립 또는 높은 오류율의 원인으로 보고 있습니다. 그 결과 현재 펌웨어는 FS로 구현했습니다.
 
-The original MS2130-only board in `hardware/prototypes/boards/ms2130-test` is an unfinished placement experiment, not a fabrication release. GL3523/LDR6023/other candidate libraries in `hardware/prototypes/` are historical design studies, not the current GL3510 BOM.
+삽입 방향에 맞는 신호 경로를 선택하는 IC를 거쳤다면 HS 경로를 정리하고 임피던스 조건을 확보할 수 있었을 것이라는 설계자의 판단입니다. 이 부분을 충분히 검토하지 않은 상태에서 PCB 아트웍으로 넘어간 설계 검토 누락으로 기록하며, GPT가 회로도를 잘못 작성한 문제로 귀속하지 않습니다.
 
-## RP2040 prototype
+이 설명은 설계자의 회고이며 원인 분리 계측이나 회로 수정 전후 비교로 확정된 결과와 구분합니다. 여기서 방향 감지는 ULPI의 DIR이 아닌 USB-C 플러그 방향입니다. [HS 제한과 판단 범위](KNOWN-ISSUES.md#타깃-usb-hs와-설계-회고)를 함께 참고하십시오.
 
-See `hardware/rp2040/README.md` for the hand-wired three-MCU arrangement and the prototype/dual-PC photographs. It used separate commercial capture devices; it is not the STM32H7 PCB.
+## 제작 후 보완
+
+실제 보드의 USB3300 크리스탈 Y1/Y2 양단에는 1MΩ 병렬저항을 추가했습니다. 기동 상태 개선이 관찰됐지만, 이 보완만으로 남은 HS 송신 장애의 원인을 확정하지 않습니다. 보관한 회로도와 Gerber는 제작 당시 리비전이며 보완 내역은 별도로 문서화했습니다.
+
+`hardware/prototypes/boards/ms2130-test`의 단독 시험 보드는 미완성 배치 실험으로 제조용이 아닙니다. GL3523·LDR6023 등의 후보 라이브러리도 과거 검토 자료이며 실제 GL3510 보드의 BOM과 구분합니다.
+
+## RP2040 프로토타입
+
+수작업으로 구성한 MCU 세 대의 연결은 [RP2040 안내](../hardware/rp2040/README.md)에 있습니다. 별도 상용 캡처 장치를 사용한 구성이며 STM32H7 PCB와 다릅니다. 사진은 [프로젝트 README](../README.md#rp2040-프로토타입)에서 볼 수 있습니다.

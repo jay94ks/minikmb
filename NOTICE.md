@@ -1,6 +1,8 @@
 # License scope and attribution
 
-Copyright (c) 2026 jay94ks. MiniKMB-authored software, hardware design files and documentation are MIT licensed unless an individual file carries another license or contains third-party material. Development used OpenAI Codex with GPT 6 Astra and Sol.
+[한국어](NOTICE.ko.md) · [English](NOTICE.md)
+
+Copyright (c) 2026 jay94ks. MiniKMB-authored software, hardware design files and documentation are MIT licensed unless an individual file carries another license or contains third-party material. Development used OpenAI Codex with GPT 6 Astra and Sol. The schematic was authored directly by jay94ks; the target USB-C HS design-review omission is the creator's retrospective assessment and is not attributed to GPT incorrectly authoring the schematic.
 
 The root MIT license does not replace third-party licenses, grant rights to third-party trademarks, or relicense manufacturer documentation and firmware blobs.
 

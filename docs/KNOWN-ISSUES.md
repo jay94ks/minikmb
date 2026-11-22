@@ -1,11 +1,31 @@
-# Current release scope
+# 알려진 제한과 설계 회고
 
-- Current STM32 firmware is v1.0 FS-HID r63. The native PC app identifies itself as 0.1.0 preview; Electron is 1.0.0. Repository release tags do not silently change these internal versions.
-- Target USB uses Full Speed. USB3300/ULPI High Speed transfers have reproduced pattern-dependent transmit stalls. Firmware, bus capture and timing investigations have not established a confirmed root cause. Do not claim the High Speed issue is fixed or definitively assign it to PCB impedance, NXT timing, DMA/cache, or the crystal.
-- This MCU target path is distinct from the MS2130 USB 3.x capture path. MS2130 video was confirmed working after installing and programming the external SPI flash.
-- Physical boards used 1 MΩ parallel resistors added across Y1/Y2 during bring-up. These are documented rework, not silently included in the archived manufacturing revision. Review before making another batch.
-- Keyboard/mouse interaction depends on the target OS and USB state. The release contains independent keyboard/mouse queues and the app's keyboard-release fixes. Tests do not certify every OS, hub, cable or keyboard layout.
-- USB HID completion confirms transfer completion, not that the target application acted on the input. Key-array strings map to physical US HID keys; arbitrary Unicode typing is not provided.
-- ISO/UDF support is intentionally limited to the project's bootable optical-image workflow. It is not a general-purpose ISO/UDF filesystem implementation.
-- Long-duration operation and simultaneous NCM operation on both MCUs were outside the required test scope. No broad reliability certification is claimed.
-- The archived Gerbers/BOM reflect the historical partially assembled order, including DNP SPI flashes. A functioning MS2130 needs the documented flash/ROM work. Review BOM before repeating fabrication.
+[한국어](KNOWN-ISSUES.md) · [English](KNOWN-ISSUES.en.md)
+
+## 배포 범위
+
+현재 STM32 펌웨어는 v1.0 FS-HID r63입니다. 네이티브 앱의 내부 버전은 0.1.0 preview이며 Electron은 1.0.0입니다. 저장소 Release 태그가 이 내부 버전을 바꾸지는 않습니다. 타깃 USB는 Full Speed(FS)로 구현·배포했습니다.
+
+## 타깃 USB HS와 설계 회고
+
+**설계자의 원인 판단:** 타깃 USB-C 커넥터의 **플러그 삽입 방향 감지·신호 선택 회로가 빠진 구성에서 HS 신호 경로의 임피던스 불일치가 발생한 것**을 주요 원인으로 보고 있습니다. 그 결과 HS 연결이 안정적으로 수립되지 않거나, 연결되더라도 오류율이 높아 안정적인 HS 운용을 확보하지 못했고 현재 버전은 FS로 구현했습니다.
+
+설계자는 삽입 방향에 맞는 신호 경로를 선택하는 IC를 거치는 구성을 적용했다면 HS 경로를 의도대로 정리하고 임피던스 조건을 맞출 수 있었을 것으로 판단합니다. 여기서 말하는 방향 감지는 **USB-C 커넥터의 삽입 방향**이며 ULPI 데이터 버스의 DIR 신호를 의미하지 않습니다.
+
+**회로도는 제작자 jay94ks가 직접 작성했습니다.** 방향 감지·신호 선택 회로와 그에 따른 HS 경로 조건을 충분히 검토하지 않은 채 바로 PCB 아트웍으로 넘어간 설계 검토 누락으로 기록합니다. GPT가 회로도를 잘못 작성해 발생한 문제로 분류하지 않습니다. Codex의 GPT 6 Astra와 Sol은 PCB 배치·배선, 펌웨어·앱 구현과 문서화에 활용했습니다.
+
+위 설명은 설계자가 제공한 설계 회고와 원인 판단입니다. 기존 실기에서는 HS의 패턴 의존 송신 중단이 관측됐지만, 회로 수정 전후 대조나 신호 무결성 계측으로 이 인과관계를 분리·확정한 결과는 아직 없습니다. 문서 변경을 새로운 원인 확정 시험으로 기록하지 않습니다.
+
+### 설계 검토 시 구분할 점
+
+USB-C의 방향 감지 로직과 실제 데이터 경로를 전환하는 스위치의 역할은 구분해야 합니다. USB 2.0에서는 D+/D−의 중복 접점을 연결하는 구성도 가능하므로, 방향 감지 IC의 유무만으로 모든 보드의 HS 가능 여부를 결정할 수는 없습니다. 해당 IC의 역할과 배치, PCB 스택업·선폭·귀환 경로·분기 형상을 함께 검토해야 합니다. 이 문서의 원인 판단은 **현재 보드의 구성에 대한 설계자의 평가**입니다. [TI USB Type-C 설계 설명](https://www.ti.com/lit/wp/slyy109b/slyy109b.pdf)
+
+## 그 밖의 제한
+
+- MS2130의 USB 3.x 캡처 경로는 MCU/USB3300의 타깃 경로와 별개입니다. MS2130 영상은 외부 SPI 플래시를 부착·프로그래밍한 뒤 동작을 확인했습니다.
+- 실제 보드의 Y1/Y2에는 1MΩ 병렬저항을 추가했습니다. 이는 제작 후 보완이며 보관한 제조 리비전에 자동 반영한 변경이 아닙니다. 다음 제작 전에 확인하십시오.
+- 키보드·마우스 동작은 타깃 OS와 USB 상태의 영향을 받습니다. 키보드/마우스 독립 큐와 앱의 키 해제 수정을 포함하지만 모든 환경을 인증한 것은 아닙니다.
+- HID 완료는 USB 전송 완료이며 타깃 앱의 입력 처리 완료와 같지 않습니다. 키 배열은 US 물리 HID 키로 변환하며 임의 Unicode 문자열 입력을 제공하지 않습니다.
+- ISO/UDF 지원은 프로젝트의 부팅 광학 이미지 용도에 한정합니다. 전체 표준의 범용 파일시스템 구현이 아닙니다.
+- 장시간 운용과 두 MCU 동시 NCM 운용은 필수 검증 범위에서 제외했습니다.
+- 보관한 Gerber/BOM에는 당시 부분 조립과 SPI 플래시 DNP가 반영돼 있습니다. 실제 MS2130 동작에는 플래시/ROM 보완이 필요했으므로 다음 제작 시 BOM을 검토하십시오.
