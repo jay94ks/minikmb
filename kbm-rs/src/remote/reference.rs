@@ -66,7 +66,8 @@ mod tests {
         .unwrap();
         assert!(html.contains("MiniKMB REST API Console"));
         assert!(!html.contains("__OPENAPI_JSON__"));
-        for origin in [Some("null"), Some("https://other.invalid")] {
+        {
+            let origin = Some("https://other.invalid");
             assert_eq!(
                 router
                     .clone()

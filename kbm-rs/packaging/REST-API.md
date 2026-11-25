@@ -14,7 +14,7 @@ Required fields apply within their chosen parent/variant. oneOf means exactly on
 
 These are structural schema limits. Endpoint descriptions and current channel/device/resource state add runtime conditions; satisfying a type range alone does not make every value valid. Read errors and status rather than replaying uncertain mutations.
 
-To test from a browser, open `/api/v1/reference` on that REST address. The bundled HTML can browse the contract offline, then open the same-origin tester; no broad CORS exemption is needed. Keys stay in page memory and are not embedded in these files.
+Open `REST-API.html` directly as a local file: no separate web server, installation or CDN is required. Enable REST in MiniKMB, enter its actual http://127.0.0.1:PORT address and paste an app-generated key to send requests directly. The app handles file-origin CORS preflights while requiring Bearer authentication for controls. The served `/api/v1/reference` page remains optional. Keys stay in page memory only.
 
 ## Operations
 

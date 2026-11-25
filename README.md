@@ -44,9 +44,9 @@ Windows 10/11 x64, DirectX 12와 Media Foundation을 사용하는 미리보기 �
 .\minikmb-cli.exe channels --json
 ```
 
-키 입력 명령은 활성 타깃을 실제로 제어합니다. [한글 사용법](kbm-rs/docs/CLI.md) · [English](kbm-rs/docs/CLI.en.md). AI 에이전트용 [SKILL.md](kbm-rs/packaging/SKILL.md)도 배포 폴더에 함께 포함합니다. CLI는 최신 소스에 추가된 기능이며, 기존 `v1.0.0` 릴리스 ZIP에는 포함되어 있지 않습니다. [빌드 안내](docs/BUILDING.md)를 참고하세요.
+키 입력 명령은 활성 타깃을 실제로 제어합니다. [한글 사용법](kbm-rs/docs/CLI.md) · [English](kbm-rs/docs/CLI.en.md). AI 에이전트용 [SKILL.md](kbm-rs/packaging/SKILL.md)도 배포 폴더에 함께 포함합니다. CLI와 에이전트 스킬·REST 문서·독립 HTML 콘솔은 [v1.0.1 릴리스](https://github.com/jay94ks/minikmb/releases/tag/v1.0.1)부터 포함됩니다. [빌드 안내](docs/BUILDING.md)를 참고하세요.
 
-REST 전체 요청의 인자와 예시는 [REST API 문서](kbm-rs/packaging/REST-API.md), 정확한 스키마는 [OpenAPI](kbm-rs/packaging/openapi.json)에 있습니다. [HTML 요청 콘솔](kbm-rs/packaging/REST-API.html)도 함께 배포합니다. REST를 켠 앱의 `/api/v1/reference`에서 API 키를 넣어 실제 요청을 실행할 수 있습니다.
+REST 전체 요청의 인자와 예시는 [REST API 문서](kbm-rs/packaging/REST-API.md), 정확한 스키마는 [OpenAPI](kbm-rs/packaging/openapi.json)에 있습니다. [HTML 요청 콘솔](kbm-rs/packaging/REST-API.html)도 함께 배포합니다. HTML 파일을 직접 열고 앱의 REST 주소와 API 키를 입력하면 실제 요청을 실행할 수 있습니다. 별도 웹서버는 필요 없습니다.
 
 ## 문서 언어
 

@@ -134,9 +134,10 @@ required fields, allowed values, bounds and request examples. OpenAPI 3.1 JSON a
 contains exact response and component schemas. Packaging regenerates these files
 from the application's actual API contract.
 
-Open the HTML file to read the reference offline. To send requests, enable REST
-in the updated app, open `/api/v1/reference` at its displayed address and enter a
-key created in the app. **Open local tester** in the HTML file navigates there.
+Open the HTML file directly: no separate web server or installation is needed.
+Enable REST in the updated app and enter its actual `http://127.0.0.1:PORT`
+address and an app-generated key in the HTML console to call APIs directly.
+The app-served `/api/v1/reference` page remains optional.
 Select an operation, fill its arguments and click **Send request** to inspect the
 status, headers and JSON/image response. Binary uploads and SSE start/stop are
 supported. Keys remain in page memory only. Browser file-origin restrictions do

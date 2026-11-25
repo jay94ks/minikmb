@@ -119,7 +119,9 @@ replayed. After a disconnect, inspect state/job results before deciding to retry
 
 For additional usage read `CLI.en.md` or `CLI.md` beside this file. In a source
 checkout their originals are in `../docs/` relative to `packaging/SKILL.md`.
-`REST-API.html` provides an offline API browser and request editor. To send
-requests, open `/api/v1/reference` on the enabled REST server's actual loopback
-address and provide an app-generated Bearer key. The CLI's keyless local IPC
-policy does not apply to HTTP requests. File-mode HTML cannot bypass CORS.
+Open `REST-API.html` directly as a local file to browse and send requests; no
+separate web server or installation is required. Enable REST in the app, enter
+its actual loopback address and an app-generated Bearer key in the HTML. The
+app handles file-origin CORS preflights without disabling browser security.
+The served `/api/v1/reference` page is optional. The CLI's keyless local IPC
+policy does not apply to HTTP requests.

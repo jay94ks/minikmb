@@ -22,6 +22,7 @@ use serde::Serialize;
 use serde_json::{json, Value};
 use std::{net::SocketAddr, sync::Arc};
 use tokio_util::sync::CancellationToken;
+mod cors;
 #[cfg(test)]
 mod event_tests;
 mod events;
@@ -222,8 +223,13 @@ async fn authenticate(
     let context = crate::remote_error::Context::new();
     let rest = !request.uri().path().starts_with("/mcp");
     request.extensions_mut().insert(context.clone());
+    let local_file = cors::local_file(&auth, &request);
     let response = authenticate_inner(auth, request, next, &context).await;
-    context.finish(response, rest)
+    let mut response = context.finish(response, rest);
+    if local_file {
+        cors::expose(&mut response);
+    }
+    response
 }
 async fn authenticate_inner(
     auth: Auth,
@@ -237,10 +243,15 @@ async fn authenticate_inner(
         return AppError::new("HOST_NOT_ALLOWED", "요청 Host를 허용하지 않습니다.").into_response();
     }
     if let Some(origin) = request.headers().get("origin") {
-        if origin.to_str().ok() != Some(format!("http://{expected}").as_str()) {
+        if origin.to_str().ok() != Some(format!("http://{expected}").as_str())
+            && !cors::local_file(&auth, &request)
+        {
             return AppError::new("ORIGIN_NOT_ALLOWED", "요청 Origin을 허용하지 않습니다.")
                 .into_response();
         }
+    }
+    if request.method() == axum::http::Method::OPTIONS && cors::local_file(&auth, &request) {
+        return cors::preflight(&request);
     }
     // Only the static tester page is public. Host/Origin checks above still apply;
     // its control requests continue through Bearer authentication below.

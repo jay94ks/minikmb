@@ -21,8 +21,8 @@ REST documentation and MCP setup guidance are available inside the app while the
 
 The same build creates `minikmb-cli.exe`. Start the updated GUI, then run `minikmb-cli channels`. Local Windows named-pipe IPC works with TCP REST/MCP OFF and needs no API key. All 61 common commands, uploads, snapshots and events use the existing REST handlers. Field flags and tables/text are the default; `--json` selects JSON. Example: `minikmb-cli hid_key_sequence --keys a --keys b --keys c`.
 
-[한국어 사용법](docs/CLI.md) · [English guide](docs/CLI.en.md). The distribution includes an agent-facing [SKILL.md](packaging/SKILL.md) beside the CLI. The existing v1.0.0 release ZIP predates the CLI.
+[한국어 사용법](docs/CLI.md) · [English guide](docs/CLI.en.md). The distribution includes an agent-facing [SKILL.md](packaging/SKILL.md) beside the CLI. Release v1.0.1 includes the CLI and its agent/API documents.
 
 MIT for MiniKMB-authored code. See `LICENSE`, `licenses/THIRD-PARTY.md`, font notices and the repository `NOTICE.md`. GPL SPI-helper code and MS2130 ROM retain separate conditions. Development used Codex with GPT 6 Astra and Sol.
 
-[REST API reference](packaging/REST-API.md) · [OpenAPI](packaging/openapi.json) · [HTML console](packaging/REST-API.html). Enable REST and open `/api/v1/reference` at the app's displayed address to send authenticated requests. Static files and the agent skill are automatically bundled beside the executables.
+[REST API reference](packaging/REST-API.md) · [OpenAPI](packaging/openapi.json) · [HTML console](packaging/REST-API.html). Open the HTML file directly and enter the running app REST address and an API key to send authenticated requests without a separate web server. The served `/api/v1/reference` page is optional. Static files and the agent skill are automatically bundled beside the executables.
