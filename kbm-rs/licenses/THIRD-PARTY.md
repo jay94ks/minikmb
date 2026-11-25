@@ -219,6 +219,7 @@ This index does not assign a new license to MiniKMB's own source code.
 | tracing 0.1.44 | MIT | [files](crates/tracing-0.1.44/LICENSE) |
 | tracing-attributes 0.1.31 | MIT | [files](crates/tracing-attributes-0.1.31/LICENSE) |
 | tracing-core 0.1.36 | MIT | [files](crates/tracing-core-0.1.36/LICENSE) |
+| try-lock 0.2.5 | MIT | [files](crates/try-lock-0.2.5/LICENSE) |
 | ttf-parser 0.25.1 | MIT OR Apache-2.0 | [files](crates/ttf-parser-0.25.1/LICENSE-APACHE) |
 | type-map 0.5.1 | MIT/Apache-2.0 | [files](crates/type-map-0.5.1/LICENSE-APACHE) |
 | typenum 1.20.1 | MIT OR Apache-2.0 | [files](crates/typenum-1.20.1/LICENSE) |
@@ -232,6 +233,7 @@ This index does not assign a new license to MiniKMB's own source code.
 | utf_types 1.0.0 | Apache-2.0 OR MIT | [files](crates/utf_types-1.0.0/COPYRIGHT) |
 | uuid 1.29.3 | Apache-2.0 OR MIT | [files](crates/uuid-1.29.3/LICENSE-APACHE) |
 | version_check 0.9.5 | MIT/Apache-2.0 | [files](crates/version_check-0.9.5/LICENSE-APACHE) |
+| want 0.3.2 | MIT | [files](crates/want-0.3.2/LICENSE) |
 | web-time 1.1.0 | MIT OR Apache-2.0 | [files](crates/web-time-1.1.0/LICENSE-APACHE) |
 | webbrowser 1.2.7 | MIT OR Apache-2.0 | [files](crates/webbrowser-1.2.7/LICENSE-APACHE) |
 | weezl 0.1.12 | MIT OR Apache-2.0 | [files](crates/weezl-0.1.12/LICENSE-APACHE) |

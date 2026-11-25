@@ -15,6 +15,16 @@ mod ui_tty;
 mod ui_wake;
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args: Vec<_> = std::env::args().collect();
+    let profile = args
+        .iter()
+        .position(|a| a == "--profile")
+        .map(|at| {
+            args.get(at + 1)
+                .filter(|s| !s.starts_with("--"))
+                .map(std::path::PathBuf::from)
+                .ok_or("--profile requires a directory")
+        })
+        .transpose()?;
     // Resolve exclusive diagnostic mode before any hardware probe branch.
     let benchmark = ui_benchmark::Session::parse(&args)?;
     let layout_preview = ui_preview::Layout::parse(&args)?;
@@ -76,6 +86,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .as_ref()
         .map(|b| b.directory.join("profile"))
         .or_else(|| temporary.as_ref().map(|d| d.path().to_owned()))
+        .or(profile)
         .unwrap_or(
             directories::ProjectDirs::from("local", "MiniKMB", "MiniKMB Native")
                 .ok_or("configuration directory missing")?

@@ -17,9 +17,10 @@
 - SD에 ISO/UDF 설치 이미지와 FAT32·exFAT·EXT4 디스크 이미지를 보관합니다. 광학 드라이브와 쓰기 가능한 가상 디스크, 폴더 전달, 이미지 업로드·생성·포맷을 관리합니다.
 - CDC 시리얼, NCM 에뮬레이션·호스트 인터넷/LAN 공유, 포트 포워딩과 타깃 포트 스캐너를 제공합니다.
 - ST-Link/SWD를 통한 STM32 플래싱과 RP2040 SPI Writer를 통한 MS2130 ROM 기록을 앱에서 실행합니다. 새 보드의 프로그래밍에 채널 선택이나 기존 MCU UID 등록은 필요하지 않습니다.
+- 실행 중인 Rust 앱에 Windows Named Pipe로 연결하는 [로컬 CLI](kbm-rs/docs/CLI.md)를 제공합니다. 기본 입력·출력은 개별 옵션과 표·텍스트이며, `--json`으로 JSON을 선택합니다.
 - 앱 내 REST 문서와 MCP 연동 안내를 제공합니다. 여러 API 키를 생성·개별 삭제할 수 있으며, 채널 정보·영상 캡처·키보드/마우스·TTY·MSC·NCM을 공통 명령 계층으로 제어합니다.
 
-GUI·REST·MCP 전체에서 **활성 채널은 한 개**입니다. 채널 선택만 UID를 받고, 일반 제어는 현재 활성 채널에 적용합니다. 마우스 API 좌표는 캡처 영상의 픽셀이며 앱이 HID 절대좌표로 변환합니다. MCP를 켜면 REST도 함께 켜지고 REST 단독 실행도 가능합니다. 대용량 파일은 MCP가 알려주는 REST 업로드 끝점으로 전송합니다.
+GUI·REST·MCP·CLI 전체에서 **활성 채널은 한 개**입니다. 채널 선택만 UID를 받고, 일반 제어는 현재 활성 채널에 적용합니다. 마우스 API 좌표는 캡처 영상의 픽셀이며 앱이 HID 절대좌표로 변환합니다. MCP를 켜면 REST도 함께 켜지고 REST 단독 실행도 가능합니다. 대용량 파일은 MCP가 알려주는 REST 업로드 끝점으로 전송합니다.
 
 ## 시작하기
 
@@ -31,6 +32,19 @@ GUI·REST·MCP 전체에서 **활성 채널은 한 개**입니다. 채널 선택
 Windows 10/11 x64, DirectX 12와 Media Foundation을 사용하는 미리보기 앱입니다. Visual C++ v14 x64 Runtime이 필요할 수 있습니다. 새 디스크 이미지의 파일시스템 생성은 WSL의 `mkfs`/`fsck` 도구를 사용합니다. 앱 자체 실행에는 Rust·Node.js·Python 설치가 필요하지 않습니다.
 
 현재 배포 펌웨어는 **STM32 v1.0 / FS-HID r63**이며, Rust 앱 패키지 버전은 **0.1.0 preview**입니다. Electron v1.0 소스도 함께 보존합니다. 타깃 USB는 현재 Full Speed(FS)로 제공합니다. 설계자는 USB-C 삽입 방향 감지·신호 선택 회로의 부재와 그에 따른 HS 경로의 임피던스 불일치를, HS 연결이 안정적으로 수립되지 않거나 연결 후 오류율이 높았던 원인으로 판단하고 있습니다. 이 설계 회고와 검증 범위는 [HS 제한 및 설계 회고](docs/KNOWN-ISSUES.md#타깃-usb-hs와-설계-회고)에 정리했습니다. MS2130의 USB 3.x 영상 경로와 MCU의 USB3300/ULPI 경로는 서로 별개입니다. 자세한 범위는 [알려진 제한](docs/KNOWN-ISSUES.md)을 확인해 주세요.
+
+## 로컬 CLI (최신 소스)
+
+업데이트된 GUI와 `minikmb-cli.exe`를 함께 빌드하면 TCP REST/MCP를 켜거나 API 키를 만들지 않고도 같은 기능을 사용할 수 있습니다. `channels`, `activate UID`, `capture`, 파일 업로드와 이벤트 구독을 제공하며, 61개 공통 API 명령을 `COMMAND --field value` 또는 `call COMMAND`로 호출합니다.
+
+```powershell
+.\minikmb-cli.exe channels
+.\minikmb-cli.exe schema hid_key_sequence
+.\minikmb-cli.exe hid_key_sequence --keys a --keys b --keys c
+.\minikmb-cli.exe channels --json
+```
+
+키 입력 명령은 활성 타깃을 실제로 제어합니다. [한글 사용법](kbm-rs/docs/CLI.md) · [English](kbm-rs/docs/CLI.en.md). CLI는 최신 소스에 추가된 기능이며, 기존 `v1.0.0` 릴리스 ZIP에는 포함되어 있지 않습니다. [빌드 안내](docs/BUILDING.md)를 참고하세요.
 
 ## 문서 언어
 
@@ -81,7 +95,7 @@ Electron 앱을 바탕으로 Rust·egui 앱을 구현했습니다. 채널을 묶
 | [`master/`](master/), [`slave/kbm-slave/`](slave/kbm-slave/), [`common/`](common/) | RP2040 관리 브리지·타깃 펌웨어와 공통 프로토콜/호스트 테스트 |
 | [`firmware/flash-writer/`](firmware/flash-writer/) | RP2040 SPI Writer 펌웨어와 호스트 도구 소스 |
 | [`kbm/`](kbm/) | Electron·Quasar·Vue·TypeScript 앱 |
-| [`kbm-rs/`](kbm-rs/) | 현재 Rust·egui·wgpu 앱과 REST/MCP 서버 |
+| [`kbm-rs/`](kbm-rs/) | 현재 Rust·egui·wgpu 앱, 로컬 CLI와 REST/MCP 서버 |
 | [`work/`](work/) | 하드웨어 입력을 발생시키지 않는 회귀 테스트와 앱 빌드 보조 도구 |
 | [`vendor/`](vendor/) | 고정 라이브러리 원본 아카이브, SDK, GPL 대응 소스와 체크섬 |
 | [`references/`](references/) | 사용 칩셋 목록·데이터시트·출처·자료별 권리 고지 |

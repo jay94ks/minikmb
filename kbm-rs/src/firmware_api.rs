@@ -94,16 +94,11 @@ impl AppService {
                 "firmware_upload_prepare" => {
                     let a: sources::Spec = parse(args)?;
                     let b = None::<&Binding>;
-                    let address =
-                        self.remote.read().rest.ok_or_else(|| {
-                            AppError::new("SERVER_OFF", "REST 서버를 먼저 켜세요.")
-                        })?;
-                    Ok(json!(self.firmware.sources.upload(
-                        b.cloned(),
-                        owner.clone(),
-                        a,
-                        address
-                    )?))
+                    let address = crate::remote::upload_address(self.remote.read().rest)?;
+                    Ok(crate::remote::upload_response(json!(self
+                        .firmware
+                        .sources
+                        .upload(b.cloned(), owner.clone(), a, address)?)))
                 }
                 "firmware_start" => {
                     let a: Start = parse(args)?;

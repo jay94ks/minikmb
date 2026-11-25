@@ -16,7 +16,19 @@ cargo clippy --all-targets --locked -- -D warnings
 python -m unittest discover -s scripts -p test_release_support.py
 ```
 
-The publication checkout passed 268 library tests and 15 binary/UI tests (283 total); five hardware tests were ignored. The packaging fixture suite passed eight tests. The final app archive was checked against its manifest and the hands-on-approved executable SHA-256.
+At the original v1.0.0 publication, the checkout passed 268 library tests and 15 binary/UI tests (283 total); five hardware tests were ignored. The packaging fixture suite passed eight tests. The final app archive was checked against its manifest and the hands-on-approved executable SHA-256.
+
+## Local IPC CLI
+
+The latest CLI source passed **299 tests** with `cargo test --all-targets --locked`:
+281 library tests, 15 GUI tests, one separate-process CLI test and two example
+tests; five explicit-environment tests were ignored. All-target Clippy passed
+with warnings denied, as did eight packaging tests. Coverage includes human/JSON
+output, schema-typed field flags, arrays and nesting, real Windows named-pipe
+JSON/binary/image/SSE transport, input ownership, channel changes and storage
+jobs using test backends. No physical HID, SD writes, NIC changes or programming
+are performed. See the [CLI contract](../kbm-rs/docs/CLI.en.md). The existing
+v1.0.0 ZIP's hands-on approval is separate from validation of the latest source.
 
 ## RP2040 firmware
 

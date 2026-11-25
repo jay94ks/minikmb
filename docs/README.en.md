@@ -4,6 +4,7 @@
 
 - [Project, photographs and licenses](../README.en.md)
 - [Building](BUILDING.en.md)
+- [Local CLI](../kbm-rs/docs/CLI.en.md)
 - [Tests and verification scope](TESTING.en.md)
 - [Hardware, connectors and fabrication](HARDWARE.en.md)
 - [HS limitations and design retrospective](KNOWN-ISSUES.en.md)

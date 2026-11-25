@@ -116,6 +116,16 @@ impl Session {
 }
 impl VideoHub {
     #[cfg(test)]
+    pub(crate) fn test_pixels(&self) {
+        let session = self.session.lock();
+        let state = &session.as_ref().unwrap().capture.state;
+        let mut state = state.lock();
+        let frame = state.frame.as_mut().unwrap();
+        let frame = Arc::get_mut(frame).unwrap();
+        frame.rgba = vec![127; (frame.width * frame.height * 4) as usize].into();
+        frame.received_at = now_ms();
+    }
+    #[cfg(test)]
     pub(crate) fn test_geometry(&self, binding: Binding, width: u32, height: u32) {
         let epoch = self.sequence.fetch_add(1, Ordering::Relaxed);
         let frame = VideoFrame {

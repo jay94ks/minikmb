@@ -311,7 +311,7 @@ def verify_zip(path):
 
 
 def allowed_payload(name):
-    return (name in {"minikmb-native.exe", "README.txt", "LICENSE.txt", "THIRD-PARTY.md", "dependencies.json", "runtime-imports.json", "Cargo.lock", "rustc-version.txt", "assets-manifest.json"}
+    return (name in {"minikmb-native.exe", "minikmb-cli.exe", "CLI.md", "CLI.en.md", "cli-runtime-imports.json", "README.txt", "LICENSE.txt", "THIRD-PARTY.md", "dependencies.json", "runtime-imports.json", "Cargo.lock", "rustc-version.txt", "assets-manifest.json"}
             or name in {"tools/probe-rs.exe", "tools/minikmb-ms2130-helper.exe", "tools/manifest.json",
                         "tools/minikmb-keyboard.dll", "tools/keyboard-helper.json", "sources/minikmb-keyboard.cpp", "sources/build-native-keyboard.py",
                         "firmware/MiniKMB-FS-HID-r63.elf", "firmware/MS2130_sample_20221026.bin", "firmware/manifest.json",

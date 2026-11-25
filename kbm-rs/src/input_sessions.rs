@@ -224,6 +224,9 @@ impl InputSessions {
     pub fn cancel_client(&self, key: &str, client: &str) -> Vec<String> {
         self.remove_where(|l| l.key == key && l.client == client)
     }
+    pub fn cancel_network_clients(&self) -> Vec<String> {
+        self.remove_where(|lease| lease.client == "rest" || lease.client.starts_with("mcp:"))
+    }
     pub fn cancel_all(&self) -> Vec<String> {
         self.remove_where(|_| true)
     }
@@ -257,6 +260,22 @@ mod tests {
             cancelled: CancellationToken::new(),
             ended: CancellationToken::new(),
         }
+    }
+    #[test]
+    fn disabling_network_servers_preserves_local_ipc_input() {
+        let active = ActiveCoordinator::default();
+        active.begin().unwrap();
+        active.finish(Some(Uid::from_bytes(&[1; 12]).unwrap()));
+        let sessions = InputSessions::default();
+        let ipc = principal("ipc:local", "ipc");
+        let local = sessions.open(&active, &ipc).unwrap();
+        sessions.open(&active, &principal("A", "rest")).unwrap();
+        sessions.open(&active, &principal("A", "mcp:1")).unwrap();
+        assert_eq!(sessions.cancel_network_clients().len(), 2);
+        assert!(sessions
+            .resolve(&active, &ipc, Some(&local.input_session))
+            .is_ok());
+        assert_eq!(sessions.cancel_client("ipc:local", "ipc").len(), 1);
     }
     #[test]
     fn leases_bind_key_client_generation_and_revocation() {

@@ -15,10 +15,14 @@ cargo test --locked
 cargo clippy --all-targets --locked -- -D warnings
 python scripts/ui-assets.py
 python scripts/build-native-keyboard.py
-cargo build --release --locked
+cargo build --release --locked --bins
 ```
 
 `ui-assets.py` verifies the bundled fonts/licenses offline unless explicitly asked to fetch. The Rust unit tests use neighboring Electron keyboard mapping source; keep the repository layout intact. The keyboard DLL must be staged with the executable for special-key capture.
+
+### Local CLI
+
+The same build produces `target/release/minikmb-native.exe` and `minikmb-cli.exe`. Start the updated GUI, then run `minikmb-cli.exe channels`. TCP REST/MCP and API keys are not required. Tables/text are the default; use `--json` for JSON. See the [CLI guide](../kbm-rs/docs/CLI.en.md).
 
 ### Tools, firmware and ZIP
 

@@ -28,6 +28,16 @@ REST/MCP API 문서·연동 안내는 서버를 켜지 않고도 읽을 수 있�
 MCP ON은 REST도 켜고 REST 단독 ON도 지원합니다. 키는 앱에서 생성·개별 폐기합니다.
 큰 파일은 MCP가 알려주는 REST URL로 같은 키를 사용해 업로드합니다.
 
+로컬 CLI
+minikmb-cli.exe는 실행 중인 업데이트된 GUI와 Windows Named Pipe로 통신합니다.
+REST/MCP를 켜거나 API 키를 만들 필요가 없습니다. 같은 Windows 사용자로 실행합니다.
+  minikmb-cli.exe channels
+  minikmb-cli.exe commands
+  minikmb-cli.exe schema COMMAND
+  minikmb-cli.exe call COMMAND --json-file request.json
+전체 REST 기능·바이너리 업로드·영상 캡처·이벤트 구독을 지원합니다.
+CLI.md / CLI.en.md에 사용법을 수록했습니다. 활성 채널은 GUI/REST/MCP와 하나를 공유합니다.
+
 펌웨어 기록
 상단 또는 왼쪽 펌웨어 메뉴에서 ST-Link/SWD의 STM32, RP2040 Writer의 MS2130 ROM을
 기록할 수 있습니다. tools/의 exe와 firmware/의 STM32 FS/HID r63 및 MS2130 ROM을

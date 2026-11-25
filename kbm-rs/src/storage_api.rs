@@ -82,13 +82,10 @@ impl AppService {
             "storage_upload_prepare" => {
                 let spec: crate::storage::import::Spec = parse(args)?;
                 let b = binding.map(Ok).unwrap_or_else(|| self.active.bind())?;
-                let address = self
-                    .remote
-                    .read()
-                    .rest
-                    .ok_or_else(|| AppError::new("SERVER_OFF", "REST 서버를 먼저 켜세요."))?;
+                let address = crate::remote::upload_address(self.remote.read().rest)?;
                 self.storage
                     .prepare_upload(b.clone(), owner.clone(), spec, address)
+                    .map(crate::remote::upload_response)
                     .map_err(|e| e.at(&b))
             }
             "storage_job_get" => {

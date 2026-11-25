@@ -36,6 +36,7 @@ pub struct Desktop {
     notice_timer: notice::Timer,
     reference_ui: crate::ui_reference::Panel,
     servers: Arc<minikmb_native::remote::RemoteServers>,
+    ipc: Option<minikmb_native::ipc::Server>,
     screenshot: Option<std::path::PathBuf>,
     benchmark: Option<crate::ui_benchmark::Session>,
     layout_preview: Option<crate::ui_preview::Layout>,
@@ -117,7 +118,21 @@ impl Desktop {
         }
         let preview = screenshot.is_some() && std::env::args().any(|a| a == "--style-preview");
         let servers = minikmb_native::remote::RemoteServers::new(app.clone());
-        let action_result = Arc::new(parking_lot::Mutex::new(None));
+        let (ipc, ipc_error) = if screenshot.is_none() {
+            match runtime.block_on(minikmb_native::ipc::Server::start(
+                app.clone(),
+                &app.profile_dir_for_ipc(),
+            )) {
+                Ok(server) => (Some(server), None),
+                Err(error) => (
+                    None,
+                    Some(format!("CLI IPC를 시작하지 못했습니다: {error}")),
+                ),
+            }
+        } else {
+            (None, None)
+        };
+        let action_result = Arc::new(parking_lot::Mutex::new(ipc_error));
         let input =
             minikmb_native::ui_input::UiInput::new(&app, runtime.handle(), action_result.clone());
         let native_window = if screenshot.is_none() {
@@ -166,6 +181,7 @@ impl Desktop {
                 Default::default()
             },
             servers,
+            ipc,
             screenshot: screenshot.clone(),
             benchmark,
             layout_preview,
@@ -1467,6 +1483,9 @@ impl Drop for Desktop {
         self.clear_input();
         self.capture.take();
         self.input.stop();
+        if let Some(ipc) = self.ipc.take() {
+            self.runtime.block_on(ipc.shutdown());
+        }
         self.app.stop();
         self.runtime.block_on(self.servers.shutdown());
         self.runtime.block_on(self.app.shutdown());

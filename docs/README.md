@@ -4,6 +4,7 @@
 
 - [프로젝트 소개·사진·라이선스](../README.md)
 - [빌드 안내](BUILDING.md)
+- [로컬 CLI 사용법](../kbm-rs/docs/CLI.md)
 - [테스트와 검증 범위](TESTING.md)
 - [하드웨어·커넥터·제작 정보](HARDWARE.md)
 - [HS 제한과 설계 회고](KNOWN-ISSUES.md)

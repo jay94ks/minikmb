@@ -16,9 +16,10 @@ MiniKMB is a USB KVM project built to operate two mini PCs from one management P
 - SD storage for ISO/UDF installation media and FAT32, exFAT and EXT4 disk images. Manage optical drives, writable virtual disks, folder delivery, uploads, image creation and formatting.
 - CDC serial, NCM emulation, host internet/LAN sharing, port forwarding and a target-side port scanner.
 - STM32 programming through ST-Link/SWD and MS2130 ROM programming through the RP2040 SPI Writer. Programming a new board does not require an active channel or a previously registered MCU UID.
+- A [local CLI](kbm-rs/docs/CLI.en.md) connects to the running Rust GUI through a Windows named pipe. Individual field flags and readable tables/text are the default; select JSON with `--json`.
 - Built-in REST documentation and MCP setup guidance. Create and individually revoke multiple API keys. Channel information, image capture, keyboard/mouse, TTY, MSC and NCM share one command service.
 
-There is **one active channel across GUI, REST and MCP**. Only channel selection takes a UID; ordinary controls use the active channel. Mouse API coordinates are capture-frame pixels, which the app converts to HID absolute coordinates. Enabling MCP also enables REST; REST can run alone. Large files are uploaded to the REST endpoint supplied by MCP.
+There is **one active channel across GUI, REST, MCP and CLI**. Only channel selection takes a UID; ordinary controls use the active channel. Mouse API coordinates are capture-frame pixels, which the app converts to HID absolute coordinates. Enabling MCP also enables REST; REST can run alone. Large files are uploaded to the REST endpoint supplied by MCP.
 
 ## Getting started
 
@@ -30,6 +31,19 @@ There is **one active channel across GUI, REST and MCP**. Only channel selection
 The preview targets Windows 10/11 x64 with DirectX 12 and Media Foundation. The Visual C++ v14 x64 Runtime may be needed. Creating filesystems in new disk images uses WSL `mkfs`/`fsck` tools. Running the app itself does not require Rust, Node.js or Python.
 
 The bundled firmware is **STM32 v1.0 / FS-HID r63**, while the native app package identifies itself as **0.1.0 preview**. Electron v1.0 source is also retained. The target USB implementation currently runs at Full Speed (FS). The designer attributes unreliable High Speed establishment, or high error rates after connection, to the omission of USB-C plug-orientation detection/signal selection and the resulting impedance mismatch in this board's HS path. This assessment and its verification limits are documented in [HS limitations and design retrospective](docs/KNOWN-ISSUES.en.md#target-usb-hs-and-design-retrospective). The MS2130 USB 3.x video path is separate from the MCU/USB3300 target path.
+
+## Local CLI (latest source)
+
+Build the updated GUI and `minikmb-cli.exe` together to use the same controls without enabling TCP REST/MCP or creating an API key. The CLI supports channel selection, snapshots, uploads and events, plus all 61 common API commands through `COMMAND --field value` or `call COMMAND`.
+
+```powershell
+.\minikmb-cli.exe channels
+.\minikmb-cli.exe schema hid_key_sequence
+.\minikmb-cli.exe hid_key_sequence --keys a --keys b --keys c
+.\minikmb-cli.exe channels --json
+```
+
+Input commands control the active physical target. [English guide](kbm-rs/docs/CLI.en.md) · [한국어](kbm-rs/docs/CLI.md). This feature is in the latest source; the existing `v1.0.0` release ZIP does not include the CLI. See [Building](docs/BUILDING.en.md).
 
 ## Documentation languages
 
@@ -80,7 +94,7 @@ The Rust/egui application builds on the earlier Electron app. It groups channels
 | [`master/`](master/), [`slave/kbm-slave/`](slave/kbm-slave/), [`common/`](common/) | RP2040 bridge/target firmware and shared protocols/host tests |
 | [`firmware/flash-writer/`](firmware/flash-writer/) | RP2040 SPI Writer firmware and host tool sources |
 | [`kbm/`](kbm/) | Electron, Quasar, Vue and TypeScript application |
-| [`kbm-rs/`](kbm-rs/) | Current Rust, egui and wgpu application with REST/MCP servers |
+| [`kbm-rs/`](kbm-rs/) | Current Rust, egui and wgpu application, local CLI and REST/MCP servers |
 | [`work/`](work/) | Regression tests and application build helpers |
 | [`vendor/`](vendor/) | Pinned upstream source archives, SDK, GPL corresponding source and checksums |
 | [`references/`](references/) | Chipsets, datasheets, original sources and rights notices |

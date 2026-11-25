@@ -2989,6 +2989,13 @@
     "source": "https://crates.io/crates/tracing-core/0.1.36"
   },
   {
+    "name": "try-lock",
+    "version": "0.2.5",
+    "archive": "try-lock-0.2.5.crate",
+    "sha256": "e421abadd41a4225275504ea4d6566923418b7f05506fbc9c0fe86ba7396114b",
+    "source": "https://crates.io/crates/try-lock/0.2.5"
+  },
+  {
     "name": "ttf-parser",
     "version": "0.25.1",
     "archive": "ttf-parser-0.25.1.crate",
@@ -3127,6 +3134,13 @@
     "archive": "walkdir-2.5.0.crate",
     "sha256": "29790946404f91d9c5d06f9874efddea1dc06c5efe94541a7d6863108e3a5e4b",
     "source": "https://crates.io/crates/walkdir/2.5.0"
+  },
+  {
+    "name": "want",
+    "version": "0.3.2",
+    "archive": "want-0.3.2.crate",
+    "sha256": "ec4cdd0dd910afe868b7ef477227d8d538b46b3075031afee8a9f2acb0a2ed0b",
+    "source": "https://crates.io/crates/want/0.3.2"
   },
   {
     "name": "wasi",

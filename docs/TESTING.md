@@ -16,7 +16,18 @@ cargo clippy --all-targets --locked -- -D warnings
 python -m unittest discover -s scripts -p test_release_support.py
 ```
 
-공개용 체크아웃에서 라이브러리 268개와 바이너리/UI 15개, 총 283개 테스트가 통과했습니다. 하드웨어 테스트 5개는 제외했습니다. 패키징 테스트 8개도 통과했습니다. 앱 ZIP의 manifest와 직접 사용 확인을 마친 실행 파일의 SHA-256을 대조했습니다.
+v1.0.0 최초 공개 시점의 체크아웃에서 라이브러리 268개와 바이너리/UI 15개, 총 283개 테스트가 통과했습니다. 하드웨어 테스트 5개는 제외했습니다. 패키징 테스트 8개도 통과했습니다. 앱 ZIP의 manifest와 직접 사용 확인을 마친 실행 파일의 SHA-256을 대조했습니다.
+
+## 로컬 IPC CLI
+
+최신 CLI 소스는 `cargo test --all-targets --locked`로 라이브러리281개, GUI15개,
+CLI 별도 프로세스1개, 예제2개 등 **299개**가 통과했고 명시적 환경 시험5개는
+제외했습니다. Clippy all-targets 경고0개, 패키징 시험8개도 통과했습니다.
+기본 표·텍스트와 JSON 호환, 스키마 기반 개별 인자·배열·중첩 필드, 실제 Windows
+Named Pipe의 JSON/바이너리/이미지/SSE, 입력 소유권·채널 변경·SD 작업 흐름을
+테스트 백엔드로 검증합니다. 실제 HID·SD 쓰기·NIC 변경·플래싱은 수행하지 않습니다.
+[CLI 사용법](../kbm-rs/docs/CLI.md)에 입력·출력 계약을 정리했습니다.
+기존 v1.0.0 ZIP의 사용 확인과 최신 소스의 자동 검증은 별도 기록입니다.
 
 ## RP2040 펌웨어
 

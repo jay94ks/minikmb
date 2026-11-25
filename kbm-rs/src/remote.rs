@@ -25,6 +25,8 @@ use tokio_util::sync::CancellationToken;
 #[cfg(test)]
 mod event_tests;
 mod events;
+mod ipc;
+pub(crate) use ipc::{ipc_router, upload_address, upload_response};
 
 #[derive(Clone, Debug, Default, Serialize, schemars::JsonSchema)]
 pub struct RemoteStatus {

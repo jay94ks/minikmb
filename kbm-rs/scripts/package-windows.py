@@ -74,12 +74,19 @@ def main():
     imports = pe_imports(executable)
     if imports["subsystem"] != 2:
         raise ValueError("Expected a Windows GUI release executable")
+    cli = (ROOT / "target/release/minikmb-cli.exe").read_bytes()
+    cli_imports = pe_imports(cli)
+    if cli_imports["subsystem"] != 3:
+        raise ValueError("Expected a Windows console CLI executable")
     version = tomllib.loads((ROOT / "Cargo.toml").read_text(encoding="utf-8"))["package"]["version"]
     readme = (ROOT / "packaging/README-WINDOWS.txt").read_text(encoding="utf-8").replace("@VERSION@",version).encode("utf-8")
     files.update({"minikmb-native.exe": executable, "README.txt": readme, "LICENSE.txt": (ROOT / "LICENSE").read_bytes(),
                   "THIRD-PARTY.md": index, "dependencies.json": json_bytes(inventory), "runtime-imports.json": json_bytes(imports),
                   "rustc-version.txt": rust_info.encode("utf-8"), "Cargo.lock": (ROOT / "Cargo.lock").read_bytes(),
                   "assets-manifest.json": (ROOT / "assets/manifest.json").read_bytes()})
+    files.update({"minikmb-cli.exe": cli, "cli-runtime-imports.json": json_bytes(cli_imports),
+                  "CLI.md": (ROOT / "docs/CLI.md").read_bytes(),
+                  "CLI.en.md": (ROOT / "docs/CLI.en.md").read_bytes()})
     keyboard = ROOT / "target/native-keyboard"
     keyboard_manifest = json.loads((keyboard / "manifest.json").read_text(encoding="utf-8"))
     keyboard_dll = (keyboard / "minikmb-keyboard.dll").read_bytes()

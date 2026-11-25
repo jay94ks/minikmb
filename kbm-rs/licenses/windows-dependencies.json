@@ -1,5 +1,5 @@
 {
-  "cargo_lock_sha256": "8f4e790a1699692189b620a7a5704fb4c378bb5131671e53749b892266f893ed",
+  "cargo_lock_sha256": "fa7d333b21b645ddbf07e7ba11904ee9b59f87139a9c00cd9c81c850361d3404",
   "packages": [
     {
       "authors": [
@@ -6247,6 +6247,31 @@
     },
     {
       "authors": [
+        "Sean McArthur <sean@seanmonstar.com>"
+      ],
+      "license": "MIT",
+      "name": "try-lock",
+      "notices": [
+        {
+          "license_text": true,
+          "origin": "locked crate archive",
+          "path": "licenses/crates/try-lock-0.2.5/LICENSE",
+          "sha256": "c816a0749cdc6bf062a5111c159723de51b2bfac66a1dac2655abd9e6b1583eb"
+        },
+        {
+          "license_text": false,
+          "origin": "locked crate archive",
+          "path": "licenses/crates/try-lock-0.2.5/README.md",
+          "sha256": "976bf116dd8794213bd242a61f819811a5c5a0fd4372acdbd21308863c05cfb6"
+        }
+      ],
+      "repository": "https://github.com/seanmonstar/try-lock",
+      "source_checksum": "e421abadd41a4225275504ea4d6566923418b7f05506fbc9c0fe86ba7396114b",
+      "source_url": "https://static.crates.io/crates/try-lock/try-lock-0.2.5.crate",
+      "version": "0.2.5"
+    },
+    {
+      "authors": [
         "Caleb Maclennan <caleb@alerque.com>",
         "Laurenz Stampfl <laurenz.stampfl@gmail.com>",
         "Yevhenii Reizner <razrfalcon@gmail.com>",
@@ -6709,6 +6734,31 @@
       "source_checksum": "0b928f33d975fc6ad9f86c8f283853ad26bdd5b10b7f1542aa2fa15e2289105a",
       "source_url": "https://static.crates.io/crates/version_check/version_check-0.9.5.crate",
       "version": "0.9.5"
+    },
+    {
+      "authors": [
+        "Sean McArthur <sean@seanmonstar.com>"
+      ],
+      "license": "MIT",
+      "name": "want",
+      "notices": [
+        {
+          "license_text": true,
+          "origin": "locked crate archive",
+          "path": "licenses/crates/want-0.3.2/LICENSE",
+          "sha256": "a65f5d0a945d267751344c95665945b90c030ea107faf5c85d518929886187da"
+        },
+        {
+          "license_text": false,
+          "origin": "locked crate archive",
+          "path": "licenses/crates/want-0.3.2/README.md",
+          "sha256": "316ed49131b031a3b323a3d4eab8327e4207ff2728c661c3c72556b63457038b"
+        }
+      ],
+      "repository": "https://github.com/seanmonstar/want",
+      "source_checksum": "ec4cdd0dd910afe868b7ef477227d8d538b46b3075031afee8a9f2acb0a2ed0b",
+      "source_url": "https://static.crates.io/crates/want/want-0.3.2.crate",
+      "version": "0.3.2"
     },
     {
       "authors": [],

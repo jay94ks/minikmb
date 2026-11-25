@@ -15,10 +15,14 @@ cargo test --locked
 cargo clippy --all-targets --locked -- -D warnings
 python scripts/ui-assets.py
 python scripts/build-native-keyboard.py
-cargo build --release --locked
+cargo build --release --locked --bins
 ```
 
 `ui-assets.py`는 명시적으로 다운로드를 요청하지 않으면 동봉한 글꼴과 라이선스를 오프라인으로 검증합니다. Rust 테스트는 이웃 Electron 디렉터리의 키보드 매핑 소스도 사용하므로 저장소 구조를 유지하십시오. 특수 키 전송에는 실행 파일과 함께 배치한 키보드 DLL이 필요합니다.
+
+### 로컬 CLI
+
+같은 빌드에서 `target/release/minikmb-native.exe`와 `minikmb-cli.exe`를 생성합니다. 업데이트된 GUI를 먼저 실행한 뒤 `minikmb-cli.exe channels`로 연결을 확인합니다. REST/MCP를 켜거나 API 키를 만들 필요가 없습니다. 기본 출력은 표·텍스트이며 `--json`으로 JSON을 선택합니다. 사용법은 [CLI 안내](../kbm-rs/docs/CLI.md)에 있습니다.
 
 ### 도구·펌웨어·ZIP
 

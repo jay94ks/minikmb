@@ -29,6 +29,7 @@ pub struct Snapshot {
     pub keyboard_capture: Option<crate::keyboard_capture::Status>,
 }
 pub struct AppService {
+    pub(crate) profile_dir: PathBuf,
     pub log_opener: Arc<dyn crate::logging::DirectoryOpener>,
     pub(crate) log_controls: Arc<tokio::sync::Semaphore>,
     pub logs: Arc<crate::logging::Journal>,
@@ -59,6 +60,9 @@ pub struct SelectChannel {
     pub uid: String,
 }
 impl AppService {
+    pub fn profile_dir_for_ipc(&self) -> PathBuf {
+        self.profile_dir.clone()
+    }
     pub fn new(data: PathBuf) -> Result<Arc<Self>, AppError> {
         Self::construct(data, None)
     }
@@ -113,6 +117,7 @@ impl AppService {
         input.set_logger(&logs);
         storage.set_logger(&logs);
         Ok(Arc::new(Self {
+            profile_dir: data.clone(),
             log_opener: Arc::new(crate::logging::NativeOpener),
             log_controls: Arc::new(tokio::sync::Semaphore::new(2)),
             logs,
@@ -539,6 +544,10 @@ impl AppService {
         self.video
             .test_geometry(self.active.bind().unwrap(), width, height);
     }
+    #[cfg(test)]
+    pub(crate) fn test_video_pixels(&self) {
+        self.video.test_pixels();
+    }
     pub fn validate_frame_reference(
         &self,
         binding: &crate::active::Binding,
@@ -547,7 +556,7 @@ impl AppService {
         self.video.validate_reference(binding, id)
     }
     pub async fn close_remote_inputs(&self) {
-        for id in self.input_sessions.cancel_all() {
+        for id in self.input_sessions.cancel_network_clients() {
             let _ = self.input.release_owner(id).await;
         }
     }
