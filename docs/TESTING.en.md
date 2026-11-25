@@ -20,15 +20,17 @@ At the original v1.0.0 publication, the checkout passed 268 library tests and 15
 
 ## Local IPC CLI
 
-The latest CLI source passed **299 tests** with `cargo test --all-targets --locked`:
-281 library tests, 15 GUI tests, one separate-process CLI test and two example
+The latest CLI source passed **301 tests** with `cargo test --all-targets --locked`:
+283 library tests, 15 GUI tests, one separate-process CLI test and two example
 tests; five explicit-environment tests were ignored. All-target Clippy passed
-with warnings denied, as did eight packaging tests. Coverage includes human/JSON
+with warnings denied, as did nine packaging tests and three API-reference generation tests. The CLI document test verifies bundled SKILL, user-guide, REST reference, OpenAPI and HTML hashes and fails if the skill source is missing. Coverage includes human/JSON
 output, schema-typed field flags, arrays and nesting, real Windows named-pipe
 JSON/binary/image/SSE transport, input ownership, channel changes and storage
 jobs using test backends. No physical HID, SD writes, NIC changes or programming
 are performed. See the [CLI contract](../kbm-rs/docs/CLI.en.md). The existing
 v1.0.0 ZIP's hands-on approval is separate from validation of the latest source.
+
+The HTML console passed browser GET-state and JSON-POST checks (HTTP 200) and upload-URL handoff against a temporary profile without device discovery. Regression tests also reject foreign Host/Origin values and keep control APIs authenticated.
 
 ## RP2040 firmware
 

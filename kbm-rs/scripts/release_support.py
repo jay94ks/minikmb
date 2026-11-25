@@ -14,6 +14,18 @@ MAX_FILE = 160 * 1024 * 1024
 MAX_ARCHIVE = 512 * 1024 * 1024
 
 
+def cli_documents(root):
+    """Required agent/user documents, copied unchanged beside the release CLI."""
+    return {name: (root / relative).read_bytes() for name, relative in {
+        "SKILL.md": "packaging/SKILL.md",
+        "CLI.md": "docs/CLI.md",
+        "CLI.en.md": "docs/CLI.en.md",
+        "REST-API.md": "packaging/REST-API.md",
+        "openapi.json": "packaging/openapi.json",
+        "REST-API.html": "packaging/REST-API.html",
+    }.items()}
+
+
 def sha(data):
     return hashlib.sha256(data).hexdigest()
 
@@ -311,7 +323,7 @@ def verify_zip(path):
 
 
 def allowed_payload(name):
-    return (name in {"minikmb-native.exe", "minikmb-cli.exe", "CLI.md", "CLI.en.md", "cli-runtime-imports.json", "README.txt", "LICENSE.txt", "THIRD-PARTY.md", "dependencies.json", "runtime-imports.json", "Cargo.lock", "rustc-version.txt", "assets-manifest.json"}
+    return (name in {"minikmb-native.exe", "minikmb-cli.exe", "SKILL.md", "CLI.md", "CLI.en.md", "REST-API.md", "openapi.json", "REST-API.html", "cli-runtime-imports.json", "README.txt", "LICENSE.txt", "THIRD-PARTY.md", "dependencies.json", "runtime-imports.json", "Cargo.lock", "rustc-version.txt", "assets-manifest.json"}
             or name in {"tools/probe-rs.exe", "tools/minikmb-ms2130-helper.exe", "tools/manifest.json",
                         "tools/minikmb-keyboard.dll", "tools/keyboard-helper.json", "sources/minikmb-keyboard.cpp", "sources/build-native-keyboard.py",
                         "firmware/MiniKMB-FS-HID-r63.elf", "firmware/MS2130_sample_20221026.bin", "firmware/manifest.json",

@@ -36,7 +36,11 @@ REST/MCP를 켜거나 API 키를 만들 필요가 없습니다. 같은 Windows �
   minikmb-cli.exe schema COMMAND
   minikmb-cli.exe call COMMAND --json-file request.json
 전체 REST 기능·바이너리 업로드·영상 캡처·이벤트 구독을 지원합니다.
-CLI.md / CLI.en.md에 사용법을 수록했습니다. 활성 채널은 GUI/REST/MCP와 하나를 공유합니다.
+REST-API.md는 전체 HTTP 요청의 인자·필수값·허용 범위·예시를 설명하고 openapi.json은 정확한 스키마입니다.
+REST-API.html은 오프라인 문서 및 요청 콘솔입니다. 실제 호출은 앱에서 REST를 켜고 표시된 주소의
+/api/v1/reference를 연 뒤 API 키를 입력합니다. 파일의 Open local tester로도 이동할 수 있습니다.
+JSON/파일 업로드·이미지 응답·SSE를 지원하며 키를 디스크에 저장하지 않습니다.
+CLI.md / CLI.en.md에 사용법을 수록했습니다. AI 에이전트용 SKILL.md도 함께 제공합니다. 활성 채널은 GUI/REST/MCP와 하나를 공유합니다.
 
 펌웨어 기록
 상단 또는 왼쪽 펌웨어 메뉴에서 ST-Link/SWD의 STM32, RP2040 Writer의 MS2130 ROM을

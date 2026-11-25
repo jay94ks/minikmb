@@ -358,6 +358,7 @@ pub fn openapi(address: Option<std::net::SocketAddr>) -> Value {
     );
     paths.insert("/api/v1/events".into(),json!({"get":{"operationId":"events_subscribe","summary":"캐시 상태 변경 구독","description":"Bearer 인증 SSE. 첫 이벤트는 최신 전체 상태이며 이후 최대 4Hz로 병합합니다. 재접속/Last-Event-ID는 이력을 재생하지 않습니다. state/resync를 처리하고 resync에서는 events_get_snapshot을 재조회합니다. 15초 keepalive; 앱 전체32/키별8 구독. 키 폐기·서버 OFF·종료 시 닫힙니다.","security":[{"bearer":[]}],"responses":{"200":{"description":"SSE id=epoch:sequence, event=state/resync, data=Envelope JSON. 영상/TTY/파일 본문과 작업 result 제외.","content":{"text/event-stream":{"schema":{"type":"string"}}},"x-event-data-schema":event_schema}}}}));
     paths.insert("/api/v1/openapi.json".into(),json!({"get":{"operationId":"openapi_get","summary":"현재 API 계약","security":[{"bearer":[]}],"responses":{"200":{"description":"OpenAPI 3.1 JSON 문서","content":{"application/json":{"schema":{"type":"object"}}}}}}}));
+    paths.insert("/api/v1/reference".into(),json!({"get":{"operationId":"api_reference_page","summary":"REST API 테스트 페이지","description":"같은 REST 서버에서 제공하는 자체 포함 HTML입니다. 페이지 열기에는 키가 필요 없지만 실제 API 요청에는 기존 Bearer 인증이 필요합니다. Host/Origin 제한을 유지하고 키를 저장하지 않습니다.","security":[],"responses":{"200":{"description":"API 설명·인자·허용값·요청 편집·응답 보기","content":{"text/html":{"schema":{"type":"string"}}}}}}}));
     for path in paths.values_mut() {
         if let Some(operations) = path.as_object_mut() {
             for operation in operations.values_mut() {

@@ -11,7 +11,8 @@ import subprocess
 import sys
 import tempfile
 import tomllib
-from release_support import collect_notices, input_digest, json_bytes, pe_imports, sha, verify_zip, write_zip
+from api_reference import generate as generate_api_reference
+from release_support import cli_documents, collect_notices, input_digest, json_bytes, pe_imports, sha, verify_zip, write_zip
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -58,6 +59,8 @@ def main():
     subprocess.run([sys.executable, "scripts/ui-assets.py"], cwd=ROOT, check=True)
     if not args.notices_only:
         subprocess.run([sys.executable, "scripts/build-native-keyboard.py"], cwd=ROOT, check=True)
+        subprocess.run([cargo, "build", "--release", "--locked", "--offline", "--example", "export_api_reference"], cwd=ROOT, check=True)
+        generate_api_reference(ROOT, subprocess.check_output([str(ROOT / "target/release/examples/export_api_reference.exe")], cwd=ROOT))
         subprocess.run([cargo, "build", "--release", "--locked", "--offline"], cwd=ROOT, check=True)
     import json
     metadata = json.loads(command([cargo, "metadata", "--format-version", "1", "--locked", "--offline", "--filter-platform", "x86_64-pc-windows-msvc"]))
@@ -84,9 +87,8 @@ def main():
                   "THIRD-PARTY.md": index, "dependencies.json": json_bytes(inventory), "runtime-imports.json": json_bytes(imports),
                   "rustc-version.txt": rust_info.encode("utf-8"), "Cargo.lock": (ROOT / "Cargo.lock").read_bytes(),
                   "assets-manifest.json": (ROOT / "assets/manifest.json").read_bytes()})
-    files.update({"minikmb-cli.exe": cli, "cli-runtime-imports.json": json_bytes(cli_imports),
-                  "CLI.md": (ROOT / "docs/CLI.md").read_bytes(),
-                  "CLI.en.md": (ROOT / "docs/CLI.en.md").read_bytes()})
+    files.update({"minikmb-cli.exe": cli, "cli-runtime-imports.json": json_bytes(cli_imports)})
+    files.update(cli_documents(ROOT))
     keyboard = ROOT / "target/native-keyboard"
     keyboard_manifest = json.loads((keyboard / "manifest.json").read_text(encoding="utf-8"))
     keyboard_dll = (keyboard / "minikmb-keyboard.dll").read_bytes()

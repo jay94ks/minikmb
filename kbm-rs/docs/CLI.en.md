@@ -118,6 +118,31 @@ response. Errors go to stderr. Submitted requests are never automatically
 replayed. `--connect-timeout-ms` only limits waiting for a busy pipe, not command
 execution. After a disconnect, query state/job status before deciding to retry.
 
+## AI agents
+
+The distribution includes `SKILL.md` for agents using this CLI. It explains JSON
+output, live schema discovery, the single active channel, frame coordinates,
+input sessions and file/job workflows. Its source is `packaging/SKILL.md`; the
+packager includes it beside the executables. No global skill installation or
+application configuration change is performed.
+
+## REST API reference and console
+
+The distribution includes `REST-API.md`, `openapi.json` and `REST-API.html`.
+The Markdown reference lists all 66 HTTP operations with methods, paths, arguments,
+required fields, allowed values, bounds and request examples. OpenAPI 3.1 JSON also
+contains exact response and component schemas. Packaging regenerates these files
+from the application's actual API contract.
+
+Open the HTML file to read the reference offline. To send requests, enable REST
+in the updated app, open `/api/v1/reference` at its displayed address and enter a
+key created in the app. **Open local tester** in the HTML file navigates there.
+Select an operation, fill its arguments and click **Send request** to inspect the
+status, headers and JSON/image response. Binary uploads and SSE start/stop are
+supported. Keys remain in page memory only. Browser file-origin restrictions do
+not need to be relaxed. HTTP controls require Bearer authentication, independently
+of the CLI's keyless local IPC.
+
 ## Implementation and builds
 
 The pipe is restricted to the current user SID, rejects remote clients, checks

@@ -43,7 +43,9 @@ Build the updated GUI and `minikmb-cli.exe` together to use the same controls wi
 .\minikmb-cli.exe channels --json
 ```
 
-Input commands control the active physical target. [English guide](kbm-rs/docs/CLI.en.md) · [한국어](kbm-rs/docs/CLI.md). This feature is in the latest source; the existing `v1.0.0` release ZIP does not include the CLI. See [Building](docs/BUILDING.en.md).
+Input commands control the active physical target. [English guide](kbm-rs/docs/CLI.en.md) · [한국어](kbm-rs/docs/CLI.md). An agent-facing [SKILL.md](kbm-rs/packaging/SKILL.md) is included in the distribution folder. This feature is in the latest source; the existing `v1.0.0` release ZIP does not include the CLI. See [Building](docs/BUILDING.en.md).
+
+See the [REST API reference](kbm-rs/packaging/REST-API.md) for arguments and examples, and [OpenAPI](kbm-rs/packaging/openapi.json) for exact schemas. The bundled [HTML console](kbm-rs/packaging/REST-API.html) can send requests from `/api/v1/reference` on the running REST server using an app-generated API key.
 
 ## Documentation languages
 

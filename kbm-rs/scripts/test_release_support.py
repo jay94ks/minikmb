@@ -8,7 +8,7 @@ import tarfile
 import tempfile
 import unittest
 import zipfile
-from release_support import collect_notices, crate_members, dependency_closure, json_bytes, pe_imports, safe_name, sha, verify_zip, write_zip
+from release_support import cli_documents, collect_notices, crate_members, dependency_closure, json_bytes, pe_imports, safe_name, sha, verify_zip, write_zip
 
 
 def archive_bytes(members):
@@ -45,6 +45,25 @@ def pe_fixture(delay=False):
 
 
 class PackagingTests(unittest.TestCase):
+    def test_cli_agent_and_user_documents_are_required_and_hash_verified(self):
+        root = Path(__file__).resolve().parents[1]
+        documents = cli_documents(root)
+        self.assertEqual(set(documents), {"SKILL.md", "CLI.md", "CLI.en.md", "REST-API.md", "openapi.json", "REST-API.html"})
+        output = io.BytesIO()
+        write_zip(output, documents, {"channel": "test-fixture"})
+        manifest = verify_zip(io.BytesIO(output.getvalue()))
+        self.assertEqual(manifest["files"]["SKILL.md"]["sha256"],
+                         sha((root / "packaging/SKILL.md").read_bytes()))
+        for name, data in documents.items():
+            self.assertEqual(manifest["files"][name]["sha256"], sha(data))
+        with tempfile.TemporaryDirectory(prefix="minikmb-cli-doc-test-") as directory:
+            incomplete = Path(directory)
+            (incomplete / "docs").mkdir()
+            for name in ["CLI.md", "CLI.en.md"]:
+                (incomplete / "docs" / name).write_text("fixture", encoding="utf-8")
+            with self.assertRaises(FileNotFoundError):
+                cli_documents(incomplete)
+
     def test_windows_paths_reject_traversal_aliases_and_reserved_devices(self):
         for name in ["../key", "/key", "C:/key", "a\\key", "a//key", "a/./key", "a/..", "a/CON.txt", "a/NUL", "a/key.", "a/key "]:
             with self.subTest(name=name), self.assertRaises(ValueError):

@@ -26,6 +26,7 @@ use tokio_util::sync::CancellationToken;
 mod event_tests;
 mod events;
 mod ipc;
+mod reference;
 pub(crate) use ipc::{ipc_router, upload_address, upload_response};
 
 #[derive(Clone, Debug, Default, Serialize, schemars::JsonSchema)]
@@ -240,6 +241,11 @@ async fn authenticate_inner(
             return AppError::new("ORIGIN_NOT_ALLOWED", "요청 Origin을 허용하지 않습니다.")
                 .into_response();
         }
+    }
+    // Only the static tester page is public. Host/Origin checks above still apply;
+    // its control requests continue through Bearer authentication below.
+    if request.method() == axum::http::Method::GET && request.uri().path() == "/api/v1/reference" {
+        return next.run(request).await;
     }
     let token = request
         .headers()
@@ -469,6 +475,7 @@ fn rest_router(app: Arc<AppService>) -> Router {
             put(rest_select).delete(rest_clear),
         )
         .route("/api/v1/openapi.json", get(rest_openapi))
+        .route("/api/v1/reference", get(reference::page))
         .with_state(app)
 }
 async fn rest_openapi(State(app): State<Arc<AppService>>) -> Json<Value> {
