@@ -1,0 +1,70 @@
+"""Open the generated model in FreeCAD and save real CAD viewport previews."""
+import FreeCAD as App, FreeCADGui as Gui
+from pathlib import Path
+import json, traceback, sys, hashlib
+
+try:
+    root=Path(__file__).resolve().parent
+except NameError:
+    macro_arg=next((Path(a) for a in sys.argv if a.endswith('Preview.FCMacro')),None)
+    if macro_arg:
+        root=macro_arg.resolve().parent
+    elif App.ActiveDocument and App.ActiveDocument.FileName:
+        root=Path(App.ActiveDocument.FileName).resolve().parent.parent
+    else:
+        raise RuntimeError('Open the case FCStd first, then run this macro.')
+out=root/'output'
+try:
+    doc=App.openDocument(str(out/'MiniKVM_Clear_Snap_Case.FCStd'))
+    base=next(o for o in doc.Objects if o.Label.startswith('01 BASE'))
+    lid=next(o for o in doc.Objects if o.Label.startswith('02 LID'))
+    board=doc.getObject('BoardReference'); proxy=doc.getObject('MissingModels')
+    for o in doc.Objects:
+        if o.ViewObject: o.ViewObject.Visibility=False
+    for o in [base,lid]:
+        o.ViewObject.Visibility=True
+        o.ViewObject.ShapeColor=(0.70,0.86,0.96)
+        o.ViewObject.LineColor=(0.18,0.35,0.43)
+        o.ViewObject.DisplayMode='Flat Lines'
+        o.ViewObject.LineWidth=1.0
+        o.ViewObject.Transparency=62
+    board.ViewObject.Visibility=True
+    board.ViewObject.ShapeColor=(0.12,0.38,0.28)
+    board.ViewObject.DisplayMode='Flat Lines'
+    board.ViewObject.LineColor=(0.12,0.16,0.15)
+    colors=[]
+    for s in board.Shape.Solids:
+        b=s.BoundBox
+        c=(0.10,0.37,0.27) if b.XLength>70 else ((0.68,0.71,0.73) if b.XLength>8 or b.ZLength>4 else (0.20,0.22,0.23))
+        colors.extend([c]*len(s.Faces))
+    board.ViewObject.DiffuseColor=colors
+    proxy.ViewObject.Visibility=True
+    proxy.ViewObject.ShapeColor=(0.95,0.61,0.16)
+    proxy.ViewObject.Transparency=45
+    proxy.ViewObject.DisplayMode='Flat Lines'
+    Gui.activeDocument().activeView().viewAxonometric()
+    Gui.activeDocument().activeView().fitAll()
+    Gui.activeDocument().activeView().saveImage(str(out/'01_assembled.png'),1800,1200,'White')
+    lid.ViewObject.Visibility=False
+    Gui.activeDocument().activeView().fitAll()
+    Gui.activeDocument().activeView().saveImage(str(out/'02_open.png'),1800,1200,'White')
+    lid.ViewObject.Visibility=True
+    lid.Placement.Base=App.Vector(0,0,22)
+    lid.ViewObject.Transparency=25
+    base.ViewObject.Transparency=20
+    Gui.activeDocument().activeView().fitAll()
+    Gui.activeDocument().activeView().saveImage(str(out/'03_exploded.png'),1800,1400,'White')
+    lid.Placement.Base=App.Vector(0,0,0)
+    lid.ViewObject.Transparency=62; base.ViewObject.Transparency=62
+    Gui.activeDocument().activeView().viewTop()
+    Gui.activeDocument().activeView().fitAll()
+    Gui.activeDocument().activeView().saveImage(str(out/'04_top.png'),1800,1200,'White')
+    Gui.activeDocument().activeView().viewAxonometric()
+    Gui.activeDocument().activeView().fitAll()
+    doc.recompute()
+    doc.save()
+    (out/'preview-status.json').write_text(json.dumps({'ok':True,'document':doc.Name,
+        'native_sha256':hashlib.sha256((out/'MiniKVM_Clear_Snap_Case.FCStd').read_bytes()).hexdigest()}))
+except Exception:
+    (out/'preview-status.json').write_text(json.dumps({'ok':False,'error':traceback.format_exc()}))
+    raise

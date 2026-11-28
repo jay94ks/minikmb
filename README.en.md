@@ -90,6 +90,7 @@ The Rust/egui application builds on the earlier Electron app. It groups channels
 | Location | Contents |
 |---|---|
 | [`hardware/stm32h7/`](hardware/stm32h7/) | Fabricated six-layer PCB, schematic, project-local libraries, Gerbers and assembly BOM/CPL |
+| [`hardware/case/`](hardware/case/) | Clear screwless enclosure prototype, editable FreeCAD model and JLC3DP STL/STEP files |
 | [`hardware/rp2040/`](hardware/rp2040/) | Wiring guide for the hand-built RP2040 prototype |
 | [`hardware/prototypes/`](hardware/prototypes/) | Early candidate libraries and unfinished MS2130 test board; not for fabrication |
 | [`firmware/stm32h7/`](firmware/stm32h7/) | Current STM32 firmware, CubeIDE project, protocol/memory references and tests |

@@ -1,0 +1,87 @@
+{
+  "status": "DESIGN PROTOTYPE \u2014 NOT FIT/THERMAL TESTED",
+  "source_sha256": "05421c8b5b211a30ea6a57813909a3ad836e9fca3ae9b78bab4d1696b7d1fce8",
+  "base": {
+    "valid": true,
+    "solids": 1,
+    "closed": true,
+    "volume_cm3": 15.449845625974245,
+    "bbox_mm": [
+      93.0,
+      59.6,
+      17.6
+    ]
+  },
+  "lid": {
+    "valid": true,
+    "solids": 1,
+    "closed": true,
+    "volume_cm3": 8.589335824123758,
+    "bbox_mm": [
+      93.0,
+      59.6,
+      11.541600000000003
+    ]
+  },
+  "missing_models": [
+    "U4",
+    "U13",
+    "J4",
+    "U3",
+    "J3",
+    "U15",
+    "Y9",
+    "Y6"
+  ],
+  "closure": "two integral side-release cantilever snap hooks; no fasteners or adhesive",
+  "latch_nominal": {
+    "beam_length_mm": 26,
+    "effective_length_to_hook_center_mm": 24,
+    "beam_flex_thickness_mm": 1.6,
+    "beam_depth_mm": 3,
+    "hook_ledge_overlap_mm": 0.8,
+    "root_blend_radius_mm": 1.0,
+    "vertical_play_mm": 0.4,
+    "assembly_flex_nominal_mm": 1.1,
+    "release_travel_checked_mm": 1.4,
+    "surface_strain_estimate_percent": 0.5833333333333334,
+    "strain_note": "small-deflection cantilever estimate only; not FEA or a fatigue/strength acceptance"
+  },
+  "base_lid_intersection_mm3": 0.0,
+  "base_PCB_STEP_intersection_mm3": 0.0,
+  "lid_PCB_STEP_intersection_mm3": 0.0,
+  "base_missing_envelopes_intersection_mm3": 0.0,
+  "lid_missing_envelopes_intersection_mm3": 0.0,
+  "release_space_base_intersection_mm3": 0.0,
+  "release_space_PCB_STEP_intersection_mm3": 0.0,
+  "release_space_missing_envelopes_intersection_mm3": 0.0,
+  "total_volume_cm3": 24.039181450098003,
+  "reference_2_4mm_volume_cm3": 27.97677351922132,
+  "resin_volume_reduction_percent": 14.074503860918819,
+  "seat_xy_footprint_conflicts": [],
+  "01_Base_mesh": {
+    "closed": true,
+    "facets": 1020,
+    "volume_cm3": 15.4495078125,
+    "non_manifolds": false
+  },
+  "02_Lid_mesh": {
+    "closed": true,
+    "facets": 1060,
+    "volume_cm3": 8.5892998046875,
+    "non_manifolds": false
+  },
+  "part_files": {
+    "01_Base.step": "d7f1cee9bdbd0034665c7d455793c6e6022f7ed711ebb4b7562ffd1b204aeeb4",
+    "01_Base.stl": "35b5892306b3e9f2fd9062472d49c5d9e85958ffa3463f248bae0a396f7ec204",
+    "02_Lid.step": "04a0a1babf057e868a11b068c1631386887ec0239f7eacd82366cb209b4caf6c",
+    "02_Lid.stl": "710456012705612aaa78f2103c9e516c26ec14c99101d541815d50a68592b400",
+    "MiniKVM_Clear_Snap_Case.FCStd": "9010b37517cb74b843301f1c1a90f2d60e1c9b7e291fa2c2673b551961af8d1c"
+  },
+  "native_reopen_recompute": "passed after final snap-case GUI save",
+  "preview_status": {
+    "ok": true,
+    "document": "MiniKVM_Clear_Snap_Case",
+    "native_sha256": "9010b37517cb74b843301f1c1a90f2d60e1c9b7e291fa2c2673b551961af8d1c"
+  }
+}

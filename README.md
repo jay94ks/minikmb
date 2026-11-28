@@ -91,6 +91,7 @@ Electron 앱을 바탕으로 Rust·egui 앱을 구현했습니다. 채널을 묶
 | 위치 | 내용 |
 |---|---|
 | [`hardware/stm32h7/`](hardware/stm32h7/) | 실제 제작한 6층 PCB·회로도·프로젝트 로컬 라이브러리·Gerber·조립 BOM/CPL |
+| [`hardware/case/`](hardware/case/) | 나사 없는 투명 케이스 시안, FreeCAD 원본과 JLC3DP용 STL·STEP |
 | [`hardware/rp2040/`](hardware/rp2040/) | 수작업 RP2040 프로토타입 배선 안내 |
 | [`hardware/prototypes/`](hardware/prototypes/) | 초기 부품 라이브러리와 미완성 MS2130 단독 시험 보드. 제조용 아님 |
 | [`firmware/stm32h7/`](firmware/stm32h7/) | 현재 STM32H743 펌웨어, STM32CubeIDE 프로젝트, 프로토콜·메모리맵·테스트 |

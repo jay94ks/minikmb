@@ -20,6 +20,10 @@ Historical impedance targets: USB differential 90 Ω, HDMI differential 100 Ω, 
 
 `hardware/stm32h7/manufacturing/` preserves the actual historical Gerber archive and partial-assembly BOM/CPL. HDMI J1/J2 were manually assembled. R39/R41/U7/U8/U11 were DNP in that order. The MS2130 SPI flashes were subsequently fitted/programmed to obtain video; do not copy that DNP choice to a new working build without considering this change.
 
+## Clear snap-fit enclosure
+
+[`hardware/case/`](../hardware/case/README.en.md) contains a screwless enclosure prototype for the STM32H7 board: one base and one lid with two integral side-release latches. It includes an editable FreeCAD document, JLC3DP STL/STEP files and assembly instructions. Suggested material is natural clear 8001 SLA; nominal dimensions are 93×59.6×19.2 mm with 1.6 mm walls. Digital geometry and interference checks passed; printing, retention force, repeated opening, temperatures and manufacturing approval remain unverified.
+
 ## Target USB-C and HS design review
 
 **The schematic was authored directly by the creator, jay94ks.** The designer attributes unreliable HS establishment or high error rates to the omitted target USB-C plug-orientation detection/signal-selection circuit and the resulting impedance mismatch in this board's HS path. The current firmware therefore uses FS.

@@ -7,6 +7,7 @@
 - [로컬 CLI 사용법](../kbm-rs/docs/CLI.md)
 - [테스트와 검증 범위](TESTING.md)
 - [하드웨어·커넥터·제작 정보](HARDWARE.md)
+- [나사 없는 투명 케이스·FreeCAD·주문용 STL/STEP](../hardware/case/README.md)
 - [HS 제한과 설계 회고](KNOWN-ISSUES.md)
 - [v1.0 공개판 안내](RELEASE-1.0.md)
 - [라이선스 적용 범위](../NOTICE.ko.md)

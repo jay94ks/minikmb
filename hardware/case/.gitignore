@@ -1,0 +1,6 @@
+*.FCBak
+*.FCStd1
+output/*.FCBak
+output/*.FCStd1
+*.log
+__pycache__/

@@ -2,6 +2,8 @@
 
 [한국어](README.md) · [English](README.en.md)
 
+- [Clear snap-fit case, FreeCAD and printable STL/STEP](../hardware/case/README.en.md)
+
 - [Project, photographs and licenses](../README.en.md)
 - [Building](BUILDING.en.md)
 - [Local CLI](../kbm-rs/docs/CLI.en.md)

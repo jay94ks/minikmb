@@ -1,0 +1,8 @@
+# Preserve CAD exporter bytes; geometry is validated by FreeCAD, not text diffs.
+*.step -diff linguist-generated=true
+board-mechanical.json linguist-generated=true
+output/*.stl -diff linguist-generated=true
+output/*.FCStd -diff linguist-generated=true
+output/*.png -diff linguist-generated=true
+output/*.zip -diff linguist-generated=true
+output/*.json linguist-generated=true
